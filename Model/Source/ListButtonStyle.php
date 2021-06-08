@@ -20,7 +20,7 @@
  */
 namespace Ves\BaseWidget\Model\Source;
 
-class ListStyle implements \Magento\Framework\Option\ArrayInterface
+class ListButtonStyle implements \Magento\Framework\Option\ArrayInterface
 {
     public function __construct() {
 
@@ -33,19 +33,17 @@ class ListStyle implements \Magento\Framework\Option\ArrayInterface
      */
     public function toOptionArray()
     {   
-      return array(
-                  array('value' => "", 'label'=>__('Default')),
+        return array(
+                  array('value' => "default", 'label'=>__('Default')),
                   array('value' => "primary", 'label'=>__('Primary')),
-                  array('value' => "danger", 'label'=>__('Danger')),
+                  array('value' => "success", 'label'=>__('Success')),
                   array('value' => "info", 'label'=>__('Info')),
                   array('value' => "warning", 'label'=>__('Warning')),
-                  array('value' => "error", 'label'=>__('Error')),
+                  array('value' => "danger", 'label'=>__('Danger')),
+                  array('value' => "link", 'label'=>__('Link')),
                   array('value' => "dark", 'label'=>__('Dark')),
-                  array('value' => "white", 'label'=>__('White')),
-                  array('value' => "black", 'label'=>__('Black')),
-                  array('value' => "highlighted", 'label'=>__('Highlighted')),
-                  array('value' => "nopadding", 'label'=>__('Nopadding')),
-                  array('value' => "no-padding", 'label'=>__('No-padding'))
+                  array('value' => "light", 'label'=>__('Light')),
+                  array('value' => "secondary", 'label'=>__('Secondary'))
                   );
     }
 }

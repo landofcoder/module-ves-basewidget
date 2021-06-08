@@ -18,10 +18,10 @@
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
-namespace Ves\BaseWidget\Block\Widget;
+namespace Ves\BaseWidget\Block\Element;
 use Ves\BaseWidget\Block\AbstractWidget;
 
-class Image extends AbstractWidget
+class BoxImage extends AbstractWidget
 {
 	protected $_storeManager;
 	protected $_blockModel;
@@ -41,7 +41,7 @@ class Image extends AbstractWidget
 		$this->_dataFilterHelper = $dataHelper;
 		$this->_imageHelper = $imageHelper;
 		/*$this->_storeManager = $storeManager;*/
-		$this->setTemplate('widget/single_image.phtml');
+		$this->setTemplate('element/box_image.phtml');
 	}
 
 	public function getBaseMediaUrl()
@@ -79,7 +79,6 @@ class Image extends AbstractWidget
 	public function _toHtml() {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
-		$widget_heading = $this->getConfig("title");
 		$image_file = $this->getConfig('file');
 		$imagesize = $this->getConfig('image_size');
 
@@ -108,34 +107,10 @@ class Image extends AbstractWidget
         	$thumbnailurl = $imageurl = $image_file;
         }
 
-        $link_url = $this->getConfig('link');
-
-        if ($link_url && !preg_match("/^http\:\/\/|https\:\/\//", $link_url)) {
-        	$link_url = str_replace(" ", "+", $link_url);
-        	if($this->isBase64Encoded($link_url)){
-				$link_url = base64_decode($link_url);
-				if($link_url) {
-					$link_url = $this->getDataFilterHelper()->filter($link_url);
-				}
-			}
-        }
-
         $this->assign('image_width', $image_width);
         $this->assign('image_height', $image_height);
-        $this->assign('widget_heading', $widget_heading);
 		$this->assign('imageurl', $imageurl);
 		$this->assign('thumbnailurl', $thumbnailurl);
-		$this->assign('addition_cls', $this->getConfig('addition_cls'));
-		$this->assign('stylecls', $this->getConfig('stylecls'));
-		$this->assign('animation', $this->getConfig('animation'));
-		$this->assign('alignment', $this->getConfig('alignment'));
-		$this->assign('ispopup',$this->getConfig('popup'));
-		$this->assign('link_url',$link_url);
-		$this->assign('alt',$this->getConfig('alt'));
-		$this->assign('zoom_type', $this->getConfig('zoom_type'));
-		$this->assign('lens_size', $this->getConfig('lens_size', 200));
-		$this->assign('image_style', $this->getConfig('image_style',''));
-
 		return parent::_toHtml();
 	}
 

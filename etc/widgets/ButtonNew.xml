@@ -22,40 +22,43 @@
 -->
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-	<widget id="ves_base_button" class="Ves\BaseWidget\Block\Widget\Button">
-		<label translate="true">Ves Base: Button</label>
-		<description translate="true">Generate button</description>
+	<widget id="ves_base_button_new" class="Ves\BaseWidget\Block\Widget\ButtonNew">
+		<label translate="true">Ves Base: Button (new)</label>
+		<description translate="true">Generate Bootstrap button</description>
 		<parameters>
-			<parameter name="title" xsi:type="text" visible="true">
-				<label translate="true">Widget Title</label>
-				<description translate="true">This tile will be showed as header of widget block. Empty to disable</description>
-			</parameter>
-			<parameter name="addition_cls" xsi:type="text"  visible="true">
-				<label translate="true">Addition Class</label>
-				<description translate="true">This class is used to make owner style for the widget.</description>
-			</parameter>
 			<parameter name="button_title" xsi:type="text"  visible="true">
-				<label translate="true">Text on the button</label>
+				<label translate="true">Button Text</label>
 				<description translate="true">will be showed on button.</description>
 			</parameter>
-			<parameter name="href" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\System\Config\Form\Field\Text">
-				<label translate="true">URL (link)</label>
-				<description translate="true">Button Link.</description>
-			</parameter>
-
-			<parameter name="color_button" xsi:type="select" visible="true" source_model="Ves\BaseWidget\Model\Source\ListButtonType">
-				<label translate="true">Button Type</label>
-				<description translate="true">Select types suitable for your button.</description>
-			</parameter>
-			<parameter name="icon" xsi:type="text"  visible="true">
+            <parameter name="icon" xsi:type="text"  visible="true">
 				<label translate="true">Button Icon</label>
 				<description translate="true"><![CDATA[Button icon. You can input Font Awesome Icon at here. For example: <strong>fa fa-home</strong><br/>More information font awesome icon at here: <a href="https://fortawesome.github.io/Font-Awesome/icons/" target="_BLANK">https://fortawesome.github.io/Font-Awesome/icons/</a>]]></description>
 			</parameter>
-			<parameter name="size" xsi:type="select"  visible="true" source_model="Ves\BaseWidget\Model\Source\ListButtonSize">
+			<parameter name="href" xsi:type="text" visible="true">
+				<label translate="true">Button Link</label>
+				<description translate="true">Button Link. Empty is not use</description>
+			</parameter>
+
+			<parameter name="color_button" xsi:type="select" visible="true" source_model="Ves\BaseWidget\Model\Source\ListButtonStyle">
+				<label translate="true">Button Type</label>
+				<description translate="true">Select types suitable for your button.</description>
+			</parameter>
+
+            <parameter name="size" xsi:type="select"  visible="true" source_model="Ves\BaseWidget\Model\Source\ListButtonSizeNew">
 				<label translate="true">Button Size</label>
 				<description translate="true">Select size suitable for your button.</description>
 			</parameter>
-			<parameter name="el_class" xsi:type="text"  visible="true">
+
+            <parameter name="is_outline" xsi:type="select"  visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Is Outline Button</label>
+                <description translate="true">Default should be No</description>
+            </parameter>
+            <parameter name="is_active" xsi:type="select"  visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Is Active Button</label>
+                <description translate="true">Default should be No</description>
+            </parameter>
+
+			<parameter name="extra_class" xsi:type="text"  visible="true">
 				<label translate="true">Extra class name</label>
 				<description translate="true">If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.</description>
 			</parameter>

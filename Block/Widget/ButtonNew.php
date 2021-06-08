@@ -21,7 +21,7 @@
 namespace Ves\BaseWidget\Block\Widget;
 use Ves\BaseWidget\Block\AbstractWidget;
 
-class Html extends AbstractWidget
+class ButtonNew extends AbstractWidget
 {
 	protected $_blockModel;
 	protected $_dataFilterHelper;
@@ -34,7 +34,6 @@ class Html extends AbstractWidget
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
-		$this->setTemplate('widget/html.phtml');
+		$this->setTemplate("widget/button_new.phtml");
 	}
-
 }

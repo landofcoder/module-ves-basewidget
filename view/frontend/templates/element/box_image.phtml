@@ -1,0 +1,162 @@
+<?php
+$helper         = $this->helper('Ves\BaseWidget\Helper\Data');
+$addition_cls = $this->getConfig('addition_cls');
+$box_title = $this->getConfig('box_title');
+$box_layout_style = $this->getConfig('box_layout_style');
+$column1_class = "col-6 col-sm-6";
+$column2_class = "col-6 col-sm-6";
+switch($box_layout_style){
+    case "8-4":
+        $column1_class = "col-8 col-sm-8";
+        $column2_class = "col-4 col-sm-4";
+        break;
+    case "4-8":
+        $column1_class = "col-4 col-sm-4";
+        $column2_class = "col-8 col-sm-8";
+        break;
+    case "10-2":
+        $column1_class = "col-10 col-sm-10";
+        $column2_class = "col-2 col-sm-2";
+        break;
+    case "2-10":
+        $column1_class = "col-2 col-sm-2";
+        $column2_class = "col-10 col-sm-10";
+        break;
+    default:
+        break;
+}
+$box_text = $this->getConfig('box_text');
+if(base64_decode($box_text, true) == true){
+   $box_text = str_replace(" ","+",$box_text);
+   $box_text = base64_decode($box_text);
+   $box_text = $this->getDataFilterHelper()->filter($box_text);
+}
+$box_button_text = $this->getConfig('box_button_text');
+$box_button_link = $this->getConfig('box_button_link');
+$box_button_link           = trim($box_button_link);
+if($box_button_link){
+    if($helper->isSiteLink($box_button_link)){
+        $box_button_link = $this->getUrl($box_button_link);  
+    }
+}
+$box_title_link = $this->getConfig('box_title_link');
+$box_title_link           = trim($box_title_link);
+if($box_title_link){
+    if($helper->isSiteLink($box_title_link)){
+        $box_title_link = $this->getUrl($box_title_link);  
+    }
+}
+$button_icon = $this->getConfig('button_icon');
+$button_style = $this->getConfig('button_style');
+$button_size = $this->getConfig('button_size');
+$is_outline = $this->getConfig('is_outline');
+$is_active = $this->getConfig('is_active');
+$image_size = $this->getConfig('image_size');
+$image_alt = $this->getConfig('image_alt');
+$box_image_position = $this->getConfig('box_image_position');
+$box_image_link = $this->getConfig('box_image_link');
+$box_image_link           = trim($box_image_link);
+if($box_image_link){
+    if($helper->isSiteLink($box_image_link)){
+        $box_image_link = $this->getUrl($box_image_link);  
+    }
+}
+$box_image_bottom_text = $this->getConfig('box_image_bottom_text');
+$box_image_border_size = $this->getConfig('box_image_border_size');
+$box_image_border_color = $this->getConfig('box_image_border_color');
+$box_image_border_radius = $this->getConfig('box_image_border_radius');
+$image_style = "";
+if($box_image_border_size){
+    $image_style = 'border-width:'.$box_image_border_size.';border-style:solid;';
+}
+if($box_image_border_color){
+    $image_style .= 'border-color:'.$box_image_border_color.';';
+}
+if($box_image_border_radius){
+    $image_style .= 'border-radius:'.$box_image_border_radius.';';
+}
+$image_class = $this->getConfig('box_image_style');
+if($image_class == "default"){
+    $image_class = "img-responsive";
+}
+$button_class 	= 'btn';
+if($button_size){
+    $button_class .=' btn-'.$button_size;
+}
+if($is_outline){
+    $button_class .= ' btn-outline-'.$button_style;
+}else {
+    $button_class .= ' btn-'.$button_style;
+}
+if($is_active){
+    $button_class .= ' active';
+}
+$thumbnailurl_small = (isset($thumbnailurl_small) && $thumbnailurl_small)?$thumbnailurl_small:$thumbnailurl;
+$thumbnailurl_larger = (isset($thumbnailurl_larger) && $thumbnailurl_larger)?$thumbnailurl_larger:$thumbnailurl;
+?>
+<div class="row element element-box-image <?= $addition_cls; ?>">
+    <div class="<?= $column1_class;?>">
+        <?php if($box_image_position == "left"): // Image Show at left?>
+            <?php if($box_image_link): ?>
+                <a href="<?php echo $box_image_link;?>" class="ves-btnlink img-animation">
+            <?php endif; ?>
+                <img src="<?= $thumbnailurl;?>" class="<?= $image_class; ?>" style="<?=$image_style;?>" alt="<?= $image_alt; ?>"/>
+            <?php if($box_image_link): ?>
+                </a>
+            <?php endif; ?>
+            <?php if($box_image_bottom_text): ?>
+                <div class="bottom-text bottom-img-text"><?=$box_image_bottom_text;?></div>
+            <?php endif; ?>
+        <?php else: // Text show at left?>
+            <div class="block block-text-widget">
+                <?php if($box_title): ?>
+                    <h2 class="text-heading"><?php if($box_title_link): ?><a href="<?=$box_title_link;?>"><?php endif; ?><?= $box_title; ?><?php if($box_title_link): ?></a><?php endif; ?></h2>
+                <?php endif; ?>
+                <?php if($box_text): ?>
+                <div class="block-content">
+                    <?= $box_text; ?>
+                    <?php if($box_button_text): ?>
+                        <?php if($box_button_link): ?>
+                            <a class="<?= $button_class; ?>" href="<?= $box_button_link; ?>" role="button" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></a>
+                        <?php else: ?>
+                            <button type="button" class="<?= $button_class; ?>" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></button>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="<?= $column2_class;?>">
+        <?php if($box_image_position == "right"):  // Image show at right?>
+            <?php if($box_image_link): ?>
+                <a href="<?php echo $box_image_link;?>" class="ves-btnlink img-animation">
+            <?php endif; ?>
+                <img src="<?= $thumbnailurl;?>" class="<?= $image_class; ?>" style="<?=$image_style;?>" alt="<?= $image_alt; ?>"/>
+            <?php if($box_image_link): ?>
+                </a>
+            <?php endif; ?>
+            <?php if($box_image_bottom_text): ?>
+                <div class="bottom-text bottom-img-text"><?=$box_image_bottom_text;?></div>
+            <?php endif; ?>
+        <?php else:  // Text show at right?>
+            <div class="block block-text-widget">
+                <?php if($box_title): ?>
+                    <h2 class="text-heading"><?php if($box_title_link): ?><a href="<?=$box_title_link;?>"><?php endif; ?><?= $box_title; ?><?php if($box_title_link): ?></a><?php endif; ?></h2>
+                <?php endif; ?>
+                <?php if($box_text): ?>
+                <div class="block-content">
+                    <?= $box_text; ?>
+                    <?php if($box_button_text): ?>
+                        <?php if($box_button_link): ?>
+                            <a class="<?= $button_class; ?>" href="<?= $box_button_link; ?>" role="button" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></a>
+                        <?php else: ?>
+                            <button type="button" class="<?= $button_class; ?>" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></button>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

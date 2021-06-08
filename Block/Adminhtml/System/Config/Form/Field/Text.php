@@ -24,7 +24,7 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
 use Magento\Framework\Escaper;
 
-class Textarea extends Template implements RendererInterface
+class Text extends Template implements RendererInterface
 {
 
     /**
@@ -142,7 +142,7 @@ class Textarea extends Template implements RendererInterface
         $html .= $element->getLabelHtml();
 
         $html .= '<div class="admin__field-control control">';
-        $html .= '<textarea id="' . $element->getHtmlId() . '" name="' . $element->getName() . '" class="textarea admin__control-textarea ' . $class . '" rows="15" cols="15" data-ui-id="product-tabs-attributes-tab-fieldset-element-textarea-' . $element->getName() . '">'.$value.'</textarea>';
+        $html .= '<input type="text" id="' . $element->getHtmlId() . '" name="' . $element->getName() . '" class="input admin__control-input ' . $class . '" data-ui-id="product-tabs-attributes-tab-fieldset-element-input-' . $element->getName() . '" value="'.$value.'"/>';
 
         if($description) {
             $html .= '<div class="note" id="' . $element->getHtmlId() . '-note">'.$description.'</div>';

@@ -260,6 +260,24 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
        return $orginalStr;
    }
 
+   public function isSiteLink($href){
+        if($urls = parse_url($href)){
+            $url_host = isset($urls['host'])?$urls['host']:"";
+            if($url_host){
+                $base_url = $this->_storeManager->getStore()->getBaseUrl();
+                if($base_urls = parse_url($base_url)) {
+                    $base_urls['host'] = isset($base_urls['host'])?$base_urls['host']:"";
+                    if($url_host == $base_urls['host']){
+                        return true;
+                    }
+                }
+            }else {
+                return true;
+            }
+        }
+        return false;
+   }
+
    public function isBase64Encoded($data) {
         $is_base64 = $this->checkBase64Encoded($data);
         if(!$is_base64 && base64_encode(base64_decode($data)) === $data){
