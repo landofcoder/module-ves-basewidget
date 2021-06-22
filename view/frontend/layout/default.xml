@@ -33,7 +33,7 @@
 		<!-- <css src="Ves_All::lib/bootstrap/css/bootstrap.components.min.css" /> -->
 		<!-- Enabe bootstrap 4 grid, components -->
 		<!-- <css src="Ves_All::lib/bootstrap4/css/bootstrap.min.css" /> -->
-		<css src="Ves_All::lib/bootstrap5/css/bootstrap.min.css" />
+		<css src="Ves_All::lib/bootstrap5/css/bootstrap.css" />
 		<css src="Ves_All::lib/colorbox/colorbox.css" />
 		<css src="Ves_All::lib/fancybox/jquery.fancybox.css" />
 		<css src="Ves_BaseWidget::css/video-js.css" />
