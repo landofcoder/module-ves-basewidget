@@ -26,7 +26,7 @@ switch($box_layout_style){
         break;
 }
 $box_text = $this->getConfig('box_text');
-if(base64_decode($box_text, true) == true){
+if($helper->isBase64Encoded($box_text)){
    $box_text = str_replace(" ","+",$box_text);
    $box_text = base64_decode($box_text);
    $box_text = $this->getDataFilterHelper()->filter($box_text);
