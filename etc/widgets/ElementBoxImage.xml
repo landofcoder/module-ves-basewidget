@@ -70,7 +70,7 @@
 				<label translate="true">Box Title Link</label>
 				<description translate="true">Box Title Link. Empty not use.</description>
 			</parameter>
-			<parameter name="box_text" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
+			<parameter name="content" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
 				<label translate="true">Box Text</label>
 				<description translate="true">Input html content.</description>
 			</parameter>

@@ -55,7 +55,7 @@ class Widget extends \Magento\Widget\Model\Widget
      */
     public function getWidgetDeclaration($type, $params = [], $asIs = true)
     {
-        $field_pattern = ["pretext","pretext_html","shortcode","html","raw_html","content","tabs","latestmod_desc","custom_css","block_params","link","href","url"];
+        $field_pattern = ["pretext","pretext_html","shortcode","html","box_text","raw_html","content","tabs","latestmod_desc","custom_css","block_params","link","href","url"];
         $widget_types = ["Ves\BaseWidget\Block\Widget\Accordionbg"];
 
         foreach ($params as $k => $value) {

@@ -25,7 +25,7 @@ switch($box_layout_style){
     default:
         break;
 }
-$box_text = $this->getConfig('box_text');
+$box_text = $this->getConfig('content');
 if($helper->isBase64Encoded($box_text)){
    $box_text = str_replace(" ","+",$box_text);
    $box_text = base64_decode($box_text);
