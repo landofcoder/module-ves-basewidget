@@ -84,76 +84,76 @@
 				<description translate="true">Input html content display bellow box texts. Empty to disable</description>
 			</parameter>
 			<parameter name="box_title" xsi:type="text"  visible="true">
-				<label translate="true">Box Title</label>
+				<label translate="true">1.Section Text: Box Title</label>
 				<description translate="true">Box Title.</description>
 			</parameter>
 			<parameter name="box_title_link" xsi:type="text"  visible="true">
-				<label translate="true">Box Title Link</label>
+				<label translate="true">1.Section Text: Box Title Link</label>
 				<description translate="true">Box Title Link. Empty not use.</description>
 			</parameter>
 			<parameter name="content" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
-				<label translate="true">Box Text</label>
+				<label translate="true">1.Section Text: Box Text</label>
 				<description translate="true">Input html content.</description>
 			</parameter>
 			<parameter name="content_1" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
-				<label translate="true">Sub Box Text</label>
+				<label translate="true">1.Section Text: Sub Box Text</label>
 				<description translate="true">Input html content display bellow box texts.</description>
 			</parameter>
 			<parameter name="box_button_text" xsi:type="text"  visible="true">
-				<label translate="true">Box Button Text</label>
+				<label translate="true">1.Section Text: Box Button Text</label>
 				<description translate="true">Box Button Text.</description>
 			</parameter>
 			<parameter name="box_button_link" xsi:type="text"  visible="true">
-				<label translate="true">Box Button Link</label>
+				<label translate="true">1.Section Text: Box Button Link</label>
 				<description translate="true">Box Button Link. Empty not use.</description>
 			</parameter>
 			<parameter name="button_style" xsi:type="select"  visible="true" source_model="Ves\BaseWidget\Model\Source\ListButtonStyle">
-				<label translate="true">Button Color Style</label>
+				<label translate="true">1.Section Text: Button Color Style</label>
 				<description translate="true">These classes are bootstrap typo contextual color classes.</description>
 			</parameter>
 			<parameter name="button_size" xsi:type="select"  visible="true" source_model="Ves\BaseWidget\Model\Source\ListButtonSizeNew">
-				<label translate="true">Button Size</label>
+				<label translate="true">1.Section Text: Button Size</label>
 				<description translate="true">These classes are bootstrap typo contextual color classes.</description>
 			</parameter>
 			<parameter name="is_outline" xsi:type="select"  visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
-                <label translate="true">Is Outline Button</label>
+                <label translate="true">1.Section Text: Is Outline Button</label>
                 <description translate="true">Default should be No</description>
             </parameter>
             <parameter name="is_active" xsi:type="select"  visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
-                <label translate="true">Is Active Button</label>
+                <label translate="true">1.Section Text: Is Active Button</label>
                 <description translate="true">Default should be No</description>
             </parameter>
 			<parameter name="button_icon" xsi:type="text"  visible="true">
-				<label translate="true">Button Icon</label>
+				<label translate="true">1.Section Text: Button Icon</label>
 				<description translate="true"><![CDATA[Button icon. You can input Font Awesome Icon at here. For example: <strong>fa fa-home</strong><br/>More information font awesome icon at here: <a href="https://fortawesome.github.io/Font-Awesome/icons/" target="_BLANK">https://fortawesome.github.io/Font-Awesome/icons/</a>]]></description>
 			</parameter>
 
 			<parameter name="file" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\Mediachooser">
-				<label translate="true">Box Image File</label>
+				<label translate="true">2.Section Image: Box Image File</label>
 				<description translate="true"><![CDATA[Enter image path or use holder image (ex: <strong>holder.js/300x200</strong>). 
 					Or input image name with path.<br/>Example: <strong>image_name.jpg(png|gif|jpeg|svg)</strong> or <strong>subfolder/image_name.jpg(png|gif|jpeg|svg)</strong>.The "subfolder" is child folder in <strong>your_webroot_folder/pub/media/</strong>]]></description>
 			</parameter>
 			
 			<parameter name="image_size" xsi:type="text"  visible="true" >
-				<label translate="true">Box Image size</label>
+				<label translate="true">2.Section Image: Box Image size</label>
 				<description translate="true"><![CDATA[Enter image size. Example: thumbnail, medium, large, full or other sizes defined by current theme. Alternatively enter image size in pixels: 200x100 (Width x Height). Leave empty to use 'thumbnail' size.]]></description>
 				<value>full</value>
 			</parameter>
 			
 			<parameter name="image_alt" xsi:type="text"  visible="true">
-				<label translate="true">Box Image Alt Text</label>
+				<label translate="true">2.Section Image: Box Image Alt Text</label>
 				<description translate="true">Box Image Alt Text. Empty not use.</description>
 			</parameter>
 			<parameter name="box_image_link" xsi:type="text"  visible="true">
-				<label translate="true">Box Image Link</label>
+				<label translate="true">2.Section Image: Box Image Link</label>
 				<description translate="true">Box Image Link. Empty not use.</description>
 			</parameter>
 			<parameter name="box_image_bottom_text" xsi:type="text"  visible="true">
-				<label translate="true">Box Image Bottom Text</label>
+				<label translate="true">2.Section Image: Box Image Bottom Text</label>
 				<description translate="true">Box Image Bottom Text. Empty not use.</description>
 			</parameter>
 			<parameter name="box_image_style" xsi:type="select"  visible="true">
-				<label translate="true">Image Style</label>
+				<label translate="true">2.Section Image: Image Style</label>
 				<options>
 					<option name="default" value="default" selected="true">
                         <label translate="true">default</label>
@@ -170,15 +170,15 @@
                 </options>
 			</parameter>
 			<parameter name="box_image_border_size" xsi:type="text"  visible="true">
-				<label translate="true">Box Image Border Size</label>
+				<label translate="true">2.Section Image: Box Image Border Size</label>
 				<description translate="true">Box Image Border Size (px, em, rem). Empty not use.</description>
 			</parameter>
 			<parameter name="box_image_border_color" xsi:type="text"  visible="true">
-				<label translate="true">Box Image Border Color</label>
+				<label translate="true">2.Section Image: Box Image Border Color</label>
 				<description translate="true">Box Image Border Color (Hexa code, eg: #f0f0f0). Empty not use.</description>
 			</parameter>
 			<parameter name="box_image_border_radius" xsi:type="text"  visible="true">
-				<label translate="true">Box Image Border Radius</label>
+				<label translate="true">2.Section Image: Box Image Border Radius</label>
 				<description translate="true">Box Image Border Radius value (px or em, rem). Empty not use.</description>
 			</parameter>
 		</parameters>
