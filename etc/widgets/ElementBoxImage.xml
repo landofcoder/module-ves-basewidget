@@ -37,12 +37,21 @@
 			<parameter name="box_layout_style" xsi:type="select"  visible="true">
 				<label translate="true">Box Layout Columns Style</label>
 				<options>
+					<option name="75" value="7-5" selected="true">
+                        <label translate="true">7 - 5</label>
+                    </option>
+					<option name="57" value="5-7" selected="true">
+                        <label translate="true">5 - 7</label>
+                    </option>
                     <option name="84" value="8-4" selected="true">
                         <label translate="true">8 - 4</label>
                     </option>
                     <option name="48" value="4-8">
                         <label translate="true">4 - 8</label>
 					</option>
+					<option name="66" value="6-6" selected="true">
+                        <label translate="true">6 - 6</label>
+                    </option>
 					<option name="102" value="10-2">
                         <label translate="true">10 - 2</label>
 					</option>
@@ -62,6 +71,18 @@
                     </option>
                 </options>
 			</parameter>
+			<parameter name="hide_section_text" xsi:type="select"  visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Hide Box Text Section</label>
+                <description translate="true">Choose Yes to disable the Box text column (just show box image). Default should be No</description>
+            </parameter>
+			<parameter name="heading_text" xsi:type="text"  visible="true">
+				<label translate="true">Heading Text</label>
+				<description translate="true">Input heading text, empty to disable.</description>
+			</parameter>
+			<parameter name="content_2" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
+				<label translate="true">Sub Heading Content</label>
+				<description translate="true">Input html content display bellow box texts. Empty to disable</description>
+			</parameter>
 			<parameter name="box_title" xsi:type="text"  visible="true">
 				<label translate="true">Box Title</label>
 				<description translate="true">Box Title.</description>
@@ -73,6 +94,10 @@
 			<parameter name="content" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
 				<label translate="true">Box Text</label>
 				<description translate="true">Input html content.</description>
+			</parameter>
+			<parameter name="content_1" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\WysiwygEditor">
+				<label translate="true">Sub Box Text</label>
+				<description translate="true">Input html content display bellow box texts.</description>
 			</parameter>
 			<parameter name="box_button_text" xsi:type="text"  visible="true">
 				<label translate="true">Box Button Text</label>
