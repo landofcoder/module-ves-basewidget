@@ -105,7 +105,7 @@ if($heading_text): // If have heading text will display row heading text
     <div class="col-12">
         <div class="widget-raw-html block">
             <div class="widget-inner block-content">
-                <h2 class="block-title"><?php echo $heading_text ?></h2>
+                <h2 class="title block-title"><?php echo $heading_text ?></h2>
                 <?php if($sub_heading_text): ?>
                 <div class="widget-inner block-content">
                 <?php echo $sub_heading_text; ?>
@@ -148,7 +148,7 @@ endif;
         <?php else: // Text show at left?>
             <div class="block block-text-widget">
                 <?php if($box_title): ?>
-                    <h2 class="text-heading"><?php if($box_title_link): ?><a href="<?=$box_title_link;?>"><?php endif; ?><?= $box_title; ?><?php if($box_title_link): ?></a><?php endif; ?></h2>
+                    <h2 class="title text-heading"><?php if($box_title_link): ?><a href="<?=$box_title_link;?>"><?php endif; ?><?= $box_title; ?><?php if($box_title_link): ?></a><?php endif; ?></h2>
                 <?php endif; ?>
                 <?php if($box_text): ?>
                 <div class="block-content">
@@ -185,7 +185,7 @@ endif;
         <?php else:  // Text show at right?>
             <div class="block block-text-widget">
                 <?php if($box_title): ?>
-                    <h2 class="text-heading"><?php if($box_title_link): ?><a href="<?=$box_title_link;?>"><?php endif; ?><?= $box_title; ?><?php if($box_title_link): ?></a><?php endif; ?></h2>
+                    <h2 class="title text-heading"><?php if($box_title_link): ?><a href="<?=$box_title_link;?>"><?php endif; ?><?= $box_title; ?><?php if($box_title_link): ?></a><?php endif; ?></h2>
                 <?php endif; ?>
                 <?php if($box_text): ?>
                 <div class="block-content">
