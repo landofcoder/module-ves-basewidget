@@ -14,7 +14,7 @@
  * version in the future.
  * 
  * @category   Venustheme
- * @package    Ves_ImageSlider
+ * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
@@ -32,7 +32,7 @@ class BuildWidget extends \Magento\Widget\Controller\Adminhtml\Widget\BuildWidge
 		$type = $this->getRequest()->getPost('widget_type');
 		$params = $this->getRequest()->getPost('parameters', []);
 
-		$field_pattern = ["pretext","pretext_html","shortcode","html","raw_html","content","tabs","latestmod_desc","custom_css","block_params","link","href","url"];
+		$field_pattern = ["pretext","pretext_html","shortcode","html","box_text","raw_html","content","tabs","latestmod_desc","custom_css","block_params","link","href","url"];
 		$widget_types = ["Ves\BaseWidget\Block\Widget\Accordionbg"];
 
 		foreach ($params as $k => $v) {

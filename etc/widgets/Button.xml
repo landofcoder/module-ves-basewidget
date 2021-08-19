@@ -38,7 +38,7 @@
 				<label translate="true">Text on the button</label>
 				<description translate="true">will be showed on button.</description>
 			</parameter>
-			<parameter name="href" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\System\Config\Form\Field\Textarea">
+			<parameter name="href" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\System\Config\Form\Field\Text">
 				<label translate="true">URL (link)</label>
 				<description translate="true">Button Link.</description>
 			</parameter>

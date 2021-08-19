@@ -40,7 +40,10 @@ class ListButtonType implements \Magento\Framework\Option\ArrayInterface
                   array('value' => "btn-info", 'label'=>__('Info')),
                   array('value' => "btn-warning", 'label'=>__('Warning')),
                   array('value' => "btn-danger", 'label'=>__('Danger')),
-                  array('value' => "btn-link", 'label'=>__('Link'))
+                  array('value' => "btn-link", 'label'=>__('Link')),
+                  array('value' => "btn-dark", 'label'=>__('Dark')),
+                  array('value' => "btn-light", 'label'=>__('Light')),
+                  array('value' => "btn-secondary", 'label'=>__('Secondary'))
                   );
     }
 }
