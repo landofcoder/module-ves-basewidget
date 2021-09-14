@@ -24,7 +24,7 @@ $pulldrag = true;
 $animateIn = false;
 $animateOut = false;
 $autoplay_hover = true;
-$autowidth = true;
+$autowidth = false;
 $autoheight = false;
 $loop = true;
 $single_item = false;
@@ -178,5 +178,20 @@ $single_item = false;
     .owl-carousel .owl-dots.disabled,
     .owl-carousel .owl-nav.disabled {
         display: block;
+    }
+
+    .widget-categories-owl .item a {
+        display: block;
+        width: 100%;
+    }
+
+    .ves-widget .owl-carousel ul,
+    .ves-widget .owl-carousel li {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .owl-stage-outer .item {
+        margin: 0;
     }
 </style>
