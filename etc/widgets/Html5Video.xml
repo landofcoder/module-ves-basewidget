@@ -2,18 +2,18 @@
 <!--
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Brand
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -38,26 +38,26 @@
 
 			<parameter name="file" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\Mediachooser">
 				<label translate="true">Cover Image File</label>
-				<description translate="true"><![CDATA[Enter image path or use format http://domain/yourimage.jpg. 
+				<description translate="true"><![CDATA[Enter image path or use format http://domain/yourimage.jpg.
 					Or input image name with path.<br/>Example: <strong>image_name.jpg(png|gif|jpeg|svg)</strong> or <strong>subfolder/image_name.jpg(png|gif|jpeg|svg)</strong>.The "subfolder" is child folder in <strong>your_webroot_folder/pub/media/</strong>]]></description>
 			</parameter>
 
 
 			<parameter name="mp4_file" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\Videochooser">
 				<label translate="true">Mp4 video file</label>
-				<description translate="true"><![CDATA[Enter video path or use format http://domain/yourimage.mp4. 
+				<description translate="true"><![CDATA[Enter video path or use format http://domain/yourimage.mp4.
 					Or input video mp4 name with path.The "subfolder" is child folder in <strong>your_webroot_folder/pub/media/</strong>]]></description>
 			</parameter>
 
 			<parameter name="webm_file" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\Videochooser">
 				<label translate="true">Webm video file</label>
-				<description translate="true"><![CDATA[Enter video path or use format http://domain/yourimage.webm. 
+				<description translate="true"><![CDATA[Enter video path or use format http://domain/yourimage.webm.
 					Or input video webm name with path.The "subfolder" is child folder in <strong>your_webroot_folder/pub/media/</strong>]]></description>
 			</parameter>
 
 			<parameter name="ogg_file" xsi:type="conditions" visible="true" class="Ves\BaseWidget\Block\Adminhtml\Widget\Form\Field\Videochooser">
 				<label translate="true">Ogg video file</label>
-				<description translate="true"><![CDATA[Enter video path or use format http://domain/yourimage.ogg. 
+				<description translate="true"><![CDATA[Enter video path or use format http://domain/yourimage.ogg.
 					Or input video ogg name with path.The "subfolder" is child folder in <strong>your_webroot_folder/pub/media/</strong>]]></description>
 			</parameter>
 
@@ -81,6 +81,9 @@
 			<parameter name="enable_autoplay" xsi:type="select"  visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
 				<label translate="true">Enable Autoplay</label>
 			</parameter>
+            <parameter name="enable_loop" xsi:type="select"  visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable Loop</label>
+            </parameter>
 			<parameter name="enable_controls" xsi:type="select"  visible="true"  source_model="Magento\Config\Model\Config\Source\Yesno">
 				<label translate="true">Enable Controls</label>
 			</parameter>

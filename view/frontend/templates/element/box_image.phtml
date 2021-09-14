@@ -1,14 +1,18 @@
 <?php
 $helper         = $this->helper('Ves\BaseWidget\Helper\Data');
+$pageBuilderHelper         = $this->helper('Ves\PageBuilder\Helper\Data');
+$isBootstrap24 = $pageBuilderHelper->getConfig("general/enable_bootstrap24");
+$full_width_column = $isBootstrap24?24:12;
+$bootstrapValue = $isBootstrap24?2:1;
 $addition_cls = $this->getConfig('addition_cls');
 $box_title = $this->getConfig('box_title');
 $box_layout_style = $this->getConfig('box_layout_style');
-$column1_class = "col-6 col-sm-6";
-$column2_class = "col-6 col-sm-6";
+$column1_class = "col-".($bootstrapValue*6)." col-sm-".($bootstrapValue*6);
+$column2_class = "col-".($bootstrapValue*6)." col-sm-".($bootstrapValue*6);
 $box_layout_style_arr = explode("-",$box_layout_style);
 if($box_layout_style_arr && count($box_layout_style_arr) >= 2){
-    $column1_class = "col-".(int)$box_layout_style_arr[0]." col-sm-".(int)$box_layout_style_arr[0];
-    $column1_class = "col-".(int)$box_layout_style_arr[1]." col-sm-".(int)$box_layout_style_arr[1];
+    $column1_class = "col-".((int)$box_layout_style_arr[0]*$bootstrapValue)." col-sm-".((int)$box_layout_style_arr[0]*2);
+    $column1_class = "col-".((int)$box_layout_style_arr[1]*$bootstrapValue)." col-sm-".((int)$box_layout_style_arr[1]*2);
 }
 
 $hide_section_text = $this->getConfig('hide_section_text');
@@ -102,7 +106,7 @@ $thumbnailurl_larger = (isset($thumbnailurl_larger) && $thumbnailurl_larger)?$th
 if($heading_text): // If have heading text will display row heading text
 ?>
 <div class="row element element-box-image-heading">
-    <div class="col-12">
+    <div class="col-<?= $full_width_column;?>">
         <div class="widget-raw-html block">
             <div class="widget-inner block-content">
                 <h2 class="title block-title"><?php echo $heading_text ?></h2>
@@ -120,7 +124,7 @@ endif;
 ?>
 <div class="row element element-box-image <?= $addition_cls; ?>">
     <?php if($hide_section_text): // if hide section text, then just show image box?>
-        <div class="col-12 col-sm-12 <?php echo $addition_cls; ?>">
+        <div class="col-<?= $full_width_column;?> col-sm-<?= $full_width_column;?> <?php echo $addition_cls; ?>">
             <?php if($box_image_link): ?>
                 <a href="<?php echo $box_image_link;?>" class="ves-btnlink img-animation">
             <?php endif; ?>

@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -24,7 +24,7 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 
 class Categories extends AbstractWidget
-{	
+{
 	protected $_storeManager;
 	protected $_blockModel;
 	protected $_dataFilterHelper;
@@ -108,14 +108,21 @@ class Categories extends AbstractWidget
 		if(empty($category) && !is_object($category)) return "";
 
 		$_file_name = $category->getImage();
-		
-		$_file_path = $this->getBaseMediaUrl() ."catalog/category/".$_file_name;
-		
+
+        // edit in 2.4.2
+//        $_file_path = $this->getBaseMediaUrl() ."catalog/category/".$_file_name;
+		if (strpos($_file_name,'/media/') !== false) {
+            $_file_name = str_replace('/media/', '', $_file_name);
+        }
+		$_file_path = $_file_name;
+		// edit in 2.4.2
+
 		if($_file_name) {
-			return $this->_imageHelper->resizeImage($_file_path, (int)$width, (int)$height);
+		    // catalog/category/complete.jpg
+            return $this->_imageHelper->resizeImage($_file_path, (int)$width, (int)$height, 100, false);
 		}
 		return "";
-	} 
+	}
 
 	public function _toHtml(){
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
@@ -159,5 +166,5 @@ class Categories extends AbstractWidget
 
 		return parent::_toHtml();
 	}
-	
+
 }

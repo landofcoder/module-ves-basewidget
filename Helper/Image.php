@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2016 Venustheme (http://www.venustheme.com/)
@@ -67,7 +67,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
 		$this->_filesystem = $filesystem;
         $this->_imageFactory = $imageFactory;
         $this->_imageHelper = $imageHelper;
-        
+
 		parent::__construct($context);
 	}
 
@@ -154,7 +154,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         if (!empty($parsed['scheme'])) {
             return $image;
         }
-        
+
         if($width == 0) {
             return $this->getBaseMediaUrl().$image;
         }
@@ -191,7 +191,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
                   } else {
                     $imageObj->resize($width, null);
                   }
-                  
+
                 } else {
                   $imageObj->resize(null, $height);
                 }
@@ -259,7 +259,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
             if($w){
               $image->resize($w, $h);
             }
-            
+
             return $image;
         }
     }
