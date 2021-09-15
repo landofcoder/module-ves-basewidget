@@ -7,13 +7,6 @@
       <icon>facebook</icon>
       <group>social</group>
    </widget_facebook>
-   <widget_fbcomment type="Ves\BaseWidget\Block\Widget\Fbcomment">
-      <title>Facebook Comment</title>
-      <description>Facebook Comment Box</description>
-      <code>fbcomment</code>
-      <icon>facebook</icon>
-      <group>social</group>
-   </widget_fbcomment>
    <widget_twitter type="Ves\BaseWidget\Block\Widget\Twitter">
       <title>Twitter</title>
       <description>Get Latest Twitter TimeLife</description>
@@ -42,20 +35,6 @@
       <icon>addthis</icon>
       <group>social</group>
    </widget_addthis>
-   <widget_googleplus type="Ves\BaseWidget\Block\Widget\Googleplus">
-      <title>Google Plus</title>
-      <description>Make Google Plus Widget</description>
-      <code>googleplus</code>
-      <icon>googleplus</icon>
-      <group>social</group>
-   </widget_googleplus>
-   <widget_googlebutton type="Ves\BaseWidget\Block\Widget\Googlebutton">
-      <title>Google Plus Button</title>
-      <description>Make Google Plus Button Widget</description>
-      <code>googleplus</code>
-      <icon>googleplus</icon>
-      <group>social</group>
-   </widget_googlebutton>
    <widget_socialshare type="Ves\BaseWidget\Block\Widget\Socialshare">
       <title>Social Share Links</title>
       <description>Show social share links</description>
