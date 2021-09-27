@@ -162,6 +162,13 @@
       <icon>button</icon>
       <group>typo</group>
    </widget_button>
+   <widget_button_new type="Ves\BaseWidget\Block\Widget\ButtonNew">
+      <title>Bootstrap Button</title>
+      <description>Config Bootstrap Button</description>
+      <code>button_new</code>
+      <icon>button</icon>
+      <group>typo</group>
+   </widget_button_new>
    <widget_html type="Ves\BaseWidget\Block\Widget\Html">
       <title>HTML Block</title>
       <description>A block of text with WYSIWYG editor</description>
@@ -176,7 +183,7 @@
       <icon>raw_html</icon>
       <group>other</group>
    </widget_rawhtml>
-   <widget_layerslider type="Ves\ImageSlider\Block\Widget\Sliders" module="Ves_ImageSlider">
+   <widget_layerslider type="Ves\ImageSlider\Block\Widget\Sliders" module="Ves_BaseWidget">
       <title>Ves Image Slider</title>
       <description>Integrate with Ves Images Slider Module to get slider</description>
       <code>layerslider</code>
@@ -706,5 +713,13 @@
          <icon>product-builder other-blocks</icon>
          <group>product</group>
    </pbuilder_otherblock>
+
+   <element_box_image type="Ves\BaseWidget\Block\Element\BoxImage">
+         <title>Element: Box with Image and Text</title>
+         <description>Element show box image + text, or text + image</description>
+         <code>element_box_image</code>
+         <icon>image other-blocks</icon>
+         <group>others</group>
+   </element_box_image>
    
 </widgets>

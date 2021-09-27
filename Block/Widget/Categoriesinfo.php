@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -57,12 +57,12 @@ class Categoriesinfo extends AbstractWidget{
 		}
 		$this->setTemplate($my_template);
 	}
-		
+
 	public function getBaseMediaUrl()
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 	}
-	
+
 	public function getBaseUrl()
     {
         return $this->_storeManager->getStore()->getBaseUrl();
@@ -80,16 +80,23 @@ class Categoriesinfo extends AbstractWidget{
 
 	public function getCategoryImage($category = null, $width = 300, $height = 300)
 	{
-		if(empty($category) && !is_object($category)) return "";
+        if(empty($category) && !is_object($category)) return "";
 
-		$_file_name = $category->getImage();
-		
-		$_file_path = $this->getBaseUrl() .$_file_name;
-		
-		if($_file_name) {
-			return $this->_imageHelper->resizeImage($_file_path, (int)$width, (int)$height);
-		}
-		return "";
+        $_file_name = $category->getImage();
+
+        // edit in 2.4.2
+//        $_file_path = $this->getBaseMediaUrl() ."catalog/category/".$_file_name;
+        if (strpos($_file_name,'/media/') !== false) {
+            $_file_name = str_replace('/media/', '', $_file_name);
+        }
+        $_file_path = $_file_name;
+        // edit in 2.4.2
+
+        if($_file_name) {
+            // catalog/category/complete.jpg
+            return $this->_imageHelper->resizeImage($_file_path, (int)$width, (int)$height, 100, false);
+        }
+        return "";
 	}
 
 	public function getCategoryInfo( $categoryId = 0 ){

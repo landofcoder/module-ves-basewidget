@@ -6,9 +6,10 @@
  	map: {
  		"*": {
  			vesbaseOwlCarousel: "Ves_BaseWidget/js/owl/owl.carousel.min",
- 			vesbaseBootstrap: "Ves_BaseWidget/js/bootstrap336/bootstrap.min",
+ 			vesbaseBootstrap: "Ves_BaseWidget/js/bootstrap4/bootstrap.min",
  			vesAccordion: "Ves_BaseWidget/js/colorpicker/js/colorpicker",
  			vesbaseSwiper: "Ves_BaseWidget/js/swiper/swiper.min",
+ 			vesbaseSwiperCommon: "Ves_BaseWidget/js/swiper/common",
  			vesbaseTransition: "Ves_BaseWidget/js/jquery/jquery.transition",
  			vesbaseCountDown: "Ves_BaseWidget/js/countdown",
  			vesbaseCookie: "Ves_BaseWidget/js/jquery/jquery.cookie",
@@ -27,6 +28,12 @@
             'deps': ['jquery']
         },
         'Ves_BaseWidget/js/bootstrap336/bootstrap.min': {
+            'deps': ['jquery']
+        },
+        'Ves_BaseWidget/js/bootstrap4/bootstrap.min': {
+            'deps': ['jquery']
+        },
+        'Ves_BaseWidget/js/swiper/common': {
             'deps': ['jquery']
         },
         'Ves_BaseWidget/js/jquery/jquery.transition': {

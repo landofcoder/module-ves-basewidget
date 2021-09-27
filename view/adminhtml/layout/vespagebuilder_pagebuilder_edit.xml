@@ -22,9 +22,9 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
 	<!-- Enabled bootstrap 12 columns-->
-	<update handle="vesbootstrap12"/>
+	<!-- <update handle="vesbootstrap12"/> -->
 	<!-- Enabled bootstrap 24 columns-->
-	<!-- <update handle="vesbootstrap24"/>-->
+	<update handle="vesbootstrap24"/>
 	<head>
 		<!--<css src="Ves_BaseWidget::css/bootstrap336/bootstrap.min.css" />-->
 		<css src="Ves_BaseWidget::css/font-awesome-4.5.0/css/font-awesome.min.css" />

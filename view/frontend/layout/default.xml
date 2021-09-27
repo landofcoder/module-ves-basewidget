@@ -25,12 +25,15 @@
 	<head>
 		<css src="Ves_BaseWidget::css/animate.min.css" />
 		<css src="Ves_All::lib/owl.carousel/assets/owl.carousel.css" />
-		<!-- Enabled bootstrap 12 columns -->
-		<css src="Ves_All::lib/bootstrap/css/bootstrap.min.css" />
-		<!-- Enabled bootstrap 24 columns -->
-		<!--<css src="Ves_BaseWidget::css/bootstrap336/col24/bootstrap.min.css" />-->
-		<!-- Enabled bootstrap 3 components, not load bootstrap columns layout -->
+		<!-- Remove bootstrap 12 columns -->
+		<remove src="Ves_All::lib/bootstrap/css/bootstrap.min.css" />
+		<!-- Remove bootstrap 24 columns -->
+		<remove src="Ves_BaseWidget::css/bootstrap336/col24/bootstrap.min.css" />
+		<!-- Remove bootstrap 3 components, not load bootstrap columns layout -->
 		<!-- <css src="Ves_All::lib/bootstrap/css/bootstrap.components.min.css" /> -->
+		<!-- Enabe bootstrap 4 grid, components -->
+		<!-- <css src="Ves_All::lib/bootstrap4/css/bootstrap.min.css" /> -->
+		<css src="Ves_All::lib/bootstrap5/css/bootstrap.css" />
 		<css src="Ves_All::lib/colorbox/colorbox.css" />
 		<css src="Ves_All::lib/fancybox/jquery.fancybox.css" />
 		<css src="Ves_BaseWidget::css/video-js.css" />

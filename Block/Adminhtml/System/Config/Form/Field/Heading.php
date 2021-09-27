@@ -14,7 +14,7 @@
  * version in the future.
  * 
  * @category   Venustheme
- * @package    Ves_ImageSlider
+ * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */

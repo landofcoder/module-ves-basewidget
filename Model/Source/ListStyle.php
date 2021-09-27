@@ -39,6 +39,10 @@ class ListStyle implements \Magento\Framework\Option\ArrayInterface
                   array('value' => "danger", 'label'=>__('Danger')),
                   array('value' => "info", 'label'=>__('Info')),
                   array('value' => "warning", 'label'=>__('Warning')),
+                  array('value' => "error", 'label'=>__('Error')),
+                  array('value' => "dark", 'label'=>__('Dark')),
+                  array('value' => "white", 'label'=>__('White')),
+                  array('value' => "black", 'label'=>__('Black')),
                   array('value' => "highlighted", 'label'=>__('Highlighted')),
                   array('value' => "nopadding", 'label'=>__('Nopadding')),
                   array('value' => "no-padding", 'label'=>__('No-padding'))
