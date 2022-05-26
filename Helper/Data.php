@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BlockBuilder
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -81,7 +81,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\Filter\FilterManager $filter,
         Url $actionUrlBuilder,
         ReadFactory $readFactory
-        ) {
+    ) {
         parent::__construct($context);
         $this->_storeManager = $storeManager;
         $this->_filterProvider = $filterProvider;
@@ -92,7 +92,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_moduleList      = $moduleList;
         $this->filter = $filter;
     }
-    
+
 
     /**
      * Return brand config value by key and store
@@ -113,22 +113,25 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $result;
     }
 
-    public function getCoreRegistry(){
+    public function getCoreRegistry()
+    {
         return $this->_coreRegistry;
     }
-    
+
     public function filter($str)
     {
         $html = $this->_filterProvider->getPageFilter()->filter($str);
         return $html;
     }
 
-    public function getRootDirPath( $path_type = "") {
+    public function getRootDirPath( $path_type = "")
+    {
         $path_type = $path_type?$path_type:DirectoryList::PUB;
         return $this->_filesystem->getDirectoryRead($path_type)->getAbsolutePath();
     }
 
-    public function getDefaultProductLayout() {
+    public function getDefaultProductLayout()
+    {
         $result = "";
         $folder = $this->getRootDirPath()."pagebuilder".DIRECTORY_SEPARATOR."product_profiles".DIRECTORY_SEPARATOR;
         $filepath = $folder."default_layout.json";
@@ -149,7 +152,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     * @string type: block, page, product
     *
     */
-    public function getSampleLayoutParams( $type = "block" ) {
+    public function getSampleLayoutParams( $type = "block" )
+    {
         $result = array();
         $file_ext = ".json";
         $folder = $this->getRootDirPath()."pagebuilder".DIRECTORY_SEPARATOR;
@@ -167,7 +171,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             }
 
             $dirs = glob( $folder.'*'.$file_ext );
-        if($dirs) { //load 
+        if($dirs) { //load
             foreach($dirs as $dir) {
                 $file_name = basename( $dir );
                 $filepath = $folder.$file_name;
@@ -179,13 +183,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $result;
     }
 
-    public function getBackupLayouts($folder_name = "vespagebuilder") {
+    public function getBackupLayouts($folder_name = "vespagebuilder")
+    {
         $result = array();
         $file_ext = ".json";
         $folder = $this->getRootDirPath(DirectoryList::VAR_DIR)."{$folder_name}".DIRECTORY_SEPARATOR;
 
         $dirs = glob( $folder.'*'.$file_ext );
-        if($dirs) { //load 
+        if($dirs) { //load
             foreach($dirs as $dir) {
                 $file_name = basename( $dir );
                 $filepath = $folder.$file_name;
@@ -197,7 +202,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $result;
     }
 
-    public function readSampleFile($file_name, $filepath = "") {
+    public function readSampleFile($file_name, $filepath = "")
+    {
         $result = "";
         if($filepath) {
             $fileReader = $this->_readFactory->create($filepath, DriverPool::FILE);
@@ -206,21 +212,25 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $result;
     }
 
-    public function getGenerateWidgetUrl() {
+    public function getGenerateWidgetUrl()
+    {
         return $this->actionUrlBuilder->getDirectUrl( "vespagebuilder/ajax/widget" );
     }
 
-    public function checkModuleInstalled($moduleName){
+    public function checkModuleInstalled($moduleName)
+    {
         return $this->_moduleList->has($moduleName);
     }
 
-    public function truncateString($string, $maxLength, $etc = '', $remainder = '', $breakWords = true ) {
+    public function truncateString($string, $maxLength, $etc = '', $remainder = '', $breakWords = true )
+    {
         $truncatedValue = $this->filter->truncate($string, ['length' => $maxLength, 'etc' => $etc, 'remainder' => $remainder, 'breakWords' => $breakWords]);
 
         return $truncatedValue;
     }
 
-    public function decodeImg($str) {
+    public function decodeImg($str)
+    {
         $orginalStr = $str;
         $count = substr_count($str, "<img");
         $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
@@ -260,7 +270,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
        return $orginalStr;
    }
 
-   public function isSiteLink($href){
+   public function isSiteLink($href)
+   {
         if($urls = parse_url($href)){
             $url_host = isset($urls['host'])?$urls['host']:"";
             if($url_host){
@@ -278,14 +289,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return false;
    }
 
-   public function isBase64Encoded($data) {
+   public function isBase64Encoded($data)
+   {
         $is_base64 = $this->checkBase64Encoded($data);
         if(!$is_base64 && base64_encode(base64_decode($data)) === $data){
             $is_base64 = true;
         }
         return $is_base64;
     }
-    public function checkBase64Encoded($data) {
+
+    public function checkBase64Encoded($data)
+    {
         if(base64_encode($data) === $data) return false;
         if(base64_encode(base64_decode($data)) === $data){
             return true;

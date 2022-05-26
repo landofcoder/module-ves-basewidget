@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2016 Venustheme (http://www.venustheme.com/)
@@ -31,34 +31,42 @@ class AbstractWidget extends \Magento\Framework\View\Element\Template implements
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
-
+	) {
 		parent::__construct($context, $data);
-
 		$this->_layout = $context->getLayout();
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
 	}
-	public function getConfig($key, $default = NULL){
+
+	public function getConfig($key, $default = NULL)
+    {
 		if($this->hasData($key)){
 			return $this->getData($key);
 		}
 		return $default;
 	}
-	public function getDataFilterHelper() {
+
+	public function getDataFilterHelper()
+    {
 		return $this->_dataFilterHelper;
 	}
-	public function getLayout() {
+
+	public function getLayout()
+    {
 		return $this->_layout;
 	}
-	public function getBaseUrl() {
+
+	public function getBaseUrl()
+    {
 		$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
-		$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+		$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface');
 		$currentStore = $storeManager->getStore();
-		
+
 		return $currentStore->getBaseUrl();
 	}
-	public function isBase64Encoded($data) {
+
+	public function isBase64Encoded($data)
+    {
 		return $this->_dataFilterHelper->isBase64Encoded($data);
 	}
 }

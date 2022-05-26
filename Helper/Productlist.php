@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -43,7 +43,7 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		//\Magento\Framework\Module\Manager $moduleManager,
 		\Magento\Framework\Registry $registry
-		){
+	){
 		parent::__construct($context);
 		$this->_filterProvider = $filterProvider;
 		$this->_storeManager = $storeManager;
@@ -63,7 +63,7 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->_moduleManager->isEnabled($moduleName);
     }
-    
+
     /**
      * Whether a module output is permitted by the configuration or not
      *
@@ -109,7 +109,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		return $is_new;
 	}
 
-	public function isNewProduct( $created_date, $num_days_new = 3) {
+	public function isNewProduct( $created_date, $num_days_new = 3)
+    {
 		$check = false;
 
 		$startTimeStamp = strtotime($created_date);
@@ -127,7 +128,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
         return $check;
     }
 
-    public function subString($text, $length = 100, $replacer = '...', $is_striped = true) {
+    public function subString($text, $length = 100, $replacer = '...', $is_striped = true)
+    {
     	$text = ($is_striped == true) ? strip_tags($text) : $text;
     	if (strlen($text) <= $length) {
     		return $text;
@@ -145,32 +147,37 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		return $html;
 	}
 
-	public function getCustomerDataUrl(){
+	public function getCustomerDataUrl()
+    {
 		$url = $this->_storeManager
 		->getStore()
 		->getUrl('customer/section/load',["update_section_id"=>true,"sections"=>"cart"]);
 		return $url;
 	}
 
-	public function getRefreshCartUrl(){
+	public function getRefreshCartUrl()
+    {
 		$url = $this->_storeManager
 		->getStore()
 		->getUrl('checkout/cart/add', ['ves'=>1, 'refresh'=>1]);
 		return $url;
 	}
 
-	public function getAddToCartUrl(\Magento\Catalog\Model\Product $_product){
+	public function getAddToCartUrl(\Magento\Catalog\Model\Product $_product)
+    {
 		$url = $this->_storeManager
 		->getStore()
 		->getUrl('checkout/cart/add',["id"=>$_product->getId()]);
 		return $url;
 	}
 
-	public function getCoreRegistry(){
+	public function getCoreRegistry()
+    {
 		return $this->_coreRegistry;
 	}
 
-	public function decodeWidgets($str){
+	public function decodeWidgets($str)
+    {
 		$result = '';
 		$imgs = [];
 		$firstPosition = 0;
@@ -219,7 +226,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		return $str;
 	}
 
-	public function decodeImg($str){
+	public function decodeImg($str)
+    {
         $count = substr_count($str, "<img");
         $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         $firstPosition = 0;

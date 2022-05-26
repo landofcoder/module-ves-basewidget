@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Brand
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -76,14 +76,14 @@ abstract class Basewidget extends \Magento\Backend\App\Action
 
     protected $_storeManager;
     /**
-     * @param \Magento\Backend\App\Action\Context              $context             
-     * @param \Magento\Framework\Registry                      $coreRegistry        
-     * @param \Magento\Framework\App\Response\Http\FileFactory $fileFactory      
-     * @param \Magento\Framework\Filesystem                    $filesystem    
-     * @param \Ves\BaseWidget\Helper\Data                      $viewHelper          
-     * @param \Magento\Framework\View\LayoutFactory            $layoutFactory       
-     * @param \Magento\Framework\View\Result\LayoutFactory     $resultLayoutFactory 
-     * @param \Magento\Framework\View\Result\PageFactory       $resultPageFactory   
+     * @param \Magento\Backend\App\Action\Context              $context
+     * @param \Magento\Framework\Registry                      $coreRegistry
+     * @param \Magento\Framework\App\Response\Http\FileFactory $fileFactory
+     * @param \Magento\Framework\Filesystem                    $filesystem
+     * @param \Ves\BaseWidget\Helper\Data                      $viewHelper
+     * @param \Magento\Framework\View\LayoutFactory            $layoutFactory
+     * @param \Magento\Framework\View\Result\LayoutFactory     $resultLayoutFactory
+     * @param \Magento\Framework\View\Result\PageFactory       $resultPageFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -95,7 +95,7 @@ abstract class Basewidget extends \Magento\Backend\App\Action
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory
-        ) {
+    ) {
         $this->_coreRegistry = $coreRegistry;
         $this->_fileFactory = $fileFactory;
         $this->_viewHelper = $viewHelper;

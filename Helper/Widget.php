@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BlockBuilder
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -23,7 +23,8 @@ use Magento\Framework\Filesystem\File\ReadFactory;
 use Magento\Framework\Filesystem\DriverPool;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
+class Widget extends \Magento\Framework\App\Helper\AbstractHelper
+{
 
 	var $_widgetinfo = "widgetinfo.xml";
 	var $_data = array();
@@ -81,7 +82,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
         \Magento\Framework\Filesystem $filesystem,
         ReadFactory $readFactory,
         \Magento\Cms\Model\Template\FilterProvider $filterProvider
-        ) {
+    ) {
         parent::__construct($context);
         /*$this->_request = $request;*/
         $this->_storeManager = $storeManager;
@@ -92,18 +93,23 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
         $this->_filesystem = $filesystem;
     }
 
-    public function getRootDirPath() {
+    public function getRootDirPath()
+    {
         return $this->_filesystem->getDirectoryRead(DirectoryList::ROOT)->getAbsolutePath();
     }
-    public function getETCDirPath( $module_name = "Ves_BaseWidget") {
+
+    public function getETCDirPath( $module_name = "Ves_BaseWidget")
+    {
        return $this->_moduleReader->getModuleDir(\Magento\Framework\Module\Dir::MODULE_ETC_DIR, $module_name);
     }
 
-    public function getViewDirPath( $module_name = "Ves_BaseWidget") {
+    public function getViewDirPath( $module_name = "Ves_BaseWidget")
+    {
        return $this->_moduleReader->getModuleDir(\Magento\Framework\Module\Dir::MODULE_VIEW_DIR, $module_name);
     }
 
-	public function getListWidgetTypes($type = "array", $available_widgets = array()) {
+	public function getListWidgetTypes($type = "array", $available_widgets = array())
+    {
 		$widgets = array();
 		$controller_name = $this->_request->getControllerName();
 		$module_name = $this->_request->getModuleName();
@@ -116,7 +122,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
 			$widgetinfo_xml = $this->getETCDirPath().DIRECTORY_SEPARATOR.$this->_widgetinfo;
 			$widgets = $this->getWidgetsInfoArray();
 			$type_widgets = $this->_getData("type_widgets");
-			
+
 			/*Get other available widgets*/
 			$tmp_available_widgets = array();
 
@@ -125,9 +131,9 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
 
 					$tmp_available_widgets[$widget['type']] = $widget['type'];
 
-					if(is_array($type_widgets) && in_array($widget['type'], $type_widgets)) 
+					if(is_array($type_widgets) && in_array($widget['type'], $type_widgets))
 						continue;
-                    
+
                     $show_in_extensions = array();
                     $checked = true;
 
@@ -178,8 +184,9 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
 		return $widgets;
 	}
 
-	public function getWidgetInfo($widget_type = "") {
-
+	public function getWidgetInfo($widget_type = "")
+    {
+        return "";
 	}
 
 
@@ -195,7 +202,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
         $fileReader = $this->_readFactory->create($widgetinfo_xml, DriverPool::FILE);
         $cachedXml = $fileReader->readAll($this->_widgetinfo);
         $xmlConfig = $this->_loadXmlString($cachedXml);
-        
+
         return $xmlConfig;
     }
 
@@ -264,7 +271,8 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
         return $this->_getData('widgetsinfo_array');
     }
 
-    public function setData($key, $value =null ) {
+    public function setData($key, $value =null )
+    {
     	if($value !== null) {
     		$this->_data[$key] = $value;
     	}
@@ -280,7 +288,9 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper{
     {
         return strcmp($a["title"], $b["title"]);
     }
-    protected function _getData($key) {
+
+    protected function _getData($key)
+    {
     	return isset($this->_data[$key])?$this->_data[$key]:false;
     }
 
