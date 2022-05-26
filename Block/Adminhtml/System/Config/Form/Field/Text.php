@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -65,12 +65,12 @@ class Text extends Template implements RendererInterface
     const DEFAULT_COLS = 15;
 
     /**
-     * @param \Magento\Backend\Block\Template\Context                $context           
-     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement    
-     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection 
+     * @param \Magento\Backend\Block\Template\Context                $context
+     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement
+     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection
      * @param Escaper                                                $escaper
-     * @param \Magento\Framework\View\LayoutInterface                $layout            
-     * @param \Magento\Backend\Helper\Data                           $backendData       
+     * @param \Magento\Framework\View\LayoutInterface                $layout
+     * @param \Magento\Backend\Helper\Data                           $backendData
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -106,7 +106,7 @@ class Text extends Template implements RendererInterface
         if (0 < preg_match('/((?![[:graph:]])(?!\s)(?!\p{L}))./', $decoded, $matched)) return false;
         if (!preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data)) return false;
 
-        
+
         return false;
     }
     /**
@@ -122,7 +122,7 @@ class Text extends Template implements RendererInterface
         $description = $element->getNote();
         $value = $element->getValue();
         if(!is_array($value)){
-            $value = str_replace(" ","+", $value);
+            $value = @str_replace(" ","+", $value);
             if(is_string($value) && $this->isBase64Encoded($value)){
                 $value = base64_decode($value);
                 if(is_string($value) && $this->isBase64Encoded($value)){

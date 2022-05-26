@@ -5,7 +5,7 @@
 	$speed = $speed?(int)$speed:200;
 ?>
 <div <?php echo $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-flickr-widget">
-	<?php if(isset($title) && trim($title)!=''): ?>
+	<?php if(isset($title) && @trim($title)!=''): ?>
 		<div class="block-title">
 			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-flickr<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
 			<strong><span><?php echo $title; ?></span></strong>
@@ -53,7 +53,7 @@ require(['jquery'],function($){
 						  	initialHeight: cboxOptions.initialHeight,
 							width : <?php echo "'".$popupImageWidth."'"; ?>,
 							onLoad:function(){
-								
+
 							}
 						});
 
@@ -76,7 +76,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

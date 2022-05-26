@@ -151,10 +151,10 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper
 					$tmp = array();
 					$tmp['type'] = $widget['type'];
 	                $tmp['title'] = (string)$widget['name'];
-                    $tmp['title'] = str_replace(array("'",'"','\"'), "", $tmp['title']);
+                    $tmp['title'] = @str_replace(array("'",'"','\"'), "", $tmp['title']);
                     $tmp['code'] = (string)$widget['code'];
                     $tmp['description'] = isset($widget['description'])?(string)$widget['description']:"";
-                    $tmp['description'] = str_replace(array("'",'"','\"'), "", $tmp['description']);
+                    $tmp['description'] = @str_replace(array("'",'"','\"'), "", $tmp['description']);
 	                $tmp['icon'] = isset($widget['icon'])?(string)$widget['icon']:"";
                     $tmp['font_icon'] = isset($widget['font_icon'])?(string)$widget['font_icon']:"";
 	                $tmp['group'] = "others";
@@ -166,8 +166,8 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper
 				$tmp_widgets = array();
 				foreach($widgets as $widget) {
 					if(in_array($widget['type'], $tmp_available_widgets)) {
-                        $widget['title'] = str_replace(array("'",'"','\"'), "", $widget['title']);
-                        $widget['description'] = str_replace(array("'",'"','\"'), "", $widget['description']);
+                        $widget['title'] = @str_replace(array("'",'"','\"'), "", $widget['title']);
+                        $widget['description'] = @str_replace(array("'",'"','\"'), "", $widget['description']);
                         if(!isset($widget['icon']) || (isset($widget['icon']) && !$widget['icon'])){
                             $widget['font_icon'] = "fa fa-square-o";
                         }
@@ -259,7 +259,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper
                     'font_icon'          => (string)$widget->font_icon,
                     'group'   		=> (string)$widget->group
                 );
-                $tmp['description'] = str_replace("'", "", $tmp['description']);
+                $tmp['description'] = @str_replace("'", "", $tmp['description']);
                 $result[] = $tmp;
             }
             usort($result, array($this, "_sortWidgets"));

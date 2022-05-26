@@ -6,7 +6,7 @@ $enable_collapse = $this->getConfig("enable_collapse", 0);
 $aspect_ratio = $this->getConfig("aspect_ratio", "16by9");
 ?>
 <div class="ves-widget block block-list block-vimeo-widget">
-	<?php if(isset($title) && trim($title)!=''): ?>
+	<?php if(isset($title) && @trim($title)!=''): ?>
 		<div class="block-title">
 			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-vimeo<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
 			<strong><span><?php echo $title; ?></span></strong>
@@ -39,7 +39,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

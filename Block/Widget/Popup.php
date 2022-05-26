@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -70,7 +70,7 @@ class Popup extends AbstractWidget{
 		}
 		$html = '';
 
-		if(trim($this->hasData('form_template')) != ''){
+		if(@trim($this->hasData('form_template')) != ''){
 			$form_template = $this->getConfig('form_template');
 		}
 		if($form_template){
@@ -81,14 +81,14 @@ class Popup extends AbstractWidget{
 				$customHtml = $this->_blockModel->load($cms)->getContent();
 			} else {
 				$html = $this->getConfig('html');
-				$html = str_replace(" ", "+", $html);
+				$html = @str_replace(" ", "+", $html);
 				if (base64_decode($html, true) == true){
 					$customHtml = html_entity_decode(base64_decode($html));
 				}else{
 					$customHtml = $this->getConfig('html');
 				}
 			}
-			
+
 			$customHtml = $this->getDataFilterHelper()->filter($customHtml);
 			$html = $customHtml;
 		}

@@ -175,7 +175,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             foreach($dirs as $dir) {
                 $file_name = basename( $dir );
                 $filepath = $folder.$file_name;
-                $file_name = str_replace(array(" ","."), "-", $file_name);
+                $file_name = @str_replace(array(" ","."), "-", $file_name);
                 $result[$file_name] = $this->readSampleFile($file_name, $filepath);
             }
         }
@@ -194,7 +194,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             foreach($dirs as $dir) {
                 $file_name = basename( $dir );
                 $filepath = $folder.$file_name;
-                $file_name = str_replace(array(" ","."), "-", $file_name);
+                $file_name = @str_replace(array(" ","."), "-", $file_name);
                 $result[$file_name] = $this->readSampleFile($file_name, $filepath);
             }
         }
@@ -237,7 +237,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $firstPosition = 0;
         for ($i=0; $i < $count; $i++) {
             if($firstPosition==0) $tmp = $firstPosition;
-            if($tmp>strlen($str)) continue;
+            if($tmp>@strlen($str)) continue;
             $firstPosition = strpos($str, "<img", $tmp);
             $nextPosition = strpos($str, "/>", $firstPosition);
             $tmp = $nextPosition;
@@ -263,8 +263,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                    $src1 = substr($src, $mediaP);
                    $src1 = '{{media url="'.$src1.'"}}';
                }
-               $orginalStr = str_replace($src, $src1, $orginalStr);
-               $newImg = str_replace($src, $src1, $newImg);
+               $orginalStr = @str_replace($src, $src1, $orginalStr);
+               $newImg = @str_replace($src, $src1, $newImg);
            }
        }
        return $orginalStr;

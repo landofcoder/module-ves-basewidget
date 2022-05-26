@@ -1,6 +1,6 @@
 <?php
 	$modid = rand().time();
-	
+
 	$enable_collapse = $this->getConfig("enable_collapse", 0);
 	$enable_facebook = $this->getConfig("enable_facebook", 1);
 	$enable_twitter = $this->getConfig("enable_twitter", 1);
@@ -13,15 +13,15 @@
 
 	$is_product_share = $this->getConfig("is_product_share", 0);
 	$_config_productName = $this->getConfig("item_title", "");
-	$_config_productName = trim($_config_productName);
+	$_config_productName = @trim($_config_productName);
 	$_config_productImageUrl = $this->getConfig("item_image", "");
-	$_config_productImageUrl = trim($_config_productImageUrl);
+	$_config_productImageUrl = @trim($_config_productImageUrl);
 	$_config_productUrl = $this->getConfig("item_url", "");
-	$_config_productUrl = trim($_config_productUrl);
+	$_config_productUrl = @trim($_config_productUrl);
 	$_config_productSammary = $this->getConfig("item_desciption", "");
-	$_config_productSammary = trim($_config_productSammary);
+	$_config_productSammary = @trim($_config_productSammary);
 	$_config_sourceName =  $this->getStoreName();
-	$_config_sourceName = trim($_config_sourceName);
+	$_config_sourceName = @trim($_config_sourceName);
 
 	$_productName = "";
 	$_productImageUrl = "";
@@ -32,15 +32,15 @@
 	$_helper = $this->helper('Magento\Catalog\Helper\Output');
 	if($is_product_share) {
 		$_product = $this->getProduct();
-		$_productName = trim($_helper->productAttribute($_product, $_product->getName(), 'name'));
+		$_productName = @trim($_helper->productAttribute($_product, $_product->getName(), 'name'));
 
 		//Product image
 		//$image = 'category_page_grid' or 'category_page_list';
 		$image = 'category_page_grid';
 		$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 		$productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(400)->getUrl();
-		$_productImageUrl = trim($productImage);
-		$_productUrl = trim($_product->getProductUrl());
+		$_productImageUrl = @trim($productImage);
+		$_productUrl = @trim($_product->getProductUrl());
 		$_productSammary = $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description');
 	}
 
@@ -67,12 +67,12 @@
 	if(!$_productUrl) {
 		$_productUrl = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
 	}
-	$_productName = urlencode(trim($_productName));
-	$_productImageUrl = urlencode(trim($_productImageUrl));
-	$_productUrl = urlencode(trim($_productUrl));
-	$_productSammary = urlencode(trim($_productSammary));
-	$_sourceName = urlencode(trim($_sourceName));
-	
+	$_productName = urlencode(@trim($_productName));
+	$_productImageUrl = urlencode(@trim($_productImageUrl));
+	$_productUrl = urlencode(@trim($_productUrl));
+	$_productSammary = urlencode(@trim($_productSammary));
+	$_sourceName = urlencode(@trim($_sourceName));
+
 ?>
 <div class="ves-widget widget-socialshare block">
 	<?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
@@ -113,7 +113,7 @@
 		    </li>
 			<?php endif; ?>
 		</ul>
-		
+
  </div>
 </div>
 <?php if($enable_collapse): ?>
@@ -126,7 +126,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

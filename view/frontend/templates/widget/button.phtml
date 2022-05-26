@@ -1,12 +1,12 @@
 <?php
 $helper         = $this->helper('Ves\BaseWidget\Helper\Data');
-$widget_heading = $this->getConfig('title');	
+$widget_heading = $this->getConfig('title');
 $addition_cls   = $this->getConfig('addition_cls');
 $stylecls       =  $this->getConfig('stylecls');
-$button_title   = $this->getConfig('button_title');	
+$button_title   = $this->getConfig('button_title');
 $href           = $this->getConfig('href');
 if ($href && !preg_match("/^http\:\/\/|https\:\/\//", $href) && $href != "#" && (strpos($href, "javascript") !== false)) {
-	$href = str_replace(" ", "+", $href);
+	$href = @str_replace(" ", "+", $href);
 	$href = base64_decode($href);
 
 	if($href && (null !== strpos($href, "{{"))) {
@@ -22,7 +22,7 @@ $button_classes_str = implode(" ", $button_classes);
 $el_class       = $this->getConfig('el_class');
 //$color_button   = '';
 $content_html   = $this->getConfig('html');
-$content_html   = str_replace(" ", "+", $content_html);
+$content_html   = @str_replace(" ", "+", $content_html);
 $content_html   = base64_decode($content_html);
 $content_html   = $this->getDataFilterHelper()->filter($content_html);
 $custom_size 	= '';

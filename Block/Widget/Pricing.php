@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -62,14 +62,14 @@ class Pricing extends AbstractWidget{
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$content = $this->getConfig('content');
-		$content = str_replace(" ", "+", $content);
+		$content = @str_replace(" ", "+", $content);
 		$content = base64_decode($content);
 
 		if($content) {
 			$content = $this->getDataFilterHelper()->filter($content);
 		}
 
-		$this->assign('widget_heading', $this->getConfig('title'));	
+		$this->assign('widget_heading', $this->getConfig('title'));
 		$this->assign('class', $this->getConfig('addition_cls'));
 		$this->assign('stylecls', $this->getConfig('stylecls'));
 
@@ -78,7 +78,7 @@ class Pricing extends AbstractWidget{
 		$price = $this->getConfig('price');
 		$link = $this->getConfig('link');
 		if ($link && !preg_match("/^http\:\/\/|https\:\/\//", $link) && $link != "#") {
-			$link = str_replace(" ", "+", $link);
+			$link = @str_replace(" ", "+", $link);
 			$link = base64_decode($link);
 			if($link) {
 				$link = $this->getDataFilterHelper()->filter($link);
@@ -99,16 +99,16 @@ class Pricing extends AbstractWidget{
 	        }
 		}
 
-		$this->assign('subtitle', $this->getConfig('subtitle'));	
+		$this->assign('subtitle', $this->getConfig('subtitle'));
 		$this->assign('currency', $currency);
-		$this->assign('price', $price);	
+		$this->assign('price', $price);
 		$this->assign('period', $this->getConfig('period'));
-		$this->assign('linktitle', $this->getConfig('linktitle'));	
+		$this->assign('linktitle', $this->getConfig('linktitle'));
 		$this->assign('link', $link);
 		$this->assign('isfeatured', $this->getConfig('isfeatured'));
 		$this->assign('content', $content);
 
 		return parent::_toHtml();
 	}
-	
+
 }

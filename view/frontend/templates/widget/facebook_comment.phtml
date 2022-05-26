@@ -3,7 +3,7 @@
 	$enable_collapse = $this->getConfig("enable_collapse", 0);
 ?>
 <div class="ves-widget block block-list block-facebook-widget">
-	<?php if(trim($title)!=''): ?>
+	<?php if(@trim($title)!=''): ?>
 		<div class="block-title">
 			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-facebook<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
 			<strong><span><?php echo $title; ?></span></strong>
@@ -22,7 +22,7 @@
 
 		<div class="fb-comments" data-href="<?php echo $url; ?>" data-width="<?php echo (int)$width; ?>" data-numposts="<?php echo (int)$number_posts; ?>" data-colorscheme="<?php echo $theme; ?>" data-order-by="<?php echo $order_by; ?>"></div>
 
-				
+
 	</div>
 </div>
 <?php if($enable_collapse): ?>
@@ -35,7 +35,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

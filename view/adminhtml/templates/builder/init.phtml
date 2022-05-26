@@ -7,13 +7,13 @@
   $widget_class = $this->getWidgetClasses();
   $offcanvas_types = $this->getOffCanvasTypes();
   $offcol_types = $this->getOffColTypes();
-  $_storeBaseUrl = str_replace('index.php', '', $this->getBaseUrl());
+  $_storeBaseUrl = @str_replace('index.php', '', $this->getBaseUrl());
   $urlwidgetinfo = $this->getWidgetInfoUrl();
   $enable_preview = $this->getConfig("general/enable_preview");
 
    //Convert Json String from // to \/
-  $widgets_json = str_replace("\\", "\/", $widgets_json);
-  $widgets_json = str_replace("\/\/","\/", $widgets_json);
+  $widgets_json = @str_replace("\\", "\/", $widgets_json);
+  $widgets_json = @str_replace("\/\/","\/", $widgets_json);
   $enable_bootstrap_24cols = $this->getConfig("general/enable_bootstrap24");
   $increase_value = 1;
   if($enable_bootstrap_24cols) {
@@ -38,7 +38,7 @@
 <div id="shortcode_content" name="shortcode_content" class="hidden-textarea"></div>
 <script type="text/javascript">
 	/*function get all widgets information*/
-	
+
 	function getWidgetsInfo(widget_type) {
 		var $widgets = jQuery.parseJSON('<?php echo isset($widgets_json)?$widgets_json:''; ?>');
 		var $widget = null;
@@ -50,9 +50,9 @@
 					return;
 				}
 			})
-			
+
 		}
-		
+
 		return $widget;
 	}
 
@@ -65,9 +65,9 @@
 			jQuery(widget_wrapper_id).addClass('loading widget-loading');
 		}
 		jQuery.ajax({
-            url 		 : '<?php echo str_replace("&amp;","&", $urlwidgetinfo);?>',
-            data 		 : {form_key    :    window.FORM_KEY, 
-            				widget_type :   widget_type, 
+            url 		 : '<?php echo @str_replace("&amp;","&", $urlwidgetinfo);?>',
+            data 		 : {form_key    :    window.FORM_KEY,
+            				widget_type :   widget_type,
             				shortcode   :   shortcode },
             dataType     : 'json',
             type 		 : 'POST'
@@ -90,10 +90,10 @@
         		jQuery(widget_wrapper_id).removeClass('loading');
         		jQuery(widget_wrapper_id).removeClass('widget-loading');
         	}
-        });	
+        });
 		return false;
 	}
- 	
+
  	function getWidgetShortcode(widget_id) {
  		var $shortcode = "";
  		var block_widgets = "";
@@ -174,7 +174,7 @@
 								<a href="#"><?php echo __("Product");?><span class="badge"></span></a>
 							</li>
 					 	</ul>
-			      </div>  
+			      </div>
 				</div>
 		 	</div>
 		 	<div class="clearfix"></div>
@@ -183,7 +183,7 @@
 					if(isset($widgets) && $widgets) {
 						foreach($widgets as $widget) {
 				?>
-					<li class="wpo-wg-button" data-group="<?php echo $widget['group'];?>"> 
+					<li class="wpo-wg-button" data-group="<?php echo $widget['group'];?>">
 						<div data-widget="<?php echo $widget['code'];?>" data-widgettype="<?php echo $widget['type']; ?>" id="wpo_<?php echo $widget['code'];?>">
 							<div class="wpo-wicon wpo-icon-<?php echo $widget['icon'];?>"><?php if(isset($widget['font_icon']) && $widget['font_icon']): ?><i class="<?php echo $widget['font_icon']; ?>" aria-hidden="true"></i> <?php endif; ?></div>
 							<div class="widget-title" style="text-transform: capitalize"><?php echo strtolower( $widget['title'] );?></div>
@@ -206,8 +206,8 @@
           	<button type="button" class="btn btn-submit btn-danger"  data-type="save"><?php echo __('Save'); ?></button>
           	<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo __('Close'); ?></button>
         </div>
-      </div> 
-    </div> 
+      </div>
+    </div>
 </div>
 <!-- Load element block builder profile -->
 <div id="widget-load-element-modal" class="modal bootmodal fade" tabindex="-1" role="dialog" aria-labelledby="widget-mod-label" aria-hidden="true">
@@ -223,7 +223,7 @@
             	<!-- add popup content at here -->
             	<!-- Load element profiles at here as drop down list -->
             	<div class="select-element-profile" id="load_element_profiles">
-            		
+
             	</div>
             	<div class="preview-element-profile">
             	<!-- show preview image of element profile-->
@@ -253,7 +253,7 @@
             		<div class="inpt-setting fly-buttons">
 	                  <label><?php echo __('Shortcode');?>:   <button class="btn btn-default" name="selectall_shortcode"><?php echo __("Select All"); ?></button></label>
 	                  <textarea cols="15" rows="10" type="text" name="shortcode" class="form-control input-text"></textarea>
-	                </div>  
+	                </div>
             	</div>
             </div>
 
@@ -280,7 +280,7 @@
             		<div class="inpt-setting fly-buttons">
 	                  <label><?php echo __('Shortcode');?>:   <button class="btn btn-default" name="selectall_shortcode"><?php echo __("Select All"); ?></button></label>
 	                  <textarea cols="15" rows="10" type="text" name="shortcode" class="form-control input-text"></textarea>
-	                </div>  
+	                </div>
             	</div>
             </div>
 
@@ -290,7 +290,7 @@
 	        </div>
         </div>
     </div>
-</div> 
+</div>
 
 <!-- File manager -->
 
@@ -308,7 +308,7 @@
             </div>
             <div class="modal-body">
             	<div id="filemanager-container" style="display:none">
-	               
+
             	</div>
                 <div class="row_settings" id="row_settings" style="display:none">
                 	<div class="row-form">
@@ -320,7 +320,7 @@
                 		</ul>
                 		<div class="tab-content">
                 			<!-- Start content tab row layout-->
-                			<div id="tab-row-layout" class="tab-pane fade in active"> 
+                			<div id="tab-row-layout" class="tab-pane fade in active">
                 				<div class="row">
                 					<div class="col-lg-<?php echo ($increase_value*6); ?> col-sm-<?php echo ($increase_value*12); ?> col-md-<?php echo ($increase_value*12); ?> col-xs-<?php echo ($increase_value*12); ?>">
 	                				<div class="panel panel-primary">
@@ -349,7 +349,7 @@
 							                   		<option value="0"><?php echo __('No');?></option>
 							                      	<option value="1"><?php echo __('Yes');?></option>
 							                   </select>
-							                  </div>  
+							                  </div>
 							                  <div class="inpt-setting">
 							                  <label><?php echo __('No Gutters');?>: </label>
 							                   <select name="nogutters" class="form-control">
@@ -391,7 +391,7 @@
 										  			<div class="inpt-setting fly-buttons">
 									                  <label><?php echo __('Background Color');?>:   </label>
 									                  <input type="text" name="bgcolor" class="input-color form-control input-text"  data-hex="true"/>
-								                    </div>  
+								                    </div>
 								                  <div class="inpt-setting fly-buttons">
 								                  <label><?php echo __('Image');?>: </label>
 								                    <input type="text" name="bgimage" class="imageuploaded form-control input-text"/>
@@ -411,7 +411,7 @@
 								                          <?php endforeach; ?>
 								                       </select>
 								                       </label>
-								                   </div> 
+								                   </div>
 								                  <div class="inpt-setting">
 								                    <label>
 								                      <?php echo __('Background Position');?>:
@@ -459,7 +459,7 @@
 										</div>
                 					</div>
                 				</div>
-  
+
                 			</div>
                 			<!-- End content tab row background-->
                 			<!-- Start content tab row inner background-->
@@ -472,7 +472,7 @@
 										    	<div class="inpt-setting fly-buttons">
 								                  <label><?php echo __('Inner Background Color');?>:   </label>
 								                  <input type="text" name="inbgcolor" class="input-color form-control input-text"  data-hex="true"/>
-								                    </div>  
+								                    </div>
 								                  <div class="inpt-setting fly-buttons">
 								                  <label><?php echo __('Inner Background Image');?>: </label>
 								                    <input type="text" name="inbgimage" class="imageuploaded form-control input-text"/>
@@ -491,7 +491,7 @@
 								                          <?php endforeach; ?>
 								                       </select>
 								                       </label>
-								                   </div> 
+								                   </div>
 								                  <div class="inpt-setting">
 								                    <label>
 								                      <?php echo __('Background Position');?>:
@@ -608,14 +608,14 @@
 	                					</div>
 	                				</div>
                 				</div>
-                				
+
                 			</div>
                 			<!-- End content tab column style-->
                 		</div>
 		                   <br class="inpt-setting"/>
 		                    <div class="inpt-setting" style="display:none">
-		                    <button type="submit" class="btn btn-sm btn-primary"><?php echo __('Save');?></button>     
-		                  </div>  
+		                    <button type="submit" class="btn btn-sm btn-primary"><?php echo __('Save');?></button>
+		                  </div>
 		              </div>
                 </div>
 				<div class="column_settings" id="column_settings" style="display:none">
@@ -664,8 +664,8 @@
 											</div>
 										</div>
 									</div>
-	                				 
-	                				
+
+
 	                			</div>
 	                			<!-- End content tab column layout-->
 	                			<!-- Start content tab column background-->
@@ -687,7 +687,7 @@
 				                              <div id="col_imagecontent" class="images-content row"></div>
 				                              <hr>
 				                              <div id="button" data-filefield="col_bgimage" class="btn btn-warning fileupload"><?php echo __("Select Image");?></div>
-				                            </div> 
+				                            </div>
 				                            <div class="inpt-setting">
 				                               <label>
 				                                <?php echo __('Background Repeat');?>:
@@ -697,7 +697,7 @@
 				                                    <?php endforeach; ?>
 				                                 </select>
 				                                 </label>
-				                             </div> 
+				                             </div>
 				                            <div class="inpt-setting">
 				                              <label>
 				                                <?php echo __('Background Position');?>:
@@ -720,7 +720,7 @@
 				                             </div>
 									    </div>
 									</div>
-	                				
+
 	                			</div>
 	                			<!-- End content tab column background-->
 	                			<!-- Start content tab column style-->
@@ -745,7 +745,7 @@
 						                                <?php echo __('Addition Class');?>:
 						                                 <input type="text" name="cls" class="form-control input-text"/>
 						                              </label>
-						                            </div> 
+						                            </div>
 						                            <div class="inpt-setting">
 						                              <label><?php echo __('Inner Class');?>: </label>
 						                              <input type="text" name="incls" class="form-control input-text" />
@@ -772,7 +772,7 @@
 		                					<div class="panel panel-warning" id="previewRowCode">
 		                						&lt;div class="col-lg-[number] col-md-[number] col-sm-[number] col-xs-[number] [<strong><?php echo __("Addition Class"); ?></strong>] col-[<strong><?php echo __("Column Style"); ?></strong>]" style="[<strong><?php echo __("Inline Css"); ?></strong>]"&gt;
 												   <br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="col-inner [<strong><?php echo __("Inner Class"); ?></strong>]"&gt;
-												   			<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- <strong><small><?php echo __("Column content were generated at here...");?></small></strong> --&gt;	
+												   			<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- <strong><small><?php echo __("Column content were generated at here...");?></small></strong> --&gt;
 												   	<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&lt;!-- <small><?php echo __("End Column Inner");?></small> --&gt;
 												<br/>&lt;/div&gt;&lt;!-- <small><?php echo __("End Column Wrapper");?></small> --&gt;
 		                					</div>
@@ -784,7 +784,7 @@
 	                		</div>
                              <br class="inpt-setting"/>
                              <div class="inpt-setting" style="display:none">
-                             <button type="submit" class="btn btn-primary"><?php echo __('Save');?></button>  
+                             <button type="submit" class="btn btn-primary"><?php echo __('Save');?></button>
                              </div>
                         </div>
 				</div>
@@ -795,11 +795,11 @@
 
 	                			<li role="presentation"><a data-toggle="tab" href="#tab-widget-layout"><?php echo __("Layout");?></a></li>
 	                			<li role="presentation"><a data-toggle="tab" href="#tab-widget-animation"><?php echo __("Animation");?></a></li>
-	                			
+
 	                			<li role="presentation"><a data-toggle="tab" href="#tab-widget-background"><?php echo __("Background");?></a></li>
-	                			
+
 	                			<li role="presentation"><a data-toggle="tab" href="#tab-widget-style"><?php echo __("Style");?></a></li>
-	                			
+
 	                		</ul>
 	                		<div class="tab-content">
 	                			<!-- Start content tab widget display-->
@@ -809,7 +809,7 @@
 											<div class="panel panel-primary">
 											    <div class="panel-heading"><?php echo __('Display On'); ?></div>
 											    <div class="panel-body">
-											     	<div><span class="help"><?php echo __('Detect mobile/tablet devices to show or not show the widget.');?></span></div>	
+											     	<div><span class="help"><?php echo __('Detect mobile/tablet devices to show or not show the widget.');?></span></div>
 						                            <div class="inpt-setting">
 						                               <label>
 						                                <?php echo __('Desktop');?>:
@@ -854,7 +854,7 @@
 						                                 <select name="isajax" class="form-control select">
 						                                 	<option value="0" selected="selected"><?php echo __('Disabled'); ?></option>
 						                                    <option value="1"><?php echo __('Enable'); ?></option>
-						                                   
+
 						                                 </select>
 						                                 </label>
 						                                <span class="help"><?php echo __('Allow generate widget shortcode via ajax. Enable to speed up the site.');?></span>
@@ -862,9 +862,9 @@
 											    </div>
 											</div>
 										</div>
-										
+
 									</div>
-	                				
+
 	                			</div>
 	                			<!-- End content tab widget display-->
 	                			<!-- Start content tab widget layout-->
@@ -927,7 +927,7 @@
 				                            </div>
 									    </div>
 									</div>
-	                				
+
 	                			</div>
 	                			<!-- End content tab widget Animation-->
 	                			<!-- Start content tab widget background-->
@@ -949,7 +949,7 @@
 				                              <div id="widget_imagecontent" class="images-content row"></div>
 				                              <hr>
 				                              <div id="button" data-filefield="widget_bgimage" class="btn btn-warning fileupload"><?php echo __("Select Image");?></div>
-				                            </div> 
+				                            </div>
 				                            <div class="inpt-setting">
 				                               <label>
 				                                <?php echo __('Background Repeat');?>:
@@ -959,7 +959,7 @@
 				                                    <?php endforeach; ?>
 				                                 </select>
 				                                 </label>
-				                             </div> 
+				                             </div>
 				                            <div class="inpt-setting">
 				                              <label>
 				                                <?php echo __('Background Position');?>:
@@ -979,10 +979,10 @@
 				                                    <?php endforeach; ?>
 				                                 </select>
 				                                 </label>
-				                             </div>	
+				                             </div>
 									    </div>
 									</div>
-	                				
+
 	                			</div>
 	                			<!-- End content tab widget background-->
 	                			<!-- Start content tab widget style-->
@@ -1030,7 +1030,7 @@
 		                					<h3><?php echo __("Preview Code"); ?></h3>
 		                					<div class="panel panel-warning" id="previewRowCode">
 		                						&lt;div class="[<strong><?php echo __("Addition Class"); ?></strong>] box box-[<strong><?php echo __("Widget Box Style"); ?></strong>]" style="[<strong><?php echo __("Inline Css"); ?></strong>]"&gt;
-												   	<br/>&nbsp;&nbsp;&lt;!-- <strong><small><?php echo __("Widget content were generated at here...");?></small></strong> --&gt;	
+												   	<br/>&nbsp;&nbsp;&lt;!-- <strong><small><?php echo __("Widget content were generated at here...");?></small></strong> --&gt;
 												<br/>&lt;/div&gt;&lt;!-- <small><?php echo __("End Widget Wrapper");?></small> --&gt;
 		                					</div>
 		                				</div>
@@ -1038,14 +1038,14 @@
 	                			</div>
 	                			<!-- End content tab widget style-->
 
-	                			
+
 	                		</div>
-                           
-                            
+
+
                             <br class="inpt-setting"/>
                              <div class="inpt-setting" style="display:none">
                              <button type="submit" class="btn btn-primary"><?php echo __('Save');?></button>
-                             </div>  
+                             </div>
                         </div>
 				</div>
             </div>

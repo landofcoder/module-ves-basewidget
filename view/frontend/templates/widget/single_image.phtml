@@ -10,7 +10,7 @@
 * @license   GNU General Public License version 2
 */
 $html = $this->getConfig('html');
-$html = str_replace(" ","+",$html);
+$html = @str_replace(" ","+",$html);
 if(base64_decode($html, true) == true){
    $html = base64_decode($html);
 }
@@ -30,7 +30,7 @@ $desc_position = $this->getConfig('desc_position', 'top');//top, bottom, left, r
 if( isset($thumbnailurl) ):
 	$link_title = $image_alt = (isset($widget_heading)&&!empty($widget_heading))?$widget_heading: __("Image");
 	if(isset($alt) && $alt) {
-		$link_title = $image_alt = trim($alt);
+		$link_title = $image_alt = @trim($alt);
 	}
 
 	$holder_image = isset($holder_image)?$holder_image:"";
@@ -46,7 +46,7 @@ if( isset($thumbnailurl) ):
 			<?php if($html != '' && $this->getConfig('show_description', 1)){ ?>
 			<?php if(in_array($desc_position, array("top", "left", "right"))){ ?>
 			<div class="image-description <?php echo $content_class; ?> <?php echo 'content-'.$desc_position; ?>">
-				<?php 
+				<?php
 					$html = $this->getDataFilterHelper()->filter($html);
 					echo $html;
 				?>
@@ -70,7 +70,7 @@ if( isset($thumbnailurl) ):
 				</div>
 				<?php if($desc_position == "bottom"){ ?>
 				<div class="image-description <?php echo $content_class; ?> content-bottom">
-					<?php 
+					<?php
 						$html = $this->getDataFilterHelper()->filter($html);
 						echo $html;
 					?>
@@ -92,8 +92,8 @@ require(['jquery'],function($){
 	        ,"Ves_All/lib/colorbox/jquery.colorbox.min"
 	        <?php endif; ?>
 			],function($){
-				/** 
-			     * 
+				/**
+			     *
 			     * Automatic apply colorbox popup
 			     */
 			    if($(".colorbox-play").length > 0) {
@@ -116,7 +116,7 @@ require(['jquery'],function($){
 
 			            if(popup_width && popup_height) {
 			                $(this).colorbox({
-			                    width: "'"+popup_width+"'", 
+			                    width: "'"+popup_width+"'",
 			                    height: "'"+popup_height+"'",
 			                    overlayClose: true,
 			                    opacity: popup_opacity,
@@ -124,7 +124,7 @@ require(['jquery'],function($){
 			                });
 			            } else if(popup_width && !popup_height) {
 			                $(this).colorbox({
-			                    width: "'"+popup_width+"'", 
+			                    width: "'"+popup_width+"'",
 			                    overlayClose: true,
 			                    opacity: popup_opacity,
 			                    rel: false
@@ -178,7 +178,7 @@ require(['jquery'],function($){
 
 			            if(popup_width && popup_height) {
 			                $(this).fancybox({
-			                    width: "'"+popup_width+"'", 
+			                    width: "'"+popup_width+"'",
 			                    height: "'"+popup_height+"'",
 			                    opacity: popup_opacity,
 			                    openEffect  : 'none',
@@ -186,7 +186,7 @@ require(['jquery'],function($){
 			                });
 			            } else if(popup_width && !popup_height) {
 			                $(this).fancybox({
-			                    width: "'"+popup_width+"'", 
+			                    width: "'"+popup_width+"'",
 			                    opacity: popup_opacity,
 			                    openEffect  : 'none',
 			                    closeEffect : 'none'
@@ -223,7 +223,7 @@ require(['jquery'],function($){
 				$("#<?php echo $widget_id; ?>").elevateZoom({ zoomType	: "lens", lensShape : "round", lensSize : <?php echo $lens_size?(int)$lens_size:200; ?> });
 			<?php endif; ?>
 		});
-		
+
 	<?php } ?>
 });
 });

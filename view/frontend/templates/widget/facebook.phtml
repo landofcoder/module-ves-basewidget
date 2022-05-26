@@ -7,7 +7,7 @@
 	$custom_id = $this->getConfig("custom_id", "");
 ?>
 <div <?php echo $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-facebook-widget">
-	<?php if(trim($title)!=''): ?>
+	<?php if(@trim($title)!=''): ?>
 		<div class="block-title">
 			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-facebook<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
 			<strong><span><?php echo $title; ?></span></strong>
@@ -30,7 +30,7 @@
 			<div class="fb-page" data-href="<?php echo urldecode($url); ?>" data-width="<?php echo (int)$width; ?>" data-height="<?php echo (int)$height; ?>" data-small-header="<?php echo $small_header?'true':'false'; ?>" data-adapt-container-width="true" data-hide-cover="<?php echo $hide_cover?'true':'false'; ?>" data-show-facepile="<?php echo $showfriends?'true':'false'; ?>" data-show-posts="<?php echo $posts?'true':'false'; ?>"><div class="fb-xfbml-parse-ignore"><blockquote cite="<?php echo $url; ?>"><a href="<?php echo $url; ?>">Facebook</a></blockquote></div></div>
 
 		<?php endif; ?>
-		
+
 	</div>
 </div>
 <?php if($enable_collapse): ?>
@@ -43,7 +43,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

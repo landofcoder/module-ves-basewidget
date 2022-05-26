@@ -388,7 +388,7 @@ class Instagram {
       if (count($apiCall) < 2) {
         return;
       }
-      $function = str_replace(self::API_URL, '', $apiCall[0]);
+      $function = @str_replace(self::API_URL, '', $apiCall[0]);
       $auth = (strpos($apiCall[1], 'access_token') !== false);
       if (isset($obj->pagination->next_max_id)) {
         return $this->_makeCall($function, $auth, array('max_id' => $obj->pagination->next_max_id, 'count' => $limit));
@@ -467,7 +467,7 @@ class Instagram {
 
     if ('POST' === $method) {
       curl_setopt($ch, CURLOPT_POST, count($params));
-      curl_setopt($ch, CURLOPT_POSTFIELDS, ltrim($paramString, '&'));
+      curl_setopt($ch, CURLOPT_POSTFIELDS, l@trim($paramString, '&'));
     } else if ('DELETE' === $method) {
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
     }
@@ -577,7 +577,7 @@ class Instagram {
   public function getApiSecret() {
     return $this->_apisecret;
   }
-  
+
   /**
    * API Callback URL Setter
    *

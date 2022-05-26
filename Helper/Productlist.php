@@ -131,7 +131,7 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
     public function subString($text, $length = 100, $replacer = '...', $is_striped = true)
     {
     	$text = ($is_striped == true) ? strip_tags($text) : $text;
-    	if (strlen($text) <= $length) {
+    	if (@strlen($text) <= $length) {
     		return $text;
     	}
     	$text = substr($text, 0, $length);
@@ -196,8 +196,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 				$widgetCode = substr($img, $f, ($n-$f));
 				$widgetHtml = $this->filter(html_entity_decode($widgetCode));
 				if($i==0) $result = $str;
-				$result = str_replace($img, $widgetHtml, $result);
-				$str = str_replace($img, '', $str);
+				$result = @str_replace($img, $widgetHtml, $result);
+				$str = @str_replace($img, '', $str);
 			}
 		}
 
@@ -215,8 +215,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 				$widgetCode = '{' . substr($img, $f, ($n-$f)) . '}';
 				$widgetHtml = $this->filter(html_entity_decode($widgetCode));
 				if($i==0) $result = $str;
-				$result = str_replace($img, $widgetHtml, $result);
-				$str = str_replace($img, '', $str);
+				$result = @str_replace($img, $widgetHtml, $result);
+				$str = @str_replace($img, '', $str);
 			}
 		}
 
@@ -254,8 +254,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
                     $src1 = substr($src, $mediaP);
                     $src1 = '{{media url="'.$src1.'"}}';
                 }
-                $newImg = str_replace($src, $src1, $newImg);
-                $str = str_replace($img, $newImg, $str);
+                $newImg = @str_replace($src, $src1, $newImg);
+                $str = @str_replace($img, $newImg, $str);
             }
         }
         return $str;

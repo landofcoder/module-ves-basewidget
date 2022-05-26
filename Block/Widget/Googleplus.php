@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -41,7 +41,7 @@ class Googleplus extends AbstractWidget{
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$url = $this->getConfig('google_url');
-		$url = str_replace(" ","+", $url);
+		$url = @str_replace(" ","+", $url);
 		$this->assign('url', $url);
 		$this->assign('title',$this->getConfig('title'));
 		$this->assign('layout',$this->getConfig('layout'));
@@ -52,5 +52,5 @@ class Googleplus extends AbstractWidget{
 		$this->assign('badge',$this->getConfig('badge_types'));
 		return parent::_toHtml();
 	}
-	
+
 }

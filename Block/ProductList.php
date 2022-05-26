@@ -73,7 +73,7 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
     public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product)
     {
         $url = $this->getAddToCartUrl($product);
-        //$url = str_replace("checkout/cart", "productlist/cart", $url);
+        //$url = @str_replace("checkout/cart", "productlist/cart", $url);
         return [
             'action' => $url,
             'data' => [

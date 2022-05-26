@@ -105,7 +105,7 @@ foreach ($tabs as $k => $tab) {
             $tabs[$k]['item_title'] = $category->getName();
         }
 
-        $tabs[$k]['id'] = str_replace('_','-','productlist-'.$tab['category_id'].'-'.rand().time());
+        $tabs[$k]['id'] = @str_replace('_','-','productlist-'.$tab['category_id'].'-'.rand().time());
         if(isset($tabs[$k]['position']) && $default_tab && $tabs[$k]['position'] == $default_tab){
             $defaultTabId = 'tab-'.$tabs[$k]['id'];
         }
@@ -194,7 +194,7 @@ $data = $this->getData();
                                         <?php } else { ?>
                                          'Ves_BaseWidget/js/jquery/jquery.easytabs.min',
                                         <?php } ?>
-                                        'Ves_BaseWidget/js/jquery/productlist' 
+                                        'Ves_BaseWidget/js/jquery/productlist'
                                     ], function ($) {
                                         var ajaxUrl = "<?php echo $this->getAjaxUrl() ?>";
                                         var width = $('#<?php echo $tabId; ?>').width();
@@ -211,7 +211,7 @@ $data = $this->getData();
                                         unset($widgetData['tabs']);
                                         ?>
                                         <?php foreach ($tabs as $_tab) { ?>
-                                            owlCarouselInit("<?php echo '#'.$ajaxBlockId ?>", "<?php echo '#'.$_tab['id'].' .owl-carousel' ?>", "");                
+                                            owlCarouselInit("<?php echo '#'.$ajaxBlockId ?>", "<?php echo '#'.$_tab['id'].' .owl-carousel' ?>", "");
                                             <?php } ?>
                                             jQuery("#<?php echo $tab['id'] ?> .ves-serialscroll").each(function() {
                                                 var currentProduct = jQuery(this).data("rel");
@@ -234,7 +234,7 @@ $data = $this->getData();
                                                     jQuery('.mycarousel_' + currentProduct).trigger('goto', 1);
                                                     jQuery('.mycarousel_' + currentProduct).trigger('goto', 0);
                                                 } catch(err) {
-                                                    console.log("\n" + err); 
+                                                    console.log("\n" + err);
                                                 }
                                             });
                                         });

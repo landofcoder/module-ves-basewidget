@@ -1,7 +1,7 @@
 <?php
 $id = rand().time();
 
-$custom_items = trim($custom_items);
+$custom_items = @trim($custom_items);
 $modid = rand().time();
 $enable_collapse = $this->getConfig("enable_collapse", 0);
 
@@ -165,7 +165,7 @@ require(['jquery'],function($){
                         jQuery(".carousel-next<?php echo $id ?>").click(function () {
                               widgetowlcarousel.trigger('next.owl.carousel');
                         });
-                        <?php endif; ?>    
+                        <?php endif; ?>
                   });
             })
       });
@@ -178,7 +178,7 @@ require(['jquery'],function($){
             ,"Ves_All/lib/bootstrap/js/bootstrap.min"
             <?php endif; ?>
             ],function($){
-                  
+
             });
 </script>
 <?php endif; ?>

@@ -4,7 +4,7 @@ $enable_collapse = $this->getConfig("enable_collapse", 0);
 $custom_id = $this->getConfig("custom_id", "");
 ?>
 <div <?php echo $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-twitter-widget">
-	<?php if(isset($title) && trim($title)!=''): ?>
+	<?php if(isset($title) && @trim($title)!=''): ?>
 		<div class="block-title">
 			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-twitter<?php echo $widgetid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
 			<strong><span><?php echo $title; ?></span></strong>
@@ -25,7 +25,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

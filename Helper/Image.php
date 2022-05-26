@@ -164,9 +164,9 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
           $keep_ratio = false;
         }
         $media_base_url = $this->getBaseMediaUrl();
-        $image = str_replace($media_base_url, "", $image);
-        $media_base_url = str_replace("https://","http://", $media_base_url);
-        $image = str_replace($media_base_url, "", $image);
+        $image = @str_replace($media_base_url, "", $image);
+        $media_base_url = @str_replace("https://","http://", $media_base_url);
+        $image = @str_replace($media_base_url, "", $image);
 
         $_imageUrl = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR.$image;
         $_imageResized = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR."resized".DIRECTORY_SEPARATOR.(int)$width."x".(int)$height.DIRECTORY_SEPARATOR.$image;
@@ -295,9 +295,9 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
     {
         if($image=='') return;
         $media_base_url = $this->getBaseMediaUrl();
-        $image = str_replace($media_base_url, "", $image);
-        $media_base_url = str_replace("https://","http://", $media_base_url);
-        $image = str_replace($media_base_url, "", $image);
+        $image = @str_replace($media_base_url, "", $image);
+        $media_base_url = @str_replace("https://","http://", $media_base_url);
+        $image = @str_replace($media_base_url, "", $image);
         $_imageUrl = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR.$image;
         $_imageResized = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR."resized".DIRECTORY_SEPARATOR.(int)$width."x".(int)$height.DIRECTORY_SEPARATOR.$image;
         if (!file_exists($_imageResized)&&file_exists($_imageUrl)){

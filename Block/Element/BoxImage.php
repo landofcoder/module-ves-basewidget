@@ -50,7 +50,7 @@ class BoxImage extends AbstractWidget
     }
 
     public function getImageSize( $imagesize = "") {
-    	$imagesize = trim($imagesize);
+    	$imagesize = @trim($imagesize);
     	$return = "";
     	switch ($imagesize) {
 			case '100%':

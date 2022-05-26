@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -34,7 +34,7 @@ class Customblock extends AbstractWidget{
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
-		
+
 
 		if($this->hasData("template")) {
         	$my_template = $this->getData("template");
@@ -49,12 +49,12 @@ class Customblock extends AbstractWidget{
 
 		$widget_heading = $this->getConfig("title");
 		$block_type = $this->getConfig("block_type");
-		$block_type = trim($block_type);
+		$block_type = @trim($block_type);
 		$block_name = $this->getConfig("block_name");
-		$block_name = trim($block_name);
+		$block_name = @trim($block_name);
 		$block_params = $this->getConfig("block_params");
-		$block_params = trim($block_params);
-		$block_params = str_replace(" ","+", $block_params);
+		$block_params = @trim($block_params);
+		$block_params = @str_replace(" ","+", $block_params);
 
 		if (base64_decode($block_params, true) == true){
 			$block_params = base64_decode($block_params);
@@ -67,14 +67,14 @@ class Customblock extends AbstractWidget{
 		if($params) {
 			$tmp = array();
 			foreach($params as $key=>$val) {
-				$val = trim($val);
+				$val = @trim($val);
 				if($val) {
 					$tmp_array = explode("=", $val);
 					if(isset($tmp_array[0])) {
-						$tmp[trim($tmp_array[0])] = isset($tmp_array[1])?trim($tmp_array[1]):"";
-						if("template" == trim($tmp_array[0]) && $tmp[trim($tmp_array[0])]) {
-							$template = isset($tmp_array[1])?trim($tmp_array[1]):"";
-							unset($tmp[trim($tmp_array[0])]);
+						$tmp[@trim($tmp_array[0])] = isset($tmp_array[1])?@trim($tmp_array[1]):"";
+						if("template" == @trim($tmp_array[0]) && $tmp[@trim($tmp_array[0])]) {
+							$template = isset($tmp_array[1])?@trim($tmp_array[1]):"";
+							unset($tmp[@trim($tmp_array[0])]);
 						}
 					}
 				}

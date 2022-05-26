@@ -21,37 +21,37 @@ $hide_section_text = $hide_section_text?(int)$hide_section_text:0;
 $heading_text = $this->getConfig('heading_text');
 $sub_heading_text = $this->getConfig('content_2');
 if($helper->isBase64Encoded($sub_heading_text)){
-   $sub_heading_text = str_replace(" ","+",$sub_heading_text);
+   $sub_heading_text = @str_replace(" ","+",$sub_heading_text);
    $sub_heading_text = base64_decode($sub_heading_text);
    $sub_heading_text = $this->getDataFilterHelper()->filter($sub_heading_text);
 }
 
 $box_text = $this->getConfig('content');
 if($helper->isBase64Encoded($box_text)){
-   $box_text = str_replace(" ","+",$box_text);
+   $box_text = @str_replace(" ","+",$box_text);
    $box_text = base64_decode($box_text);
    $box_text = $this->getDataFilterHelper()->filter($box_text);
 }
 
 $sub_box_text = $this->getConfig('content_1');
 if($helper->isBase64Encoded($sub_box_text)){
-   $sub_box_text = str_replace(" ","+",$sub_box_text);
+   $sub_box_text = @str_replace(" ","+",$sub_box_text);
    $sub_box_text = base64_decode($sub_box_text);
    $sub_box_text = $this->getDataFilterHelper()->filter($sub_box_text);
 }
 $box_button_text = $this->getConfig('box_button_text');
 $box_button_link = $this->getConfig('box_button_link');
-$box_button_link           = trim($box_button_link);
+$box_button_link           = @trim($box_button_link);
 if($box_button_link){
     if($helper->isSiteLink($box_button_link)){
-        $box_button_link = $this->getUrl($box_button_link);  
+        $box_button_link = $this->getUrl($box_button_link);
     }
 }
 $box_title_link = $this->getConfig('box_title_link');
-$box_title_link           = trim($box_title_link);
+$box_title_link           = @trim($box_title_link);
 if($box_title_link){
     if($helper->isSiteLink($box_title_link)){
-        $box_title_link = $this->getUrl($box_title_link);  
+        $box_title_link = $this->getUrl($box_title_link);
     }
 }
 $button_icon = $this->getConfig('button_icon');
@@ -63,10 +63,10 @@ $image_size = $this->getConfig('image_size');
 $image_alt = $this->getConfig('image_alt');
 $box_image_position = $this->getConfig('box_image_position');
 $box_image_link = $this->getConfig('box_image_link');
-$box_image_link           = trim($box_image_link);
+$box_image_link           = @trim($box_image_link);
 if($box_image_link){
     if($helper->isSiteLink($box_image_link)){
-        $box_image_link = $this->getUrl($box_image_link);  
+        $box_image_link = $this->getUrl($box_image_link);
     }
 }
 $box_image_bottom_text = $this->getConfig('box_image_bottom_text');
@@ -102,7 +102,7 @@ if($is_active){
 $thumbnailurl_small = (isset($thumbnailurl_small) && $thumbnailurl_small)?$thumbnailurl_small:$thumbnailurl;
 $thumbnailurl_larger = (isset($thumbnailurl_larger) && $thumbnailurl_larger)?$thumbnailurl_larger:$thumbnailurl;
 ?>
-<?php 
+<?php
 if($heading_text): // If have heading text will display row heading text
 ?>
 <div class="row element element-box-image-heading">

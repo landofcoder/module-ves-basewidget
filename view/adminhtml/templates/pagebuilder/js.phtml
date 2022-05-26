@@ -33,13 +33,13 @@ if($enable_bootstrap_24cols) {
 <script type="text/javascript">
 	var SKIN_URL = "<?php echo $this->getBaseMediaUrl().'ves_basewidget/'; ?>";
 
-	var config = { 
-		      	  urlwidgets:'<?php echo str_replace("&amp;","&", $urlwidgets);?>',
-		          urlwidget:'<?php echo str_replace("&amp;","&", $urlwidget);?>',
-		          urlwidgetdata:'<?php echo str_replace("&amp;","&", $urlwidgetdata);?>',
-		          urlelements:'<?php echo str_replace("&amp;","&", $urlelements);?>',
-		          urlelement:'<?php echo str_replace("&amp;","&", $urlelement);?>',
-		          urlcmsblocks: '<?php echo str_replace("&amp;","&", $urlcmsblocks);?>',
+	var config = {
+		      	  urlwidgets:'<?php echo @str_replace("&amp;","&", $urlwidgets);?>',
+		          urlwidget:'<?php echo @str_replace("&amp;","&", $urlwidget);?>',
+		          urlwidgetdata:'<?php echo @str_replace("&amp;","&", $urlwidgetdata);?>',
+		          urlelements:'<?php echo @str_replace("&amp;","&", $urlelements);?>',
+		          urlelement:'<?php echo @str_replace("&amp;","&", $urlelement);?>',
+		          urlcmsblocks: '<?php echo @str_replace("&amp;","&", $urlcmsblocks);?>',
 		          imageurl : '<?php echo $this->getBaseMediaUrl(); ?>',
 		          placeholder:'<?php echo $placeholder; ?>',
 		          gutter	   :   '<?php echo (int)$gutter; ?>',
@@ -72,18 +72,18 @@ require(['jquery'],function($){
             'Ves_BaseWidget/js/builder/script'
         ], function(jQuery){
             //code js at here
-           
+
             if(jQuery('#block_alias').val() == "") {
-			    var slider_alias = jQuery("#block_title").val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trim();
+			    var slider_alias = jQuery("#block_title").val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').@trim();
 			    jQuery('#block_alias').val(slider_alias);
 			}
 
 			<?php if(!$block_data->getId()): ?>
 			jQuery("#block_title").keyup(function(){
 
-			   var slider_alias = jQuery(this).val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trim();
+			   var slider_alias = jQuery(this).val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').@trim();
 			   jQuery("#block_alias").val(slider_alias);
-				
+
 			})
 			<?php endif; ?>
 
@@ -125,7 +125,7 @@ require(['jquery'],function($){
     	jQuery("#layout-builder").toggleClass("loadlayout");
     	jQuery(".block-sourcecode textarea").toggleClass("hidden");
     	jQuery(".block-sourcecode").toggleClass("show-block");
-    	
+
     	if(jQuery("#layout-builder").hasClass("loadlayout")){
     		//Re init
     		jQuery("#layout-builder").html("");

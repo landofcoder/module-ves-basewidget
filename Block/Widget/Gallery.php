@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -24,7 +24,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 
 class Gallery extends AbstractWidget
 {
-	
+
 	protected $_blockModel;
 	protected $_dataFilterHelper;
 	protected $_imageHelper;
@@ -80,7 +80,7 @@ class Gallery extends AbstractWidget
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$widget_heading = $this->getConfig("title");
-		
+
 		$galleries = array();
 		$limit = $this->getConfig("limit_item", 10);
 		$keep_ratio = $this->getConfig("keep_ratio", 1);;
@@ -88,22 +88,22 @@ class Gallery extends AbstractWidget
 		if($this->getConfig("source") == "folder") { //If source gallery is folder images
 
 			$folder = $this->getConfig("image_folder","gallery/upload");
-			$path = str_replace( DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR,DIRECTORY_SEPARATOR, $this->getBaseMediaDirPath() . DIRECTORY_SEPARATOR . str_replace("/",DIRECTORY_SEPARATOR, $folder ));		
+			$path = @str_replace( DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR,DIRECTORY_SEPARATOR, $this->getBaseMediaDirPath() . DIRECTORY_SEPARATOR . @str_replace("/",DIRECTORY_SEPARATOR, $folder ));
 			$files = array();
-			
-			if( is_dir($path) ){ 
+
+			if( is_dir($path) ){
 				$files = $this->dirFiles( $path );
 			}
 
 			$mediaURL = $this->getBaseMediaUrl();
-			//$this->thumbdir = 
+			//$this->thumbdir =
 			$count = 1;
 			if( $files ){
 				foreach( $files as $file ){
 					if($count <= $limit) {
 						$tmp 					= array();
 						$tmp['title'] 			= $file;
-						$tmp['imageURL'] 		= $mediaURL. str_replace(DIRECTORY_SEPARATOR,"/",$folder)."/".$file;
+						$tmp['imageURL'] 		= $mediaURL. @str_replace(DIRECTORY_SEPARATOR,"/",$folder)."/".$file;
 						$tmp['thumbnailURL'] 	= $this->_imageHelper->resizeImage($folder."/".$file, (int)$this->getConfig("thumb_width",200), (int)$this->getConfig("thumb_height",200), 100, $keep_ratio);;
 						$tmp['description'] 	= "";
 						$tmp['link'] 			= "";
@@ -126,7 +126,7 @@ class Gallery extends AbstractWidget
 				$tmp = array();
 				$tmp['link'] = $this->getConfig("link_".$i);
 				$tmp['title'] = $this->getConfig("title_".$i);
-				$tmp['title'] = trim($tmp['title']);
+				$tmp['title'] = @trim($tmp['title']);
 				$tmp['product_id'] = $this->getConfig("product_id_".$i);
 				$image_file = $this->getConfig("image_".$i);
 				$imageurl = "";
@@ -176,7 +176,7 @@ class Gallery extends AbstractWidget
 		$this->assign('use_custom_button',$this->getConfig('use_custom_button'));
 		$this->assign('popup_thumb_width',$this->getConfig('popup_thumb_width', 50));
 		$this->assign('popup_thumb_height',$this->getConfig('popup_thumb_height', 50));
-		
+
 		return parent::_toHtml();
 	}
 	public function getBaseMediaUrl()
@@ -186,11 +186,11 @@ class Gallery extends AbstractWidget
 	function dirFiles($directry) {
 		$dir = dir($directry);
 		$filesall = array();
-		while (false!== ($file = $dir->read())) 
+		while (false!== ($file = $dir->read()))
 		{
-			$extension = substr($file, strrpos($file, '.')); 
-			if($extension == ".png" || $extension == ".gif" || $extension == ".jpg" |$extension == ".jpeg") 
-				$filesall[$file] = $file; 
+			$extension = substr($file, strrpos($file, '.'));
+			if($extension == ".png" || $extension == ".gif" || $extension == ".jpg" |$extension == ".jpeg")
+				$filesall[$file] = $file;
 		}
 		$dir->close(); // Close Directory
 		asort($filesall); // Sorts the Array

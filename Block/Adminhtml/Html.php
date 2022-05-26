@@ -106,9 +106,9 @@ class Html extends \Magento\Framework\View\Element\Template implements \Magento\
     {
         $base_url = $this->getStoreManager()->getStore()->getBaseUrl();
         $base_dir = $this->getWidgetHelper()->getRootDirPath();
-        $base_dir = str_replace(DIRECTORY_SEPARATOR, "/", $base_dir);
+        $base_dir = @str_replace(DIRECTORY_SEPARATOR, "/", $base_dir);
         $module_view_path = $this->getWidgetHelper()->getViewDirPath();
-        $module_view_path = str_replace($base_dir, "", $module_view_path);
+        $module_view_path = @str_replace($base_dir, "", $module_view_path);
 
         return "{$base_url}{$module_view_path}";
     }

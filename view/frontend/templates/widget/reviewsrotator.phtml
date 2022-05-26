@@ -1,5 +1,5 @@
 <div class="ves-widget block block-list block-review-rotator">
-	<?php if(trim($title)!=''): ?>
+	<?php if(@trim($title)!=''): ?>
 		<div class="block-title">
 			<strong><span><?php echo $title; ?></span></strong>
 		</div>
@@ -32,7 +32,7 @@
 					<?php } ?>
 					<?php if($description){ ?>
 					<br><?php echo $review['review']['description']; ?>(<?php echo __("Posted on ");?><?php echo $review['review']['created_at'] ?>)</p>
-					<?php } ?>	
+					<?php } ?>
 				</li>
 			</ol>
 		</div>

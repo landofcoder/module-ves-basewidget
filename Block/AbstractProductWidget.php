@@ -202,7 +202,7 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
     public function subString( $text, $length = 100, $replacer ='...', $is_striped=true )
     {
         $text = ($is_striped==true)?strip_tags($text):$text;
-        if(strlen($text) <= $length){
+        if(@strlen($text) <= $length){
             return $text;
         }
         $text = substr($text,0,$length);
