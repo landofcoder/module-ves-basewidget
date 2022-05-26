@@ -63,7 +63,7 @@ require(['jquery'],function($){
             /*'Ves_BaseWidget/js/jquery/jquery.nestable',*/
             /*'Ves_BaseWidget/js/jquery/jquery.browser',*/
             'Ves_BaseWidget/js/elfinder/js/elfinder.min',
-            'Ves_BaseWidget/js/bootstrap4/bootstrap',
+            'Ves_BaseWidget/js/bootstrap336/bootstrap',
             'Ves_BaseWidget/js/common',
             'Ves_BaseWidget/js/jquery/jquery.cookie',
             'Ves_BaseWidget/js/jquery/jquery.colorpicker',
@@ -74,14 +74,14 @@ require(['jquery'],function($){
             //code js at here
 
             if(jQuery('#block_alias').val() == "") {
-			    var slider_alias = jQuery("#block_title").val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trimg();
+			    var slider_alias = jQuery("#block_title").val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trim();
 			    jQuery('#block_alias').val(slider_alias);
 			}
 
 			<?php if(!$block_data->getId()): ?>
 			jQuery("#block_title").keyup(function(){
 
-			   var slider_alias = jQuery(this).val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trimg();
+			   var slider_alias = jQuery(this).val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trim();
 			   jQuery("#block_alias").val(slider_alias);
 
 			})
