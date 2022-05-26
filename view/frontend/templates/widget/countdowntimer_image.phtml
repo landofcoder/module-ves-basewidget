@@ -115,11 +115,11 @@ $id = rand().time();
                         <!-- TIME -->
                            <?php
                            if($this->getConfig('show_timer_countdown')){
-                            $date1 = date('G:i:s', strtotime($end_date));
+                            $date1 = date('G:i:s', @strtotime($end_date));
                             if ($date1 == "0:00:00") {
-                                $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', strtotime($end_date));
+                                $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', @strtotime($end_date));
                             }else{
-                                $targetDate = date('m/d/Y G:i:s', strtotime($end_date));
+                                $targetDate = date('m/d/Y G:i:s', @strtotime($end_date));
                             }
                             ?>
                             <div class="banner-countdowns">

@@ -86,22 +86,22 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		$to_date = $_product->getNewsToDate();
 		$is_new = false;
 		$is_new = $this->isNewProduct($from_date, $to_date);
-		$today = strtotime("now");
+		$today = @strtotime("now");
 
 		if ($from_date && $to_date) {
-			$from_date = strtotime($from_date);
-			$to_date = strtotime($to_date);
+			$from_date = @strtotime($from_date);
+			$to_date = @strtotime($to_date);
 			if ($from_date <= $today && $to_date >= $today) {
 				$is_new = true;
 			}
 		}
 		elseif ($from_date && !$to_date) {
-			$from_date = strtotime($from_date);
+			$from_date = @strtotime($from_date);
 			if ($from_date <= $today) {
 				$is_new = true;
 			}
 		}elseif (!$from_date && $to_date) {
-			$to_date = strtotime($to_date);
+			$to_date = @strtotime($to_date);
 			if ($to_date >= $today) {
 				$is_new = true;
 			}
@@ -113,8 +113,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
     {
 		$check = false;
 
-		$startTimeStamp = strtotime($created_date);
-		$endTimeStamp = strtotime("now");
+		$startTimeStamp = @strtotime($created_date);
+		$endTimeStamp = @strtotime("now");
 
 		$timeDiff = abs($endTimeStamp - $startTimeStamp);
         $numberDays = $timeDiff/86400;// 86400 seconds in one day

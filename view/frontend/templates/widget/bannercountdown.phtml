@@ -65,8 +65,8 @@ $customer_group_ids = $_rule->getCustomerGroupIds();
     <?php } ?>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-8">
-        <?php echo __($title_name).'  :';?>  <?php echo $_rule->getName(); ?> . 
-        <?php if($show_code){ 
+        <?php echo __($title_name).'  :';?>  <?php echo $_rule->getName(); ?> .
+        <?php if($show_code){
                 $primarycoupon = $_rule->getPrimaryCoupon();
                 if($coupon_code = $primarycoupon->getCode()){
                     echo __('Use Code: ').'<strong class="coupon-code">'.$coupon_code.'</strong>';
@@ -80,17 +80,17 @@ $customer_group_ids = $_rule->getCustomerGroupIds();
             <?php echo __($_rule->getDescription()); ?>
             </span>
         <?php } ?>
-        
+
       </div>
       <div class="col-xs-6 col-md-4">
        <!-- TIME -->
        <?php
        if($this->getConfig('show_timer_countdown')){
-        $date1 = date('G:i:s', strtotime($_rule->getToDate()));
+        $date1 = date('G:i:s', @strtotime($_rule->getToDate()));
         if ($date1 == "0:00:00") {
-            $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', strtotime($_rule->getToDate()));
+            $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', @strtotime($_rule->getToDate()));
         }else{
-            $targetDate = date('m/d/Y G:i:s', strtotime($_rule->getToDate()));
+            $targetDate = date('m/d/Y G:i:s', @strtotime($_rule->getToDate()));
         }
         ?>
         <div class="banner-countdowns" >
@@ -109,9 +109,9 @@ $customer_group_ids = $_rule->getCustomerGroupIds();
         </div>
         <?php } ?>
     </div>
-</div>  
 </div>
-<?php 
+</div>
+<?php
 } // end if check groupcustomer
 } // end if check rule
 ?>

@@ -98,9 +98,9 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
         ?>
         <?php if($_image){ ?>
         <div class="image col-lg-6 col-md-6 col-sm-4 col-xs-12">
-            
+
             <a href="<?php echo $block->getSingleLink($_product) ?>" title="<?php echo $_image->getLabel() ?>" class="product-image img">
-                
+
                 <img class="img-responsive" src="<?php echo $_image->getUrl(); ?>" alt="<?php echo $_image->getLabel() ?>" />
             </a>
         </div>
@@ -125,7 +125,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                             $specialPriceToDate = $_product->getSpecialToDate();
                             $today =  time();
                             if ($specialprice) {
-                                if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
+                                if($today >= @strtotime( $specialPriceFromDate) && $today <= @strtotime($specialPriceToDate) || $today >= @strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
                                     ?>
                                     <span class="onsale"><span><?php echo __("Sale");?></span></span>
                                     <?php
@@ -154,16 +154,16 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
 
                 <?php // Countdown Timer Block ?>
                 <?php if( isset($_product) && $_product->getFinalPrice() < $_product->getPrice() && $show_countdowntimer && $_product->getSpecialToDate()!=''){
-                    $date1 = date('G:i:s', strtotime($_product->getSpecialToDate()));
+                    $date1 = date('G:i:s', @strtotime($_product->getSpecialToDate()));
                     if ($date1 == "0:00:00") {
-                        $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', strtotime($_product->getSpecialToDate()));
+                        $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', @strtotime($_product->getSpecialToDate()));
                     }else{
-                        $targetDate = date('m/d/Y G:i:s', strtotime($_product->getSpecialToDate()));
+                        $targetDate = date('m/d/Y G:i:s', @strtotime($_product->getSpecialToDate()));
                     }
                     ?>
                     <div class="countdown-timmer productdeals">
                         <div class="item-detail">
-                            <div class="timer-explain">(<?php echo date('m/d/Y', strtotime($_product->getSpecialToDate())); ?>)</div>
+                            <div class="timer-explain">(<?php echo date('m/d/Y', @strtotime($_product->getSpecialToDate())); ?>)</div>
                         </div>
                         <div id="item-countdown-<?php echo $productId ?>" class="item-countdown"></div>
                         <script type="text/javascript">
@@ -173,7 +173,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                                         <?php if($productlist_data->isModuleEnabled('Ves_Productlist')){ ?>
                                         'Ves_Productlist/js/countdown'
                                         <?php } else { ?>
-                                        'Ves_BaseWidget/js/countdown'    
+                                        'Ves_BaseWidget/js/countdown'
                                         <?php } ?>
                                         ],function () {
                                         jQuery(document).ready(function(){
@@ -202,7 +202,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                         </div>
                     <?php endif;?>
                     <div class="product-item product actions product-item-actions">
-                        
+
                         <?php if ($this->getData('show_addtocart') && $_product->isSaleable()): ?>
                             <div class="actions-primary">
                                 <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
@@ -212,7 +212,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                                     <span><?php echo __('Add to Cart') ?></span>
                                     </button>
                                 <?php else: ?>
-                                     <?php 
+                                     <?php
                                         if($ves && $data) {
                                             $data_post = 'data-fancybox-href="'.$data->getAddToCartUrl($_product).'"';
                                             ?>
