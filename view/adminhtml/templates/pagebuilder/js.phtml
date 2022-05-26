@@ -74,14 +74,14 @@ require(['jquery'],function($){
             //code js at here
 
             if(jQuery('#block_alias').val() == "") {
-			    var slider_alias = jQuery("#block_title").val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').@trim();
+			    var slider_alias = jQuery("#block_title").val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trimg();
 			    jQuery('#block_alias').val(slider_alias);
 			}
 
 			<?php if(!$block_data->getId()): ?>
 			jQuery("#block_title").keyup(function(){
 
-			   var slider_alias = jQuery(this).val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').@trim();
+			   var slider_alias = jQuery(this).val().toLowerCase().replace(/ +/g,'-').replace(/[^a-z0-9-_]/g,'').trimg();
 			   jQuery("#block_alias").val(slider_alias);
 
 			})
