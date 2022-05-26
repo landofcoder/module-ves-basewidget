@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -58,13 +58,13 @@ class WysiwygEditor extends Template implements RendererInterface
     protected $element_id = "";
 
     /**
-     * @param \Magento\Backend\Block\Template\Context                $context           
-     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement    
-     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection 
-     * @param Escaper                                                $escaper           
-     * @param \Magento\Cms\Model\Wysiwyg\Config                      $wysiwygConfig     
-     * @param \Magento\Framework\View\LayoutInterface                $layout            
-     * @param \Magento\Backend\Helper\Data                           $backendData       
+     * @param \Magento\Backend\Block\Template\Context                $context
+     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement
+     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection
+     * @param Escaper                                                $escaper
+     * @param \Magento\Cms\Model\Wysiwyg\Config                      $wysiwygConfig
+     * @param \Magento\Framework\View\LayoutInterface                $layout
+     * @param \Magento\Backend\Helper\Data                           $backendData
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -73,7 +73,7 @@ class WysiwygEditor extends Template implements RendererInterface
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         /*\Magento\Framework\View\LayoutInterface $layout,*/
         \Magento\Backend\Helper\Data $backendData
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         /*$this->_layout = $layout;*/
@@ -81,7 +81,9 @@ class WysiwygEditor extends Template implements RendererInterface
         $this->_wysiwygConfig = $wysiwygConfig;
         parent::__construct($context);
     }
-    public function isBase64Encoded($data) {
+
+    public function isBase64Encoded($data)
+    {
         if(base64_encode($data) === $data) return false;
         if(base64_encode(base64_decode($data)) === $data){
             return true;
@@ -101,7 +103,9 @@ class WysiwygEditor extends Template implements RendererInterface
 
         return false;
     }
-    public function render(AbstractElement $element){
+
+    public function render(AbstractElement $element)
+    {
 
         $html = '';
         $config = $this->_wysiwygConfig->getConfig();
@@ -109,8 +113,8 @@ class WysiwygEditor extends Template implements RendererInterface
         $element_id = $element->getHtmlId().rand().time();
         $this->element_id = $element_id;
 
-        
-        
+
+
         $settings = $config->getData('settings');
         $settings['menubar'] = true;
         $settings['toolbar'] = 'undo redo | styleselect | fontsizeselect | forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | image | code';
@@ -121,10 +125,10 @@ class WysiwygEditor extends Template implements RendererInterface
         $config = json_encode($config->getData());
         $value = $element->getValue();
         if(!is_array($value)){
-            $value2 = str_replace(" ","+", $value);
+            $value2 = @str_replace(" ","+", $value);
             if($this->isBase64Encoded($value2)){
                 $value = base64_decode($value2);
-                
+
                 if($this->isBase64Encoded($value)){
                     $value = base64_decode($value);
                 }
@@ -145,7 +149,7 @@ class WysiwygEditor extends Template implements RendererInterface
 
         $html .= '<div class="admin__field-control control">';
         $html .= '<textarea id="' . $element_id . '" name="' . $element->getName() . '" class="textarea admin__control-textarea wysiwyg-editor ' . $class . '" rows="5" cols="15" data-ui-id="product-tabs-attributes-tab-fieldset-element-textarea-' . $element->getName() . '" aria-hidden="true">'.$this->getEscapedValue($value).'</textarea>';
-    
+
             $html .= $this->_layout->createBlock(
                 'Magento\Backend\Block\Widget\Button',
                 '',
@@ -161,7 +165,7 @@ class WysiwygEditor extends Template implements RendererInterface
                     ]
                 ]
             )->toHtml();
-            
+
             $html .= $this->_getToggleButtonHtml(true);
 
             $html .= <<<HTML
@@ -199,7 +203,7 @@ class WysiwygEditor extends Template implements RendererInterface
                 jQuery("#toggle{$element_id}").toggleClass("texteditor-enabled");
                 jQuery("#wysiwygEditor{$element_id}").toggleClass("hidden");
             });
-            
+
             varienGlobalEvents.attachEventHandler("formSubmit", editorFormValidationHandler);
             varienGlobalEvents.clearEventHandlers("open_browser_callback");
             varienGlobalEvents.attachEventHandler("open_browser_callback", editor{$element_id}.openFileBrowser);
@@ -207,7 +211,7 @@ class WysiwygEditor extends Template implements RendererInterface
             //editor{$element_id}.turnOn();
             varienGlobalEvents.clearEventHandlers("open_browser_callback");
             varienGlobalEvents.attachEventHandler("open_browser_callback", editor{$element_id}.openFileBrowser);
-            
+
             jQuery('#{$element_id}')
                 .addClass('wysiwyg-editor')
                 .data(
@@ -242,7 +246,8 @@ HTML;
 
         return $html;
     }
-     /**
+
+    /**
      * Return HTML button to toggling WYSIWYG
      *
      * @param bool $visible
@@ -260,6 +265,7 @@ HTML;
         );
         return $html;
     }
+
     /**
      * Translate string using defined helper
      *
@@ -271,7 +277,8 @@ HTML;
         return (string)new \Magento\Framework\Phrase($string);
     }
 
-    public function getHtmlId(){
+    public function getHtmlId()
+    {
         return $this->element_id;
     }
 
@@ -294,7 +301,6 @@ HTML;
      */
     public function getEscapedValue($value = null)
     {
-
         if ($filter = $this->getValueFilter()) {
             $value = $filter->filter($value);
         }

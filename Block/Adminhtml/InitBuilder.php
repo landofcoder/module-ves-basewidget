@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -21,7 +21,7 @@
 namespace Ves\BaseWidget\Block\Adminhtml;
 
 class InitBuilder extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
-{ 
+{
     protected $_value = null;
     protected $_model = null;
     /**
@@ -73,14 +73,14 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
 
     protected $_blockProfileModel;
   /**
-     * @param \Magento\Backend\Block\Template\Context                $context           
-     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement    
-     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection 
-     * @param Escaper                                                $escaper           
-     * @param \Ves\BaseWidget\Helper\Data                            $dataHelper     
-     * @param \Ves\BaseWidget\Helper\Widget                          $widgetHelper   
-     * @param \Magento\Framework\View\LayoutInterface                $layout            
-     * @param \Magento\Backend\Helper\Data                           $backendData       
+     * @param \Magento\Backend\Block\Template\Context                $context
+     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement
+     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection
+     * @param Escaper                                                $escaper
+     * @param \Ves\BaseWidget\Helper\Data                            $dataHelper
+     * @param \Ves\BaseWidget\Helper\Widget                          $widgetHelper
+     * @param \Magento\Framework\View\LayoutInterface                $layout
+     * @param \Magento\Backend\Helper\Data                           $backendData
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -95,7 +95,7 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
         \Magento\Backend\Helper\Data $backendData,
         \Ves\PageBuilder\Model\Source\Blockprofilelist $blockProfileModel,
         array $data = []
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         //$this->_layout = $layout;
@@ -110,7 +110,7 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
         $this->_value = isset($data['value'])?$data['value']:'';
 
         $this->_model = isset($data['model'])?$data['model']:'';
-        
+
 
         parent::__construct($context, $data);
     }
@@ -119,8 +119,9 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
     {
         return $this->_storeManager->getStore()->getBaseUrl();
     }
-    
-    protected function _toHtml() {
+
+    protected function _toHtml()
+    {
         $placeholder = "";
 
         //Get current layout profile params
@@ -138,9 +139,9 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
           $page_type = "page";
         }
 
-        
+
         $backup_params = array();
-        
+
         if($this->_dataHelper->getConfig("general/auto_backup_profile", null, "vespagebuilder")) {
             $folder = "";
             if(1 ==  $this->isProductBuilder()){ //Load sample profile of product when we are managing product layout builder
@@ -155,14 +156,14 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
 
         //Get list sample layout profile params
         $sample_params = $this->_dataHelper->getSampleLayoutParams( $page_type );
-        
-        
+
+
         //Get available widgets in magento
         $avaialable_widgets = $this->_getAvailableWidgets();
 
         $widgets_info = $this->_widgetHelper->getListWidgetTypes("array", $avaialable_widgets);
         $widgets_json = $widgets_info?\Zend_Json::encode( $widgets_info ): "";
-        $widgets_json = str_replace( array('\n','\r','\t') ,"", $widgets_json);
+        $widgets_json = @str_replace( array('\n','\r','\t') ,"", $widgets_json);
 
         $block_widgets = $this->getBlock()->getWidgets();
         $tmp_widgets = [];
@@ -176,8 +177,8 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
         }
 
         $block_widgets_json = $tmp_widgets?\Zend_Json::encode( $tmp_widgets ): "";
-        $block_widgets_json = str_replace( array('\n','\r','\t') ,"", $block_widgets_json);
-        
+        $block_widgets_json = @str_replace( array('\n','\r','\t') ,"", $block_widgets_json);
+
         $this->assign("widgets_json", $widgets_json);
         $this->assign("widgets", $widgets_info);
         $this->assign("placeholder", $placeholder);
@@ -222,7 +223,7 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
           $this->_model = $this->_coreRegistry->registry('ves_pagebuilder');
           return $this->_model;
         }
-      
+
     }
 
     protected function isProductBuilder()

@@ -112,7 +112,7 @@ class Categories extends AbstractWidget
         // edit in 2.4.2
 //        $_file_path = $this->getBaseMediaUrl() ."catalog/category/".$_file_name;
 		if (strpos($_file_name,'/media/') !== false) {
-            $_file_name = str_replace('/media/', '', $_file_name);
+            $_file_name = @str_replace('/media/', '', $_file_name);
         }
 		$_file_path = $_file_name;
 		// edit in 2.4.2
@@ -138,7 +138,7 @@ class Categories extends AbstractWidget
 
 		$catsid = $this->getConfig("catsid");
 		$pretext = $this->getConfig("pretext");
-		$pretext = str_replace(" ","+",$pretext);
+		$pretext = @str_replace(" ","+",$pretext);
 		if(base64_decode($pretext, true) == true){
 		   	$pretext = base64_decode($pretext);
 		} else {

@@ -13,7 +13,7 @@ $limit_thumbnail = 2;
 $custom_item_height = '';
 $height_type = $this->getConfig('height_type');
 if($height_type == 'custom'){
-    $custom_item_height = (int)(str_replace("px","",$this->getConfig('custom_item_height', "")));
+    $custom_item_height = (int)(@str_replace("px","",$this->getConfig('custom_item_height', "")));
 }
 $show_image = $this->getConfig('show_image');
 $aspect_ratio = $this->getConfig('aspect_ratio');
@@ -135,10 +135,10 @@ $collection = $this->getData('collection');
 <?php // Product List ?>
 <?php foreach ($collection as $_columnCollection) { ?>
     <div class="product-block">
-        <?php foreach($_columnCollection as $_product){ ?>   
+        <?php foreach($_columnCollection as $_product){ ?>
             <?php $productId = time().rand(); ?>
             <div class="product-item-info" <?php if($custom_item_height){ ?>style="height:<?php echo $custom_item_height.'px' ?>"<?php } ?>>
-                
+
                 <?php // Name ?>
                 <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
                 <?php if($show_name){ ?>
@@ -162,15 +162,15 @@ $collection = $this->getData('collection');
                                     $today =  time();
 
                                     if ($specialprice) {
-                                        if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
+                                        if($today >= @strtotime( $specialPriceFromDate) && $today <= @strtotime($specialPriceToDate) || $today >= @strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
                                             ?>
                                             <span class="onsale">
                                                 <?php if ($percentage) {?>
                                                     <span class='discount-price'>
                                                         <span class='discount-label'> - </span>
                                                         <span class='discount-value onsale'><?php echo $percentage;?>%</span>
-                                                    </span> 
-                                                    <?php } ?> 
+                                                    </span>
+                                                    <?php } ?>
                                                 </span>
                                                 <?php
                                             }
@@ -201,7 +201,7 @@ $collection = $this->getData('collection');
                                 <?php if ($show_thumbnail){?>
                                     <?php
                                     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                                    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());        
+                                    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
                                     $images = $product->getMediaGalleryImages();
                                     ?>
                                     <div class="product-thumb">
@@ -219,14 +219,14 @@ $collection = $this->getData('collection');
                                                     <li>
                                                         <a href="javascript:void(0);">
                                                             <img alt="" src="<?php echo $_imgHelper->resizeThumb($child->getUrl(),$thumb_width , $thumb_height,'100', true) ?>" data-image="<?php echo $_imgHelper->resizeThumb($child->getUrl(), $image_width, $image_height) ?>" data-imgid="mainimg_<?php echo $productId;?>"/>
-                                                        </a>    
+                                                        </a>
                                                     </li>
                                                     <?php }?>
                                                     <?php }?>
                                                 </ul>
                                             </div>
 
-                                            
+
                                         </div>
                                         <?php } ?>
                                     </div>
@@ -262,11 +262,11 @@ $collection = $this->getData('collection');
 
                                                         <?php // Countdown Timer Block ?>
                                                         <?php if( isset($_product) && $_product->getFinalPrice() < $_product->getPrice() && $show_countdowntimer && $_product->getSpecialToDate()!=''){
-                                                            $date1 = date('G:i:s', strtotime($_product->getSpecialToDate()));
+                                                            $date1 = date('G:i:s', @strtotime($_product->getSpecialToDate()));
                                                             if ($date1 == "0:00:00") {
-                                                                $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', strtotime($_product->getSpecialToDate()));
+                                                                $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', @strtotime($_product->getSpecialToDate()));
                                                             }else{
-                                                                $targetDate = date('m/d/Y G:i:s', strtotime($_product->getSpecialToDate()));
+                                                                $targetDate = date('m/d/Y G:i:s', @strtotime($_product->getSpecialToDate()));
                                                             }
                                                             ?>
                                                             <div class="countdown-timmer">
@@ -281,11 +281,11 @@ $collection = $this->getData('collection');
                                                                         <?php if($data->isModuleEnabled('Ves_Productlist')){ ?>
                                                                         'Ves_Productlist/js/countdown'
                                                                         <?php } else { ?>
-                                                                        'Ves_BaseWidget/js/countdown'   
+                                                                        'Ves_BaseWidget/js/countdown'
                                                                         <?php } ?>
                                                                         ],function () {
                                                                         jQuery(document).ready(function(){
-                                                                            jQuery(document).on('click','.mycarousel ul li img', function(){ 
+                                                                            jQuery(document).on('click','.mycarousel ul li img', function(){
                                                                                 var imgid = jQuery(this).data('imgid');
                                                                                 jQuery('#'+imgid).attr('src', jQuery(this).data('image'));
                                                                                 jQuery('.mycarousel ul li').removeClass("active");
@@ -296,7 +296,7 @@ $collection = $this->getData('collection');
                                                                                 DisplayFormat:"<ul><li>%%D%% <div><?php echo __('days');?></div></li><li> %%H%% <div><?php echo __('hrs');?></div></li><li> %%M%% <div><?php echo __('mins');?></div></li><li> %%S%% <div><?php echo __('secs');?></div></li></ul>",
                                                                                 FinishMessage:"<?php echo __('Expired');?>",
                                                                             });
-                                                                            
+
                                                                         });
 
                                                                     });
@@ -305,7 +305,7 @@ $collection = $this->getData('collection');
                                                                 </script>
                                                             </div>
                                                             <?php } ?>
-                                                            
+
                                                             <?php if($show_wishlist || $show_compare || $show_addtocart){ ?>
                                                                 <div class="product actions product-item-actions">
                                                                 <?php // Add to cart button ?>

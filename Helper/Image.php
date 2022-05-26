@@ -71,7 +71,8 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
 		parent::__construct($context);
 	}
 
-	public function getBaseMediaDirPath() {
+	public function getBaseMediaDirPath()
+    {
         return $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
     }
 
@@ -145,9 +146,10 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_processor->quality($qualtity);
 
         return $this->_processor;
-  }
+    }
 
-	public function resizeImage($image, $width = 100, $height = 100, $qualtity = 100, $keep_ratio = true){
+	public function resizeImage($image, $width = 100, $height = 100, $qualtity = 100, $keep_ratio = true)
+    {
         if(!$image || $image == "") return;
 
         $parsed = parse_url($image);
@@ -162,9 +164,9 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
           $keep_ratio = false;
         }
         $media_base_url = $this->getBaseMediaUrl();
-        $image = str_replace($media_base_url, "", $image);
-        $media_base_url = str_replace("https://","http://", $media_base_url);
-        $image = str_replace($media_base_url, "", $image);
+        $image = @str_replace($media_base_url, "", $image);
+        $media_base_url = @str_replace("https://","http://", $media_base_url);
+        $image = @str_replace($media_base_url, "", $image);
 
         $_imageUrl = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR.$image;
         $_imageResized = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR."resized".DIRECTORY_SEPARATOR.(int)$width."x".(int)$height.DIRECTORY_SEPARATOR.$image;
@@ -235,9 +237,9 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
      * @param mixed                             $file           Specific file
      * @return string
      */
-    public function getImg($product, $w=300, $h, $imgVersion='image', $file=NULL)
+    public function getImg($product, $w=300, $h = 0, $imgVersion='image', $file=NULL)
     {
-        if ($h <= 0){
+        if ($h <= 0) {
             $image = $this->_imageHelper
             ->init($product, $imgVersion)
             ->constrainOnly(true)
@@ -289,12 +291,13 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         return '';
     }
 
-    public function resizeThumb($image, $width = 100, $height = 0, $qualtity = 100, $keep_ratio = true){
+    public function resizeThumb($image, $width = 100, $height = 0, $qualtity = 100, $keep_ratio = true)
+    {
         if($image=='') return;
         $media_base_url = $this->getBaseMediaUrl();
-        $image = str_replace($media_base_url, "", $image);
-        $media_base_url = str_replace("https://","http://", $media_base_url);
-        $image = str_replace($media_base_url, "", $image);
+        $image = @str_replace($media_base_url, "", $image);
+        $media_base_url = @str_replace("https://","http://", $media_base_url);
+        $image = @str_replace($media_base_url, "", $image);
         $_imageUrl = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR.$image;
         $_imageResized = $this->getBaseMediaDirPath().DIRECTORY_SEPARATOR."resized".DIRECTORY_SEPARATOR.(int)$width."x".(int)$height.DIRECTORY_SEPARATOR.$image;
         if (!file_exists($_imageResized)&&file_exists($_imageUrl)){

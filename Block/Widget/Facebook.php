@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -40,7 +40,7 @@ class Facebook extends AbstractWidget{
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$url = $this->getConfig('facebook_url');
-		$url = str_replace(" ", "+",$url);
+		$url = @str_replace(" ", "+",$url);
 		$url = urlencode($url);
 		$app_id = $this->getConfig('app_id', '1451966991726173');
 		$app_id = empty($app_id)?'1451966991726173':$app_id;
@@ -57,12 +57,12 @@ class Facebook extends AbstractWidget{
 		$this->assign('border',$this->getConfig('enable_border'));
 
 		$custom_css = $this->getConfig('custom_css');
-		$custom_css = str_replace(" ","+", $custom_css);
+		$custom_css = @str_replace(" ","+", $custom_css);
 		$custom_css = base64_decode($custom_css);
-		$custom_css = str_replace(array("\r", "\n"), "", $custom_css);
+		$custom_css = @str_replace(array("\r", "\n"), "", $custom_css);
 		$this->assign('css',$custom_css);
-		
+
 		return parent::_toHtml();
 	}
-	
+
 }

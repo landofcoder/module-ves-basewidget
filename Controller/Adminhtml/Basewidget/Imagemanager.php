@@ -1,18 +1,18 @@
-<?php 
+<?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Baseconnector
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -21,12 +21,14 @@
 namespace Ves\BaseWidget\Controller\Adminhtml\Basewidget;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-class Imagemanager extends \Ves\BaseWidget\Controller\Adminhtml\Basewidget {
+class Imagemanager extends \Ves\BaseWidget\Controller\Adminhtml\Basewidget
+{
 
     /**
      * index action
-     */ 
-    public function execute() {
+     */
+    public function execute()
+    {
         $resultPage = $this->resultPageFactory->create();
 
         /**
@@ -43,6 +45,7 @@ class Imagemanager extends \Ves\BaseWidget\Controller\Adminhtml\Basewidget {
 
         return $resultPage;
     }
+
     /**
      * Check the permission to run it
      *
@@ -52,6 +55,6 @@ class Imagemanager extends \Ves\BaseWidget\Controller\Adminhtml\Basewidget {
     {
         return $this->_authorization->isAllowed('Ves_BaseWidget::manage_media');
     }
-    
+
 }
 ?>

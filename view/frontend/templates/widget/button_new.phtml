@@ -3,7 +3,7 @@ $helper         = $this->helper('Ves\BaseWidget\Helper\Data');
 $icon           = $this->getConfig('icon');
 $button_title   = $this->getConfig('button_title');
 $href           = $this->getConfig('href');
-$href           = trim($href);
+$href           = @trim($href);
 if($href){
     if($helper->isSiteLink($href)){
         $href = $block->getUrl($href);
@@ -15,7 +15,7 @@ $is_outline       =  $this->getConfig('is_outline');
 $is_active           = $this->getConfig('is_active');
 $extra_class       = $this->getConfig('extra_class');
 $content_html   = $this->getConfig('html');
-$content_html   = str_replace(" ", "+", $content_html);
+$content_html   = @str_replace(" ", "+", $content_html);
 $content_html   = base64_decode($content_html);
 $content_html   = $this->getDataFilterHelper()->filter($content_html);
 $button_class 	= 'btn';

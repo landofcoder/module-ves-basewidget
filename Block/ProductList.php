@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Productlist
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -27,25 +27,21 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
     protected $urlHelper;
 
     /**
-     * @param \Magento\Catalog\Block\Product\Context $context     
-     * @param \Magento\Framework\Url\Helper\Data     $urlHelper   
-     * @param array                                  $data        
+     * @param \Magento\Catalog\Block\Product\Context $context
+     * @param \Magento\Framework\Url\Helper\Data     $urlHelper
+     * @param array                                  $data
      */
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
         \Magento\Framework\Url\Helper\Data $urlHelper,
         array $data = []
-        ) {
+    ) {
     	$this->urlHelper = $urlHelper;
         if(isset($data['template']) && $data['template']) {
             $this->setData("template", $data['template']);
         }
         parent::__construct($context, $data);
     }
-
-	public function _construct(){
-		parent::_construct();
-	}
 
 	public function getConfig($key, $default = '')
 	{
@@ -56,7 +52,8 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
 		return $default;
 	}
 
-	public function _toHtml(){
+	public function _toHtml()
+    {
         $template = 'Ves_BaseWidget::widget/dealproduct/items.phtml';
         if($tmp_template = $this->getConfig("template")) {
             $template = $tmp_template;
@@ -76,7 +73,7 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
     public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product)
     {
         $url = $this->getAddToCartUrl($product);
-        //$url = str_replace("checkout/cart", "productlist/cart", $url);
+        //$url = @str_replace("checkout/cart", "productlist/cart", $url);
         return [
             'action' => $url,
             'data' => [
@@ -111,7 +108,8 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
         return $this->_cartHelper->getAddUrl($product, $additional);
     }
 
-    public function getVesProductPriceHtml($product){
+    public function getVesProductPriceHtml($product)
+    {
         return $this->getProductPrice($product);
     }
 }

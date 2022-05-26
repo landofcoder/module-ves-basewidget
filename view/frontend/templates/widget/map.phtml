@@ -11,7 +11,7 @@
 */
 $id=rand().time();
 if(isset($description)) {
-	$description = str_replace(array("\r", "\n"), "", $description);
+	$description = @str_replace(array("\r", "\n"), "", $description);
 } else {
 	$description = "";
 }
@@ -35,7 +35,7 @@ if(isset($description)) {
 	var map;
     function initialize() {
 		try{
-			if(typeof(google) != "undefined"){ 
+			if(typeof(google) != "undefined"){
 				var myLatlng = new google.maps.LatLng( <?php echo (float)$latitude; ?>, <?php echo (float)$longitude; ?> );
 				var mapOptions = {
 					zoom: <?php echo $zoom?(int)$zoom:8; ?>,
@@ -61,7 +61,7 @@ if(isset($description)) {
 			}
 		}catch(e){
 
-		}	
+		}
     }
     window.onload = initialize();
 </script>

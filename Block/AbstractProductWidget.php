@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2016 Venustheme (http://www.venustheme.com/)
@@ -48,10 +48,9 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         ProductRepositoryInterface $productRepository,
         UrlFinderInterface $urlFinder,
         array $data = []
-        ) {
+    ) {
 
         parent::__construct($context, $data);
-
         $this->_blockModel = $blockModel;
         $this->_dataFilterHelper = $dataHelper;
         $this->_layout = $context->getLayout();
@@ -59,16 +58,22 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         $this->urlHelper = $urlHelper;
         $this->urlFinder = $urlFinder;
     }
-    public function getConfig($key, $default = NULL){
+
+    public function getConfig($key, $default = NULL)
+    {
         if($this->hasData($key)){
             return $this->getData($key);
         }
         return $default;
     }
-    public function getDataFilterHelper() {
+
+    public function getDataFilterHelper()
+    {
         return $this->_dataFilterHelper;
     }
-    public function getLayout() {
+
+    public function getLayout()
+    {
         return $this->_layout;
     }
 
@@ -90,7 +95,9 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
             ]
         ];
     }
-    public function getProduct(){
+
+    public function getProduct()
+    {
         if($this->_product == null) {
             $arr = explode('/', $this->getConfig('id_path'));
             $product_id = end($arr);
@@ -98,8 +105,8 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
                 try{
                     $this->_product = $this->productRepository->getById($product_id);
                     if(!$this->_product){
-                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance 
-                        $this->_product = $objectManager->create('Magento\Catalog\Model\Product')->load($product_id); 
+                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance
+                        $this->_product = $objectManager->create('Magento\Catalog\Model\Product')->load($product_id);
                     }
                 } catch (\Exception $e) {
                     $this->_product = false;
@@ -109,7 +116,8 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         return $this->_product;
     }
 
-    public function getSingleLink($product, $params = []) {
+    public function getSingleLink($product, $params = [])
+    {
         $categoryId = null;
         if(!$this->_product_link){
             $storeId = $product->getStoreId();
@@ -138,36 +146,34 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         return $this->_product_link;
     }
 
-
-
-
     /**
      * Check product is new
      *
      * @param  Mage_Catalog_Model_Product $_product
      * @return bool
      */
-    public function checkProductIsNew($_product = null) {
+    public function checkProductIsNew($_product = null)
+    {
         $from_date = $_product->getNewsFromDate();
         $to_date = $_product->getNewsToDate();
         $is_new = false;
         $is_new = $this->isNewProduct($from_date, $to_date);
-        $today = strtotime("now");
+        $today = @strtotime("now");
 
         if ($from_date && $to_date) {
-            $from_date = strtotime($from_date);
-            $to_date = strtotime($to_date);
+            $from_date = @strtotime($from_date);
+            $to_date = @strtotime($to_date);
             if ($from_date <= $today && $to_date >= $today) {
                 $is_new = true;
             }
         }
         elseif ($from_date && !$to_date) {
-            $from_date = strtotime($from_date);
+            $from_date = @strtotime($from_date);
             if ($from_date <= $today) {
                 $is_new = true;
             }
         }elseif (!$from_date && $to_date) {
-            $to_date = strtotime($to_date);
+            $to_date = @strtotime($to_date);
             if ($to_date >= $today) {
                 $is_new = true;
             }
@@ -175,11 +181,12 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         return $is_new;
     }
 
-    public function isNewProduct( $created_date, $num_days_new = 3) {
+    public function isNewProduct( $created_date, $num_days_new = 3)
+    {
         $check = false;
 
-        $startTimeStamp = strtotime($created_date);
-        $endTimeStamp = strtotime("now");
+        $startTimeStamp = @strtotime($created_date);
+        $endTimeStamp = @strtotime("now");
 
         $timeDiff = abs($endTimeStamp - $startTimeStamp);
         $numberDays = $timeDiff/86400;// 86400 seconds in one day
@@ -192,10 +199,10 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         return $check;
     }
 
-
-    public function subString( $text, $length = 100, $replacer ='...', $is_striped=true ){
+    public function subString( $text, $length = 100, $replacer ='...', $is_striped=true )
+    {
         $text = ($is_striped==true)?strip_tags($text):$text;
-        if(strlen($text) <= $length){
+        if(@strlen($text) <= $length){
             return $text;
         }
         $text = substr($text,0,$length);

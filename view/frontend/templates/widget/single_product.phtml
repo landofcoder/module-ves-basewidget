@@ -66,7 +66,7 @@ $helper = $this->helper('Ves\BaseWidget\Helper\Data');
 if($helper->checkModuleInstalled('Ves_Themesettings')) {
     $ves = $this->helper('Ves\Themesettings\Helper\Theme');
     $data = $this->helper('Ves\Themesettings\Helper\Data');
-    
+
     $quickview_popup_height = $ves->getProductListingCfg('product_settings/quickview_popup_height');
     $quickview_popup_width = $ves->getProductListingCfg('product_settings/quickview_popup_width');
     $quickview_format = $ves->getProductListingCfg('design/quickview_format_type');
@@ -172,15 +172,15 @@ $id = rand().time();
                 }
                 $today =  time();
                 if ($specialprice) {
-                    if($today >= strtotime( $specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
+                    if($today >= @strtotime( $specialPriceFromDate) && $today <= @strtotime($specialPriceToDate) || $today >= @strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
                         ?>
                         <span class="product-label-icon onsale">
                             <?php if ($percentage) { ?>
                                 <span class='discount-price'>
                                     <span class='discount-label'>-</span>
                                     <span class='discount-value onsale'><?php echo $percentage;?>%</span>
-                                </span> 
-                                <?php } ?> 
+                                </span>
+                                <?php } ?>
                             </span>
                             <?php
                         }
@@ -224,7 +224,7 @@ $id = rand().time();
         <?php } ?>
         <?php //================ End Show product image ============ ?>
 
-        <?php 
+        <?php
         $is_countdown = false;
         if( isset($_product) && $_product->getFinalPrice() < $_product->getPrice() && $show_countdowntimer && $_product->getSpecialToDate()!=''){
             $is_countdown = true;
@@ -239,16 +239,16 @@ $id = rand().time();
             <?php } ?>
             <?php // Countdown Timer Block ?>
             <?php if( $is_countdown ){
-                $date1 = date('G:i:s', strtotime($_product->getSpecialToDate()));
+                $date1 = date('G:i:s', @strtotime($_product->getSpecialToDate()));
                 if ($date1 == "0:00:00") {
-                    $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', strtotime($_product->getSpecialToDate()));
+                    $targetDate = date('m/d/Y \2\3\:\5\9\:\0\0', @strtotime($_product->getSpecialToDate()));
                 }else{
-                    $targetDate = date('m/d/Y G:i:s', strtotime($_product->getSpecialToDate()));
+                    $targetDate = date('m/d/Y G:i:s', @strtotime($_product->getSpecialToDate()));
                 }
                 ?>
                 <div class="countdown-timmer">
                     <div class="item-detail">
-                        <div class="timer-explain">(<?php echo date('m/d/Y', strtotime($_product->getSpecialToDate())); ?>)</div>
+                        <div class="timer-explain">(<?php echo date('m/d/Y', @strtotime($_product->getSpecialToDate())); ?>)</div>
                     </div>
                     <div id="item-countdown-<?php echo $productId ?>" class="item-countdown"></div>
                     <script type="text/javascript">
@@ -309,7 +309,7 @@ $id = rand().time();
                             <?php if ($_product->isSaleable()): ?>
                                 <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product) && $helper->checkModuleInstalled('Ves_Themesettings')): ?>
 
-                                    <?php 
+                                    <?php
                                         if($ves && $data) {
                                             $data_post = 'data-fancybox-href="'.$data->getAddToCartUrl($_product).'"';
                                         } else {

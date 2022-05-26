@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -43,7 +43,7 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		//\Magento\Framework\Module\Manager $moduleManager,
 		\Magento\Framework\Registry $registry
-		){
+	){
 		parent::__construct($context);
 		$this->_filterProvider = $filterProvider;
 		$this->_storeManager = $storeManager;
@@ -63,7 +63,7 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->_moduleManager->isEnabled($moduleName);
     }
-    
+
     /**
      * Whether a module output is permitted by the configuration or not
      *
@@ -86,22 +86,22 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		$to_date = $_product->getNewsToDate();
 		$is_new = false;
 		$is_new = $this->isNewProduct($from_date, $to_date);
-		$today = strtotime("now");
+		$today = @strtotime("now");
 
 		if ($from_date && $to_date) {
-			$from_date = strtotime($from_date);
-			$to_date = strtotime($to_date);
+			$from_date = @strtotime($from_date);
+			$to_date = @strtotime($to_date);
 			if ($from_date <= $today && $to_date >= $today) {
 				$is_new = true;
 			}
 		}
 		elseif ($from_date && !$to_date) {
-			$from_date = strtotime($from_date);
+			$from_date = @strtotime($from_date);
 			if ($from_date <= $today) {
 				$is_new = true;
 			}
 		}elseif (!$from_date && $to_date) {
-			$to_date = strtotime($to_date);
+			$to_date = @strtotime($to_date);
 			if ($to_date >= $today) {
 				$is_new = true;
 			}
@@ -109,11 +109,12 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		return $is_new;
 	}
 
-	public function isNewProduct( $created_date, $num_days_new = 3) {
+	public function isNewProduct( $created_date, $num_days_new = 3)
+    {
 		$check = false;
 
-		$startTimeStamp = strtotime($created_date);
-		$endTimeStamp = strtotime("now");
+		$startTimeStamp = @strtotime($created_date);
+		$endTimeStamp = @strtotime("now");
 
 		$timeDiff = abs($endTimeStamp - $startTimeStamp);
         $numberDays = $timeDiff/86400;// 86400 seconds in one day
@@ -127,9 +128,10 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
         return $check;
     }
 
-    public function subString($text, $length = 100, $replacer = '...', $is_striped = true) {
+    public function subString($text, $length = 100, $replacer = '...', $is_striped = true)
+    {
     	$text = ($is_striped == true) ? strip_tags($text) : $text;
-    	if (strlen($text) <= $length) {
+    	if (@strlen($text) <= $length) {
     		return $text;
     	}
     	$text = substr($text, 0, $length);
@@ -145,32 +147,37 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		return $html;
 	}
 
-	public function getCustomerDataUrl(){
+	public function getCustomerDataUrl()
+    {
 		$url = $this->_storeManager
 		->getStore()
 		->getUrl('customer/section/load',["update_section_id"=>true,"sections"=>"cart"]);
 		return $url;
 	}
 
-	public function getRefreshCartUrl(){
+	public function getRefreshCartUrl()
+    {
 		$url = $this->_storeManager
 		->getStore()
 		->getUrl('checkout/cart/add', ['ves'=>1, 'refresh'=>1]);
 		return $url;
 	}
 
-	public function getAddToCartUrl(\Magento\Catalog\Model\Product $_product){
+	public function getAddToCartUrl(\Magento\Catalog\Model\Product $_product)
+    {
 		$url = $this->_storeManager
 		->getStore()
 		->getUrl('checkout/cart/add',["id"=>$_product->getId()]);
 		return $url;
 	}
 
-	public function getCoreRegistry(){
+	public function getCoreRegistry()
+    {
 		return $this->_coreRegistry;
 	}
 
-	public function decodeWidgets($str){
+	public function decodeWidgets($str)
+    {
 		$result = '';
 		$imgs = [];
 		$firstPosition = 0;
@@ -189,8 +196,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 				$widgetCode = substr($img, $f, ($n-$f));
 				$widgetHtml = $this->filter(html_entity_decode($widgetCode));
 				if($i==0) $result = $str;
-				$result = str_replace($img, $widgetHtml, $result);
-				$str = str_replace($img, '', $str);
+				$result = @str_replace($img, $widgetHtml, $result);
+				$str = @str_replace($img, '', $str);
 			}
 		}
 
@@ -208,8 +215,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 				$widgetCode = '{' . substr($img, $f, ($n-$f)) . '}';
 				$widgetHtml = $this->filter(html_entity_decode($widgetCode));
 				if($i==0) $result = $str;
-				$result = str_replace($img, $widgetHtml, $result);
-				$str = str_replace($img, '', $str);
+				$result = @str_replace($img, $widgetHtml, $result);
+				$str = @str_replace($img, '', $str);
 			}
 		}
 
@@ -219,7 +226,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		return $str;
 	}
 
-	public function decodeImg($str){
+	public function decodeImg($str)
+    {
         $count = substr_count($str, "<img");
         $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         $firstPosition = 0;
@@ -246,8 +254,8 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
                     $src1 = substr($src, $mediaP);
                     $src1 = '{{media url="'.$src1.'"}}';
                 }
-                $newImg = str_replace($src, $src1, $newImg);
-                $str = str_replace($img, $newImg, $str);
+                $newImg = @str_replace($src, $src1, $newImg);
+                $str = @str_replace($img, $newImg, $str);
             }
         }
         return $str;

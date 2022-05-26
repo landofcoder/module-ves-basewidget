@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -41,7 +41,7 @@ class Carousel extends AbstractWidget
 		} else {
 			$this->setTemplate("widget/carousel.phtml");
 		}
-		
+
 	}
 
 	public function _toHtml(){
@@ -55,12 +55,12 @@ class Carousel extends AbstractWidget
 			$tmp['cms'] = $this->getConfig("cms_".$i);
 			$tmp['content'] = $this->getConfig("content_".$i);
 			$tmp['header'] = $this->getConfig("header_".$i);
-			
+
 			if($tmp['cms']) {
 				$tmp['content'] = $this->_blockModel->load($tmp['cms'])->getContent();
 		 		$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 			} elseif($tmp['content']) {
-				$tmp['content'] = str_replace(" ", "+", $tmp['content']);
+				$tmp['content'] = @str_replace(" ", "+", $tmp['content']);
 				$tmp['content'] = base64_decode($tmp['content']);
 				$tmp['content'] = $this->getDataFilterHelper()->filter($this->_dataFilterHelper->decodeImg($tmp['content']));
 			}
@@ -92,5 +92,5 @@ class Carousel extends AbstractWidget
 
 		return parent::_toHtml();
 	}
-	
+
 }

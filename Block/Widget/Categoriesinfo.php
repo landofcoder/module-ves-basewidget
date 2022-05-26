@@ -70,7 +70,7 @@ class Categoriesinfo extends AbstractWidget{
 
 	public function subString( $text, $length = 100, $replacer = '...', $is_striped=true ){
 		$text = ($is_striped==true)?strip_tags($text):$text;
-		if(strlen($text) <= $length){
+		if(@strlen($text) <= $length){
 			return $text;
 		}
 		$text = substr($text,0,$length);
@@ -87,7 +87,7 @@ class Categoriesinfo extends AbstractWidget{
         // edit in 2.4.2
 //        $_file_path = $this->getBaseMediaUrl() ."catalog/category/".$_file_name;
         if (strpos($_file_name,'/media/') !== false) {
-            $_file_name = str_replace('/media/', '', $_file_name);
+            $_file_name = @str_replace('/media/', '', $_file_name);
         }
         $_file_path = $_file_name;
         // edit in 2.4.2
@@ -133,7 +133,7 @@ class Categoriesinfo extends AbstractWidget{
 		 	$cms = $this->_dataFilterHelper->filter($cms);
  		}
  		$pretext = $this->getConfig("pretext");
-		$pretext = str_replace(" ","+",$pretext);
+		$pretext = @str_replace(" ","+",$pretext);
 		if(base64_decode($pretext, true) == true){
 		   	$pretext = base64_decode($pretext);
 		} else {

@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -47,15 +47,15 @@ class Heading extends AbstractWidget{
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$content_html = $this->getConfig('content');
-		$content_html = str_replace(" ", "+", $content_html);
+		$content_html = @str_replace(" ", "+", $content_html);
 		if(is_string($content_html) && $this->isBase64Encoded($content_html)) {
 			$content_html = base64_decode($content_html);
 		}
-		
+
 		if($content_html) {
 			$content_html = $this->getDataFilterHelper()->filter($content_html);
 		}
-		
+
 		$this->assign('content', $content_html);
 		$this->assign('heading_tag', $this->getConfig('heading_tag', 'h1'));
 		$this->assign('prefix', $this->getConfig('prefix'));
