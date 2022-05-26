@@ -73,7 +73,7 @@ class WysiwygEditor extends Template implements RendererInterface
         \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig,
         /*\Magento\Framework\View\LayoutInterface $layout,*/
         \Magento\Backend\Helper\Data $backendData
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         /*$this->_layout = $layout;*/
@@ -81,7 +81,9 @@ class WysiwygEditor extends Template implements RendererInterface
         $this->_wysiwygConfig = $wysiwygConfig;
         parent::__construct($context);
     }
-    public function isBase64Encoded($data) {
+
+    public function isBase64Encoded($data)
+    {
         if(base64_encode($data) === $data) return false;
         if(base64_encode(base64_decode($data)) === $data){
             return true;
@@ -101,7 +103,9 @@ class WysiwygEditor extends Template implements RendererInterface
 
         return false;
     }
-    public function render(AbstractElement $element){
+
+    public function render(AbstractElement $element)
+    {
 
         $html = '';
         $config = $this->_wysiwygConfig->getConfig();
@@ -242,7 +246,8 @@ HTML;
 
         return $html;
     }
-     /**
+
+    /**
      * Return HTML button to toggling WYSIWYG
      *
      * @param bool $visible
@@ -260,6 +265,7 @@ HTML;
         );
         return $html;
     }
+
     /**
      * Translate string using defined helper
      *
@@ -271,7 +277,8 @@ HTML;
         return (string)new \Magento\Framework\Phrase($string);
     }
 
-    public function getHtmlId(){
+    public function getHtmlId()
+    {
         return $this->element_id;
     }
 
@@ -294,7 +301,6 @@ HTML;
      */
     public function getEscapedValue($value = null)
     {
-
         if ($filter = $this->getValueFilter()) {
             $value = $filter->filter($value);
         }
