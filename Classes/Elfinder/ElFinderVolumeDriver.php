@@ -526,7 +526,7 @@ abstract class ElFinderVolumeDriver {
 	public function debug() {
 		return array(
 			'id'         => $this->id(),
-			'name'       => strtolower(substr(get_class($this), @strlen('elfinderdriver'))),
+			'name'       => strtolower(substr(get_class($this), strlen('elfinderdriver'))),
 			'mimeDetect' => $this->mimeDetect,
 			'imgLib'     => $this->imgLib
 		);
@@ -607,14 +607,14 @@ abstract class ElFinderVolumeDriver {
 
 		if (is_string($this->options['uploadOrder'])) { // telephat_mode on, compatibility with 1.x
 			$parts = explode(',', isset($this->options['uploadOrder']) ? $this->options['uploadOrder'] : 'deny,allow');
-			$this->uploadOrder = array(@trim($parts[0]), @trim($parts[1]));
+			$this->uploadOrder = array(trim($parts[0]), trim($parts[1]));
 		} else { // telephat_mode off
 			$this->uploadOrder = $this->options['uploadOrder'];
 		}
 
 		if (!empty($this->options['uploadMaxSize'])) {
 			$size = ''.$this->options['uploadMaxSize'];
-			$unit = strtolower(substr($size, @strlen($size) - 1));
+			$unit = strtolower(substr($size, strlen($size) - 1));
 			$n = 1;
 			switch ($unit) {
 				case 'k':
@@ -1786,7 +1786,7 @@ abstract class ElFinderVolumeDriver {
 			// make base64 html safe and append prefix in begining
 			$hash = strtr(base64_encode($hash), '+/=', '-_.');
 			// remove dots '.' at the end, before it was '=' in base64
-			$hash = r@trim($hash, '.');
+			$hash = rtrim($hash, '.');
 			// append volume id to make hash unique
 			return $this->id.$hash;
 		}
@@ -1803,7 +1803,7 @@ abstract class ElFinderVolumeDriver {
 	protected function decode($hash) {
 		if (strpos($hash, $this->id) === 0) {
 			// cut volume id after it was prepended in encode
-			$h = substr($hash, @strlen($this->id));
+			$h = substr($hash, strlen($this->id));
 			// replace HTML safe base64 to normal
 			$h = base64_decode(strtr($h, '-_.', '+/='));
 			// TODO uncrypt hash and return path
@@ -1868,12 +1868,12 @@ abstract class ElFinderVolumeDriver {
 
 		if (preg_match('/\.((tar\.(gz|bz|bz2|z|lzo))|cpio\.gz|ps\.gz|xcf\.(gz|bz2)|[a-z0-9]{1,4})$/i', $name, $m)) {
 			$ext  = '.'.$m[1];
-			$name = substr($name, 0,  @strlen($name)-@strlen($m[0]));
+			$name = substr($name, 0,  strlen($name)-strlen($m[0]));
 		}
 
 		if ($checkNum && preg_match('/('.$suffix.')(\d*)$/i', $name, $m)) {
 			$i    = (int)$m[2];
-			$name = substr($name, 0, @strlen($name)-@strlen($m[2]));
+			$name = substr($name, 0, strlen($name)-strlen($m[2]));
 		} else {
 			$i     = 1;
 			$name .= $suffix;
@@ -1983,7 +1983,7 @@ abstract class ElFinderVolumeDriver {
 
 		// fix name if required
 		if ($this->options['utf8fix'] && $this->options['utf8patterns'] && $this->options['utf8replace']) {
-			$stat['name'] = json_decode(@str_replace($this->options['utf8patterns'], $this->options['utf8replace'], json_encode($stat['name'])));
+			$stat['name'] = json_decode(str_replace($this->options['utf8patterns'], $this->options['utf8replace'], json_encode($stat['name'])));
 		}
 
 
@@ -2107,7 +2107,7 @@ abstract class ElFinderVolumeDriver {
 		}
 
 		$type = explode(';', $type);
-		$type = @trim($type[0]);
+		$type = trim($type[0]);
 
 		if ($type == 'application/x-empty') {
 			// finfo return this mime for empty files
@@ -2308,7 +2308,7 @@ abstract class ElFinderVolumeDriver {
 			if ($this->stripos($name, $q) !== false) {
 				$stat['path'] = $this->_path($p);
 				if ($this->URL && !isset($stat['url'])) {
-					$stat['url'] = $this->URL . @str_replace($this->separator, '/', substr($p, @strlen($this->root) + 1));
+					$stat['url'] = $this->URL . str_replace($this->separator, '/', substr($p, strlen($this->root) + 1));
 				}
 
 				$result[] = $stat;
@@ -2705,7 +2705,7 @@ abstract class ElFinderVolumeDriver {
 					return false;
 				}
 
-				$img->resizeImage($size_w, $size_h, \Imagick::FILTER_LANCZOS, true);
+				$img->resizeImage((float)$size_w, (float)$size_h, \Imagick::FILTER_LANCZOS, true);
 
 				$result = $img->writeImage($path);
 
