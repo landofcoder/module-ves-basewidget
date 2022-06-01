@@ -13,22 +13,22 @@ class ElFinderConnector {
 	 * @var elFinder
 	 **/
 	protected $elFinder;
-
+	
 	/**
 	 * Options
 	 *
 	 * @var aray
 	 **/
 	protected $options = array();
-
+	
 	/**
 	 * undocumented class variable
 	 *
 	 * @var string
 	 **/
 	protected $header = 'Content-Type: application/json';
-
-
+	
+	
 	/**
 	 * Constructor
 	 *
@@ -36,13 +36,13 @@ class ElFinderConnector {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	public function __construct($elFinder, $debug=false) {
-
+		
 		$this->elFinder = $elFinder;
 		if ($debug) {
 			$this->header = 'Content-Type: text/html; charset=utf-8';
 		}
 	}
-
+	
 	/**
 	 * Execute elFinder command and output result
 	 *
@@ -54,16 +54,16 @@ class ElFinderConnector {
 		$src    = $_SERVER["REQUEST_METHOD"] == 'POST' ? $_POST : $_GET;
 		$cmd    = isset($src['cmd']) ? $src['cmd'] : '';
 		$args   = array();
-
+		
 		if (!function_exists('json_encode')) {
 			$error = $this->elFinder->error(\Ves\BaseWidget\Classes\ElFinder::ERROR_CONF, \Ves\BaseWidget\Classes\ElFinder::ERROR_CONF_NO_JSON);
 			$this->output(array('error' => '{"error":["'.implode('","', $error).'"]}', 'raw' => true));
 		}
-
+		
 		if (!$this->elFinder->loaded()) {
 			$this->output(array('error' => $this->elFinder->error(\Ves\BaseWidget\Classes\ElFinder::ERROR_CONF, \Ves\BaseWidget\Classes\ElFinder::ERROR_CONF_NO_VOL), 'debug' => $this->elFinder->mountErrors));
 		}
-
+		
 		// telepat_mode: on
 		if (!$cmd && $isPost) {
 			$this->output(array('error' => $this->elFinder->error(\Ves\BaseWidget\Classes\ElFinder::ERROR_UPLOAD, \Ves\BaseWidget\Classes\ElFinder::ERROR_UPLOAD_TOTAL_SIZE), 'header' => 'Content-Type: text/html'));
@@ -73,27 +73,27 @@ class ElFinderConnector {
 		if (!$this->elFinder->commandExists($cmd)) {
 			$this->output(array('error' => $this->elFinder->error(\Ves\BaseWidget\Classes\ElFinder::ERROR_UNKNOWN_CMD)));
 		}
-
+		
 		// collect required arguments to exec command
 		foreach ($this->elFinder->commandArgsList($cmd) as $name => $req) {
-			$arg = $name == 'FILES'
-				? $_FILES
+			$arg = $name == 'FILES' 
+				? $_FILES 
 				: (isset($src[$name]) ? $src[$name] : '');
-
+				
 			if (!is_array($arg)) {
-				$arg = @trim($arg);
+				$arg = trim($arg);
 			}
 			if ($req && (!isset($arg) || $arg === '')) {
 				$this->output(array('error' => $this->elFinder->error(\Ves\BaseWidget\Classes\ElFinder::ERROR_INV_PARAMS, $cmd)));
 			}
 			$args[$name] = $arg;
 		}
-
+		
 		$args['debug'] = isset($src['debug']) ? !!$src['debug'] : false;
-
+		
 		$this->output($this->elFinder->exec($cmd, $args));
 	}
-
+	
 	/**
 	 * Output json
 	 *
@@ -113,7 +113,7 @@ class ElFinderConnector {
 				header($header);
 			}
 		}
-
+		
 		if (isset($data['pointer'])) {
 			rewind($data['pointer']);
 			fpassthru($data['pointer']);
@@ -128,7 +128,7 @@ class ElFinderConnector {
 				exit(json_encode($data));
 			}
 		}
-
+		
 	}
-
-}// END class
+	
+}// END class 

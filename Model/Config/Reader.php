@@ -13,11 +13,13 @@ class Reader extends \Magento\Widget\Model\Config\Reader
     protected $_ves_widgets_folder = "widgets";
     protected $_ves_widgets_path = null;
     protected $_ves_widgets = null;
+
     /**
      * @param \Magento\Framework\Config\FileResolverInterface $fileResolver
      * @param Converter $converter
      * @param \Magento\Framework\Config\SchemaLocatorInterface $schemaLocator
      * @param \Magento\Framework\Config\ValidationStateInterface $validationState
+     * @param \Magento\Framework\Module\Dir\Reader $moduleReader
      * @param string $fileName
      * @param array $idAttributes
      * @param string $domDocumentClass
@@ -29,13 +31,12 @@ class Reader extends \Magento\Widget\Model\Config\Reader
         \Magento\Widget\Model\Config\Converter $converter,
         \Magento\Framework\Config\SchemaLocatorInterface $schemaLocator,
         \Magento\Framework\Config\ValidationStateInterface $validationState,
+        \Magento\Framework\Module\Dir\Reader $moduleReader,
         $fileName = 'widget.xml',
         $idAttributes = [],
         $domDocumentClass = \Magento\Framework\Config\Dom::class,
         $defaultScope = 'global',
-        \Magento\Framework\Module\Dir\Reader $moduleReader,
         $folderWidget = 'widgets'
-
     ) {
         $etcDir = $moduleReader->getModuleDir(\Magento\Framework\Module\Dir::MODULE_ETC_DIR, 'Ves_BaseWidget');
         $this->_ves_widgets_folder = $folderWidget;
@@ -52,23 +53,43 @@ class Reader extends \Magento\Widget\Model\Config\Reader
             $defaultScope
         );
     }
-    public function getWidgetsPath() {
+
+    /**
+     * get widgets path
+     *
+     * @return mixed
+     */
+    public function getWidgetsPath()
+    {
         return $this->_ves_widgets_path;
     }
-    public function getWidgetsFolder() {
+
+    /**
+     * @return mixed
+     */
+    public function getWidgetsFolder()
+    {
         return $this->_ves_widgets_folder;
     }
-    public function getFilesInFolder( $folder = "") {
-        if(!$folder && $this->_ves_widgets_path) {
+
+    /**
+     * get files in folder
+     *
+     * @param string $folder
+     * @return mixed|false
+     */
+    public function getFilesInFolder( $folder = "")
+    {
+        if (!$folder && $this->_ves_widgets_path) {
             $folder = $this->_ves_widgets_path;
         }
-        if($folder && is_dir($folder)) {
+        if ($folder && is_dir($folder)) {
             $result = [];
             $file_ext = ".xml";
 
             $dirs = glob( $folder.'*'.$file_ext );
-            if($dirs) { //load 
-                foreach($dirs as $dir) {
+            if ($dirs) { //load
+                foreach ($dirs as $dir) {
                     $file_name = basename( $dir );
                     $result[] = $file_name;
                 }
@@ -77,6 +98,7 @@ class Reader extends \Magento\Widget\Model\Config\Reader
         }
         return false;
     }
+
     /**
      * Load configuration scope
      *
@@ -99,6 +121,6 @@ class Reader extends \Magento\Widget\Model\Config\Reader
             }
         }
         return $output;
-        
+
     }
 }
