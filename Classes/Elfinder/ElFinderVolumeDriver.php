@@ -2705,7 +2705,7 @@ abstract class ElFinderVolumeDriver {
 					return false;
 				}
 
-				$img->resizeImage((float)$size_w, (float)$size_h, \Imagick::FILTER_LANCZOS, true);
+				$img->resizeImage((int)$size_w, (int)$size_h, \Imagick::FILTER_LANCZOS, true);
 
 				$result = $img->writeImage($path);
 
