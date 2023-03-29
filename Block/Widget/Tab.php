@@ -31,7 +31,7 @@ class Tab extends AbstractWidget
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -48,7 +48,11 @@ class Tab extends AbstractWidget
 		$this->setTemplate($my_template);
 	}
 
-	protected function _toHtml(){
+	/**
+     * @inheritdoc
+     */
+    protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$tabs = array();
@@ -64,8 +68,11 @@ class Tab extends AbstractWidget
 		 		$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 
 			} elseif($tmp['content'] && $tmp['header']) {
-				$tmp['content'] = @str_replace(" ", "+", $tmp['content']);
-				$tmp['content'] = base64_decode($tmp['content']);
+				$tmp['content'] = trim($tmp['content']);
+				if ($this->_dataFilterHelper->isBase64Encoded($tmp['content'])) {
+					$tmp['content'] = @str_replace(" ", "+", $tmp['content']);
+					$tmp['content'] = @base64_decode($tmp['content']);
+				}
 				$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 
 			}

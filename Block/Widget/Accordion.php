@@ -61,8 +61,11 @@ class Accordion extends AbstractWidget
 		 		$tmp['content'] = $this->_blockModel->load($tmp['cms'])->getContent();
 		 		$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 			} elseif($tmp['content'] && $tmp['header']) {
-				$tmp['content'] = @str_replace(" ", "+", $tmp['content']);
-				$tmp['content'] = base64_decode($tmp['content']);
+				$tmp['content'] = trim($tmp['content']);
+				if ($this->_dataFilterHelper->isBase64Encoded($tmp['content'])) {
+					$tmp['content'] = @str_replace(" ", "+", $tmp['content']);
+					$tmp['content'] = @base64_decode($tmp['content']);
+				}
 				$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 
 			}

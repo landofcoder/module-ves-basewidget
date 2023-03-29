@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -74,7 +74,11 @@ class Accordionbg extends AbstractWidget
 				$tmp['content'] = $this->_blockModel->load($tmp['cms'])->getContent();
 		 		$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 			} elseif($tmp['content'] && $tmp['header']) {
-				$tmp['content'] = base64_decode($tmp['content']);
+				$tmp['content'] = trim($tmp['content']);
+				if ($this->_dataFilterHelper->isBase64Encoded($tmp['content'])) {
+					$tmp['content'] = @str_replace(" ", "+", $tmp['content']);
+					$tmp['content'] = @base64_decode($tmp['content']);
+				}
 				$tmp['content'] = $this->_dataFilterHelper->filter($tmp['content']);
 
 			}
@@ -82,7 +86,7 @@ class Accordionbg extends AbstractWidget
 			if($tmp['content'] && $tmp['header'] ) {
 				$accordions[] = $tmp;
 			}
-			
+
 		}
 
 		$this->assign('heading_type', $this->getConfig('heading_type', 3));

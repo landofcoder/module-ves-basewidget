@@ -162,7 +162,7 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
         $avaialable_widgets = $this->_getAvailableWidgets();
 
         $widgets_info = $this->_widgetHelper->getListWidgetTypes("array", $avaialable_widgets);
-        $widgets_json = $widgets_info?\Zend_Json::encode( $widgets_info ): "";
+        $widgets_json = $widgets_info?\Laminas\Json\Json::encode( $widgets_info ): "";
         $widgets_json = @str_replace( array('\n','\r','\t') ,"", $widgets_json);
 
         $block_widgets = $this->getBlock()->getWidgets();
@@ -176,7 +176,7 @@ class InitBuilder extends \Magento\Framework\View\Element\Template implements \M
           }
         }
 
-        $block_widgets_json = $tmp_widgets?\Zend_Json::encode( $tmp_widgets ): "";
+        $block_widgets_json = $tmp_widgets?\Laminas\Json\Json::encode( $tmp_widgets ): "";
         $block_widgets_json = @str_replace( array('\n','\r','\t') ,"", $block_widgets_json);
 
         $this->assign("widgets_json", $widgets_json);

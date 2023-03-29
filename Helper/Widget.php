@@ -178,7 +178,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper
 			}
 		}
 		if($type == "json") {
-			return \Zend_Json::encode($widgets);
+			return \Laminas\Json\Json::encode($widgets);
 		}
 
 		return $widgets;

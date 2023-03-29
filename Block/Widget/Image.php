@@ -35,7 +35,7 @@ class Image extends AbstractWidget
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		\Ves\BaseWidget\Helper\Image $imageHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -44,12 +44,22 @@ class Image extends AbstractWidget
 		$this->setTemplate('widget/single_image.phtml');
 	}
 
+    /**
+     * @return string
+     */
 	public function getBaseMediaUrl()
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
 
-    public function getImageSize( $imagesize = "") {
+    /**
+     * get image size
+     *
+     * @param string $imagesize
+     * @return string
+     */
+    public function getImageSize( $imagesize = "")
+    {
     	$imagesize = @trim($imagesize);
     	$return = "";
     	switch ($imagesize) {
@@ -76,7 +86,11 @@ class Image extends AbstractWidget
     	return $return;
     }
 
-	public function _toHtml() {
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$widget_heading = $this->getConfig("title");
