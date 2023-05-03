@@ -41,7 +41,7 @@
 		$productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(400)->getUrl();
 		$_productImageUrl = @trim($productImage);
 		$_productUrl = @trim($_product->getProductUrl());
-		$_productSammary = $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description');
+		$_productSammary = $_helper->productAttribute($_product, @nl2br($_product->getShortDescription()), 'short_description');
 	}
 
 	if($_config_productName) {

@@ -192,7 +192,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                     </div>
                     <?php } ?>
                     <?php // End Countdown Timer Block ?>
-                    <?php $shortDescription = $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description'); ?>
+                    <?php $shortDescription = $_helper->productAttribute($_product, @nl2br($_product->getShortDescription()), 'short_description'); ?>
                     <?php if ($this->getData('show_short_description') && $_product->getShortDescription() && $shortDescription!=''): ?>
                         <div class="short-description">
                             <?php $maxChar = $this->getData('short_max_char');
