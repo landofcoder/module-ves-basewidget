@@ -137,23 +137,23 @@ $collection = $this->getData('collection');
     <div class="item bestsellerslider-item">
         <?php foreach($_columnCollection as $_product){ ?>
             <?php $productId = time().rand(); ?>
-            <div class="product-item product-item-info" <?php if($custom_item_height){ ?>style="height:<?php echo $custom_item_height.'px' ?>"<?php } ?>>
+            <div class="product-item product-item-info" <?php if($custom_item_height){ ?>style="height:<?= $custom_item_height.'px' ?>"<?php } ?>>
                 <div class="product-photo product-image">
                     <?php if($show_image){ ?>
                         <?php $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');?>
                         <?php if($_image){ ?>
-                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_image->getLabel() ?>" class="product photo product-item-photo" tabindex="-1">
+                            <a href="<?= $_product->getProductUrl() ?>" title="<?= $_image->getLabel() ?>" class="product photo product-item-photo" tabindex="-1">
                                 <span class="image0 image-switch">
                                     <span class="product-image-container">
                                         <span class="product-image-wrapper">
-                                            <img class="lazyOwl lazy product-image-photo" data-original="<?php echo $_image->getUrl(); ?>" src="<?php echo $_image->getUrl(); ?>" alt="<?php echo $_image->getLabel() ?>" id="mainimg_<?php echo $productId;?>"/>
+                                            <img class="lazyOwl lazy product-image-photo" data-original="<?= $_image->getUrl(); ?>" src="<?= $_image->getUrl(); ?>" alt="<?= $_image->getLabel() ?>" id="mainimg_<?= $productId;?>"/>
                                         </span>
                                     </span>
                                 </span>
                                 <span class="image1 image-switch">
                                     <span class="product-image-container">
                                         <span class="product-image-wrapper">
-                                            <img class="lazyOwl lazy product-image-photo" data-original="<?php echo $_image->getUrl(); ?>" src="<?php echo $_image->getUrl(); ?>" alt="<?php echo $_image->getLabel() ?>" id="mainimg_<?php echo $productId;?>"/>
+                                            <img class="lazyOwl lazy product-image-photo" data-original="<?= $_image->getUrl(); ?>" src="<?= $_image->getUrl(); ?>" alt="<?= $_image->getLabel() ?>" id="mainimg_<?= $productId;?>"/>
                                         </span>
                                     </span>
                                 </span>
@@ -170,7 +170,7 @@ $collection = $this->getData('collection');
                                     data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'
                                     class="action button towishlist" data-action="add-to-wishlist"
                                     title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
-                                    <?php echo $wishlistHtml ?>
+                                    <?= $wishlistHtml ?>
                                     </a>
                                 </li>
                                 <?php } ?>
@@ -180,15 +180,15 @@ $collection = $this->getData('collection');
                                     <a href="#" class="action button tocompare"
                                     data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
                                     title="<?php /* @escapeNotVerified */ echo __('Add to Compare') ?>">
-                                    <?php echo $compareHtml ?>
+                                    <?= $compareHtml ?>
                                     </a>
                                 </li>
                                 <?php } ?>
                                 <?php if($show_quickview){ ?>
                                     <li>
                                         <div class="quickview-product">
-                                            <a href="javascript:void(0)" id="productlist-fancybox-<?php echo $productId ?>" title="<?php echo $_product->getName(); ?>" data-fancybox-href="<?php echo $data->getAddToCartUrl($_product) ?>" data-fancybox-type="iframe" onclick="return false;" data-fancybox-height="<?php echo $quickview_popup_height ?>" data-fancybox-width="<?php echo $quickview_popup_width ?>" class="ajax diamond tooltip-hover quick-view productlist-fancybox" >
-                                                <?php echo $quickviewtHtml; ?>
+                                            <a href="javascript:void(0)" id="productlist-fancybox-<?= $productId ?>" title="<?= $_product->getName(); ?>" data-fancybox-href="<?= $data->getAddToCartUrl($_product) ?>" data-fancybox-type="iframe" onclick="return false;" data-fancybox-height="<?= $quickview_popup_height ?>" data-fancybox-width="<?= $quickview_popup_width ?>" class="ajax diamond tooltip-hover quick-view productlist-fancybox" >
+                                                <?= $quickviewtHtml; ?>
                                             </a>
                                         </div>
                                     </li>
@@ -202,27 +202,27 @@ $collection = $this->getData('collection');
                     <?php // Product Name ?>
                     <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
                     <?php if($show_name){ ?>
-                    <strong class="product name product-item-name"><a class="product-item-link" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped;?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></a></strong>
+                    <strong class="product name product-item-name"><a class="product-item-link" href="<?= $_product->getProductUrl() ?>" title="<?= $_productNameStripped;?>"><?= $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></a></strong>
                     <?php } ?>
                     <?php // Review ?>
                     <?php if($show_review){ ?>
-                    <?php echo $block->getReviewsSummaryHtml($_product, $templateType, true); ?>
+                    <?= $block->getReviewsSummaryHtml($_product, $templateType, true); ?>
                     <?php } ?>
                     <?php // Price ?>
                     <?php if($show_price){ ?>
-                    <?php echo $block->getProductPrice($_product) ?>
+                    <?= $block->getProductPrice($_product) ?>
                     <?php } ?>
-                    <?php echo $block->getProductDetailsHtml($_product); ?>
+                    <?= $block->getProductDetailsHtml($_product); ?>
                     <?php
                         $shortDescription = $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description');
                     ?>
                     <?php if ($show_short_description && $shortDescription){ ?>
                     <div class="product-item-description">
                         <?php $short_description = $data->subString($shortDescription, $short_max_char, '...'); ?>
-                        <?php echo $short_description; ?>
+                        <?= $short_description; ?>
                         <?php if($show_learnmore && $short_description!=''){ ?>
-                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="action more">
-                                <?php echo __('Learn More') ?>
+                            <a href="<?= $_product->getProductUrl() ?>" title="<?= $_productNameStripped ?>" class="action more">
+                                <?= __('Learn More') ?>
                             </a>
                         <?php } ?>
                     </div>
@@ -238,9 +238,9 @@ $collection = $this->getData('collection');
                         ?>
                     <div class="countdown-timmer">
                         <div class="item-detail">
-                            <?php echo __('Hurry up! Offer ends in:'); ?>
+                            <?= __('Hurry up! Offer ends in:'); ?>
                         </div>
-                        <div id="item-countdown-<?php echo $productId ?>" class="item-countdown"></div>
+                        <div id="item-countdown-<?= $productId ?>" class="item-countdown"></div>
                         <script type="text/javascript">
                             require(['jquery'],function($){
                                 $(document).ready(function(){
@@ -257,11 +257,11 @@ $collection = $this->getData('collection');
                                             jQuery('#'+imgid).attr('src', jQuery(this).data('image'));
                                             jQuery('.mycarousel ul li').removeClass("active");
                                             jQuery(this).parent().addClass('active');                        });
-                                        jQuery("#item-countdown-<?php echo $productId ?>").lofCountDown({
+                                        jQuery("#item-countdown-<?= $productId ?>").lofCountDown({
                                             formatStyle:2,
-                                            TargetDate:"<?php echo $targetDate; ?>",
-                                            DisplayFormat:"<ul><li>%%D%% <div><?php echo __('days');?></div></li><li> %%H%% <div><?php echo __('hrs');?></div></li><li> %%M%% <div><?php echo __('mins');?></div></li><li> %%S%% <div><?php echo __('secs');?></div></li></ul>",
-                                            FinishMessage:"<?php echo __('Expired');?>",
+                                            TargetDate:"<?= $targetDate; ?>",
+                                            DisplayFormat:"<ul><li>%%D%% <div><?= __('days');?></div></li><li> %%H%% <div><?= __('hrs');?></div></li><li> %%M%% <div><?= __('mins');?></div></li><li> %%S%% <div><?= __('secs');?></div></li></ul>",
+                                            FinishMessage:"<?= __('Expired');?>",
                                         });
 
                                     });
@@ -277,8 +277,8 @@ $collection = $this->getData('collection');
                         <div class="actions-primary">
                             <?php if ($_product->isSaleable()){ ?>
                                 <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)){ ?>
-                                    <button class="action primary add-to-cart productlist-fancybox" type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" data-fancybox-href="<?php echo $data->getAddToCartUrl($_product) ?>" data-fancybox-type="iframe" data-fancybox-width="<?php echo $addtocart_popup_width ?>" data-fancybox-height="<?php echo $addtocart_popup_height ?>">
-                                        <?php echo $addToCartHtml ?>
+                                    <button class="action primary add-to-cart productlist-fancybox" type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" data-fancybox-href="<?= $data->getAddToCartUrl($_product) ?>" data-fancybox-type="iframe" data-fancybox-width="<?= $addtocart_popup_width ?>" data-fancybox-height="<?= $addtocart_popup_height ?>">
+                                        <?= $addToCartHtml ?>
                                     </button>
                                 <?php }else{ ?>
                                         <?php $postParams = $block->getAddToCartPostParams($_product); ?>
@@ -286,11 +286,11 @@ $collection = $this->getData('collection');
                                             <input type="hidden" name="ves" value="1">
                                             <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
                                             <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
-                                            <?php echo $block->getBlockHtml('formkey')?>
+                                            <?= $block->getBlockHtml('formkey')?>
                                             <button type="submit"
-                                            title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+                                            title="<?= $block->escapeHtml(__('Add to Cart')); ?>"
                                             class="action add-to-cart primary">
-                                            <?php echo $addToCartHtml ?>
+                                            <?= $addToCartHtml ?>
                                         </button>
                                     </form>
                                 <?php } ?>

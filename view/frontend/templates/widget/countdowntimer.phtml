@@ -37,7 +37,7 @@ if ($background_color != '' ) {
         /** THUMBNAIL **/
         $imagesize = $this->getConfig('image_size');
         $image_file = $this->getConfig('file');
-        $array_size = explode("x", $imagesize);
+        $array_size = $imagesize ? @explode("x", $imagesize) : [];
         $image_width = isset($array_size[0])?(int)$array_size[0]:0;
         $image_width = $image_width?$image_width: 0;
         $image_height = isset($array_size[1])?(int)$array_size[1]:0;
@@ -75,30 +75,30 @@ $id = rand().time();
 
 ?>
 <?php if($end_date){ ?>
-<div class="ves-widget widget-banner-flash block bg-carousel flashsale <?php echo $addition_cls; ?> ">
+<div class="ves-widget widget-banner-flash block bg-carousel flashsale <?= $addition_cls; ?> ">
     <?php if( $title != '' ){ ?>
     <div class="block-title">
-        <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-banner-flash<?php echo $id; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-        <strong><span><?php echo $title; ?></span></strong>
+        <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-banner-flash<?= $id; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+        <strong><span><?= $title; ?></span></strong>
     </div>
     <?php } ?>
-    <div id="widget-banner-flash<?php echo $id; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+    <div id="widget-banner-flash<?= $id; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
         <div class="slide flashsale">
-            <div class="panel" <?php echo $style; ?>>
+            <div class="panel" <?= $style; ?>>
                 <?php if($title_name): ?>
                 <div class="panel-heading">
-                    <h4 class="panel-title"><?php echo $title_name; ?></h4>
+                    <h4 class="panel-title"><?= $title_name; ?></h4>
                 </div>
                 <?php endif; ?>
                 <div class="panel-body">
                     <?php if($show_description && $customHtml): ?>
                         <div class="flashsale-description">
-                        <?php echo $customHtml; ?>
+                        <?= $customHtml; ?>
                         </div>
                     <?php endif ;?>
                     <?php if($show_date && $end_date): ?>
                         <div class="flashsale-enddate">
-                        <span class="flashsale-expiration"><?php echo __("End Date: "); ?></span> <span><?php echo $this->getLocaleDate()->formatDateTime($end_date, \IntlDateFormatter::LONG, \IntlDateFormatter::LONG); ?></span>
+                        <span class="flashsale-expiration"><?= __("End Date: "); ?></span> <span><?= $this->getLocaleDate()->formatDateTime($end_date, \IntlDateFormatter::LONG, \IntlDateFormatter::LONG); ?></span>
                         </div>
                     <?php endif ;?>
 
@@ -113,22 +113,22 @@ $id = rand().time();
                         }
                         ?>
                         <div class="banner-countdowns">
-                            <div id="itemflashsale<?php echo $id; ?>countdown" class="item-countdown">
+                            <div id="itemflashsale<?= $id; ?>countdown" class="item-countdown">
                                 <ul>
-                                    <li>%%D%% <div><?php echo __('Day');?></div></li>
-                                    <li> %%H%% <div><?php echo __('Hours');?></div></li>
-                                    <li> %%M%% <div><?php echo __('Mins');?></div></li>
-                                    <li> %%S%% <div><?php echo __('Secs');?></div></li>
+                                    <li>%%D%% <div><?= __('Day');?></div></li>
+                                    <li> %%H%% <div><?= __('Hours');?></div></li>
+                                    <li> %%M%% <div><?= __('Mins');?></div></li>
+                                    <li> %%S%% <div><?= __('Secs');?></div></li>
                                 </ul>
                             </div>
                             <script type="text/javascript">
                                 require(['jquery','Ves_BaseWidget/js/countdown'],function ($) {
-                                    jQuery("#itemflashsale<?php echo $id; ?>countdown").lofCountDown({
+                                    jQuery("#itemflashsale<?= $id; ?>countdown").lofCountDown({
                                             formatStyle:2,
-                                            TargetDate:"<?php echo $targetDate; ?>",
-                                            countdownFormat: "#itemflashsale<?php echo $id; ?>countdown",
-                                            DisplayFormat: jQuery("#itemflashsale<?php echo $id; ?>countdown").html(),
-                                            FinishMessage:"<?php echo __('Expired');?>"
+                                            TargetDate:"<?= $targetDate; ?>",
+                                            countdownFormat: "#itemflashsale<?= $id; ?>countdown",
+                                            DisplayFormat: jQuery("#itemflashsale<?= $id; ?>countdown").html(),
+                                            FinishMessage:"<?= __('Expired');?>"
                                     });
 
                                 });
@@ -137,7 +137,7 @@ $id = rand().time();
                         <?php } ?>
                     <?php if($show_link && $url): ?>
                     <div class="flashsale-link">
-                        <a class="btn-link <?php echo $class_link; ?>" href="<?php echo $url; ?>" title="<?php $block->escapeHtml($link_title);?>"><?php echo $link_title; ?></a>
+                        <a class="btn-link <?= $class_link; ?>" href="<?= $url; ?>" title="<?php $block->escapeHtml($link_title);?>"><?= $link_title; ?></a>
                     </div>
                     <?php endif; ?>
                 </div>

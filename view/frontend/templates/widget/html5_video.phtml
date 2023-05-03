@@ -25,40 +25,40 @@ if($content) {
 <div class="ves-widget block block-list block-html5video-widget">
     <?php if(isset($title) && @trim($title)!=''): ?>
         <div class="block-title">
-            <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-html5video<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-            <strong><span><?php echo $title; ?></span></strong>
+            <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-html5video<?= $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+            <strong><span><?= $title; ?></span></strong>
         </div>
     <?php endif; ?>
-    <div id="widget-html5video<?php echo $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+    <div id="widget-html5video<?= $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
 
-        <video id="widget-html5video<?php echo $modid; ?>-video" class="video-js <?php echo $custom_class; ?>" <?php if($enable_controls){ ?> controls <?php } ?> <?php echo $enable_autoplay?'autoplay':''; ?> preload="auto" width="<?php echo (int)$width; ?>" height="<?php echo (int)$height; ?>"
-               poster="<?php echo $thumbnailurl; ?>"
+        <video id="widget-html5video<?= $modid; ?>-video" class="video-js <?= $custom_class; ?>" <?php if($enable_controls){ ?> controls <?php } ?> <?= $enable_autoplay?'autoplay':''; ?> preload="auto" width="<?= (int)$width; ?>" height="<?= (int)$height; ?>"
+               poster="<?= $thumbnailurl; ?>"
             <?= $enable_loop ? ' loop ' : '' ?>
                data-setup='{}'>
 
             <?php if($mp4_file) { ?>
-                <source src="<?php echo $mp4_file; ?>" type='video/mp4' />
+                <source src="<?= $mp4_file; ?>" type='video/mp4' />
             <?php } ?>
             <?php if($webm_file) { ?>
-                <source src="<?php echo $webm_file; ?>" type='video/webm' />
+                <source src="<?= $webm_file; ?>" type='video/webm' />
             <?php } ?>
             <?php if($ogg_file) { ?>
-                <source src="<?php echo $ogg_file; ?>" type='video/ogg' />
+                <source src="<?= $ogg_file; ?>" type='video/ogg' />
             <?php } ?>
             <?php if( $subtitles_path ) { ?>
-                <track kind="captions" src="<?php echo $subtitles_path; ?>" srclang="<?php echo $subtitles_langcode; ?>" label="<?php echo $subtitles_lang; ?>"></track><!-- Tracks need an ending tag thanks to IE9 -->
-                <track kind="subtitles" src="<?php echo $subtitles_path; ?>" srclang="<?php echo $subtitles_langcode; ?>" label="<?php echo $subtitles_lang; ?>"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <track kind="captions" src="<?= $subtitles_path; ?>" srclang="<?= $subtitles_langcode; ?>" label="<?= $subtitles_lang; ?>"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                <track kind="subtitles" src="<?= $subtitles_path; ?>" srclang="<?= $subtitles_langcode; ?>" label="<?= $subtitles_lang; ?>"></track><!-- Tracks need an ending tag thanks to IE9 -->
             <?php } ?>
-            <p class="vjs-no-js"><?php echo $content; ?></p>
+            <p class="vjs-no-js"><?= $content; ?></p>
         </video>
 
     </div>
 </div>
 <script>
     require(['jquery', 'Ves_BaseWidget/js/videojs/video'],function($){
-        videojs.options.flash.swf = "<?php echo $swf_file; ?>";
+        videojs.options.flash.swf = "<?= $swf_file; ?>";
         <?php if($enable_autoplay) { ?>
-        videojs('widget-html5video<?php echo $modid; ?>-video').ready(function() {
+        videojs('widget-html5video<?= $modid; ?>-video').ready(function() {
             this.play();
         });
         <?php } ?>

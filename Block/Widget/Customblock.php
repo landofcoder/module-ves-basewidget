@@ -62,14 +62,14 @@ class Customblock extends AbstractWidget{
 			$block_params = $this->getConfig("block_params");
 		}
 
-		$params = explode("\n", $block_params);
+		$params = $block_params ? @explode("\n", $block_params) : [];
 		$template = "";
 		if($params) {
 			$tmp = array();
 			foreach($params as $key=>$val) {
 				$val = @trim($val);
 				if($val) {
-					$tmp_array = explode("=", $val);
+					$tmp_array = @explode("=", $val);
 					if(isset($tmp_array[0])) {
 						$tmp[@trim($tmp_array[0])] = isset($tmp_array[1])?@trim($tmp_array[1]):"";
 						if("template" == @trim($tmp_array[0]) && $tmp[@trim($tmp_array[0])]) {

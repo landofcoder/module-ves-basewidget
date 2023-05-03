@@ -77,39 +77,39 @@
 <div class="ves-widget widget-socialshare block">
 	<?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
 	<div class="block-title">
-		<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-socialshare<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-		<h2><span><?php echo $widget_heading; ?></span></h2>
+		<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-socialshare<?= $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+		<h2><span><?= $widget_heading; ?></span></h2>
 	</div>
 	<?php endif; ?>
-	<div id="widget-socialshare<?php echo $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+	<div id="widget-socialshare<?= $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
 
 		<ul class="social-sharing-links">
 		    <?php if($enable_facebook): ?>
 		    <li>
 		        <?php $_u = 'href=' . $_productUrl . '&picture=' . $_productImageUrl . '&title=' . $_productName . '&description=' . $_productSammary; ?>
-		        <a href="<?php echo 'https://www.facebook.com/dialog/share?app_id='.$app_id.'&display=popup&' . $_u; ?>" target="_blank" title="<?php echo __('Share on Facebook') ?>" class="link-facebook">
-		            <i class="fa fa-facebook"><?php if(!$enable_onlyicon): ?><?php echo __('Share Facebook') ?><?php endif; ?></i>
+		        <a href="<?= 'https://www.facebook.com/dialog/share?app_id='.$app_id.'&display=popup&' . $_u; ?>" target="_blank" title="<?= __('Share on Facebook') ?>" class="link-facebook">
+		            <i class="fa fa-facebook"><?php if(!$enable_onlyicon): ?><?= __('Share Facebook') ?><?php endif; ?></i>
 		        </a>
 		    </li>
 			<?php endif; ?>
 			<?php if($enable_twitter): ?>
 		    <li>
-		        <a href="<?php echo 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>" target="_blank" title="<?php echo __('Share on Twitter') ?>" class="link-twitter"><i class="fa fa-twitter"><?php if(!$enable_onlyicon): ?><?php echo __('Share on Twitter') ?><?php endif; ?></i></a>
+		        <a href="<?= 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>" target="_blank" title="<?= __('Share on Twitter') ?>" class="link-twitter"><i class="fa fa-twitter"><?php if(!$enable_onlyicon): ?><?= __('Share on Twitter') ?><?php endif; ?></i></a>
 		    </li>
 			<?php endif; ?>
 			<?php if($enable_googleplus): ?>
 		    <li>
-			    <a class="share plus link-plus" title="<?php echo __('Google Plus');?>" href="https://plus.google.com/share?url=<?php echo $_productUrl; ?>" target="_BLANK" rel="nofollow"><i class="fa fa-google-plus"><?php if(!$enable_onlyicon): ?><?php echo __('Google');?><?php endif; ?></i></a>
+			    <a class="share plus link-plus" title="<?= __('Google Plus');?>" href="https://plus.google.com/share?url=<?= $_productUrl; ?>" target="_BLANK" rel="nofollow"><i class="fa fa-google-plus"><?php if(!$enable_onlyicon): ?><?= __('Google');?><?php endif; ?></i></a>
 			</li>
 			<?php endif; ?>
 			<?php if($enable_pinterest): ?>
 			<li>
-			    <a class="share pinterest link-pinterest" title="<?php echo __('Pinterest');?>" href="http://pinterest.com/pin/create/button/?url=<?php echo $_productUrl; ?>&media=<?php echo $_productImageUrl;?>&description=<?php echo $_productName;?>"  target="_BLANK" rel="nofollow"><i class="fa fa-pinterest"><?php if(!$enable_onlyicon): ?><?php echo __('Pinterest');?><?php endif;?></i></a>
+			    <a class="share pinterest link-pinterest" title="<?= __('Pinterest');?>" href="http://pinterest.com/pin/create/button/?url=<?= $_productUrl; ?>&media=<?= $_productImageUrl;?>&description=<?= $_productName;?>"  target="_BLANK" rel="nofollow"><i class="fa fa-pinterest"><?php if(!$enable_onlyicon): ?><?= __('Pinterest');?><?php endif;?></i></a>
 			</li>
 		    <?php endif; ?>
 		    <?php if($enable_linkedin): ?>
 		    <li>
-		        <a href="<?php echo 'https://www.linkedin.com/shareArticle?mini=true&title=' . $_productName . '&summary=' . $_productSammary.'&source='.$_sourceName.'&url='.$_productUrl; ?>" target="_blank" title="<?php echo __('Share on Linkedin') ?>" class="link-linkedin"><i class="fa fa-linkedin"><?php if(!$enable_onlyicon): ?><?php echo __('Share on Linkedin') ?><?php endif; ?></i></a>
+		        <a href="<?= 'https://www.linkedin.com/shareArticle?mini=true&title=' . $_productName . '&summary=' . $_productSammary.'&source='.$_sourceName.'&url='.$_productUrl; ?>" target="_blank" title="<?= __('Share on Linkedin') ?>" class="link-linkedin"><i class="fa fa-linkedin"><?php if(!$enable_onlyicon): ?><?= __('Share on Linkedin') ?><?php endif; ?></i></a>
 		    </li>
 			<?php endif; ?>
 		</ul>

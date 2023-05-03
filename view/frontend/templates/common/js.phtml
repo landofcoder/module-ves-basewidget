@@ -22,9 +22,9 @@ function ajaxGenerateWidget(widget, widgetJson) {
     var widget_key = typeof(widgetJson.wkey)!="undefined"?widgetJson.wkey:'';
 
     if(widget_shortcode) {
-        
+
         jQuery.ajax({
-            url: "<?php echo $_vesData->getGenerateWidgetUrl(); ?>",
+            url: "<?= $_vesData->getGenerateWidgetUrl(); ?>",
             method: "POST",
             cache: true,
             dataType: 'json',
@@ -47,8 +47,8 @@ require(['jquery'],function($){
                         'jquery',
                         'Ves_BaseWidget/js/jquery/accordion'
                         ],function($){
-                            /** 
-                            * 
+                            /**
+                            *
                             * Update collapse icon
                             */
                            if($(".widget-enable-collapse").length > 0) {
@@ -105,8 +105,8 @@ require(['jquery'],function($){
                                 'jquery',
                                 'Ves_BaseWidget/js/jquery/jquery.parallax-1.1.3'
                                 ],function($){
-                                    /** 
-                                     * 
+                                    /**
+                                     *
                                      * Automatic apply Parallax
                                      */
                                     if(typeof($.fn.parallax) != "undefined") {
@@ -116,7 +116,7 @@ require(['jquery'],function($){
                                             percent = (percent!='')?percent:'50%';
                                             var scroll = $(this).data("parallax-scroll");
                                             scroll = (scroll!='' && scroll!='0')?scroll:'0.4';
-                                            $(this).parallax(percent, scroll);  
+                                            $(this).parallax(percent, scroll);
                                         })
                                     }
                             })
@@ -124,8 +124,8 @@ require(['jquery'],function($){
                 <?php } ?>
 
                 <?php if($enable_colorbox){ // Enable colorbox js ?>
-                    /** 
-                     * 
+                    /**
+                     *
                      * Automatic apply colorbox popup
                      */
                     if($(".colorbox-play").length > 0) {
@@ -136,8 +136,8 @@ require(['jquery'],function($){
                                 ,"Ves_All/lib/colorbox/jquery.colorbox.min"
                                 <?php endif; ?>
                                 ],function($){
-                                   /** 
-                                     * 
+                                   /**
+                                     *
                                      * Automatic apply colorbox popup
                                  */
                                     $(".colorbox-play").each( function(){
@@ -159,7 +159,7 @@ require(['jquery'],function($){
 
                                         if(popup_width && popup_height) {
                                             $(this).colorbox({
-                                                width: "'"+popup_width+"'", 
+                                                width: "'"+popup_width+"'",
                                                 height: "'"+popup_height+"'",
                                                 overlayClose: true,
                                                 opacity: popup_opacity,
@@ -167,7 +167,7 @@ require(['jquery'],function($){
                                             });
                                         } else if(popup_width && !popup_height) {
                                             $(this).colorbox({
-                                                width: "'"+popup_width+"'", 
+                                                width: "'"+popup_width+"'",
                                                 overlayClose: true,
                                                 opacity: popup_opacity,
                                                 rel: false
@@ -189,12 +189,12 @@ require(['jquery'],function($){
                                     });
                             })
                         <?php } ?>
-                    }    
+                    }
                 <?php } ?>
 
                 <?php if ($enable_fancybox){ // Enable Fancybox JS ?>
-                    /** 
-                     * 
+                    /**
+                     *
                      * Automatic apply fancybox popup
                      */
                     if($(".fancybox-play").length > 0) {
@@ -207,7 +207,7 @@ require(['jquery'],function($){
                                 ,"Ves_All/lib/fancybox/jquery.mousewheel-3.0.6.pack"
                                 <?php endif; ?>
                                 ],function($){
-                                
+
                                     $(".fancybox-play").each( function(){
                                         var element_id = $(this).attr("id");
                                         var popup_width = $(this).data('width');
@@ -227,7 +227,7 @@ require(['jquery'],function($){
 
                                         if(popup_width && popup_height) {
                                             $(this).fancybox({
-                                                width: "'"+popup_width+"'", 
+                                                width: "'"+popup_width+"'",
                                                 height: "'"+popup_height+"'",
                                                 opacity: popup_opacity,
                                                 openEffect  : 'none',
@@ -235,7 +235,7 @@ require(['jquery'],function($){
                                             });
                                         } else if(popup_width && !popup_height) {
                                             $(this).fancybox({
-                                                width: "'"+popup_width+"'", 
+                                                width: "'"+popup_width+"'",
                                                 opacity: popup_opacity,
                                                 openEffect  : 'none',
                                                 closeEffect : 'none'
@@ -258,7 +258,7 @@ require(['jquery'],function($){
                         });
                     }
                     <?php } ?>
-                    
+
                     <?php if($enable_cookie_jquery): ?>
                     require([
                             'jquery',

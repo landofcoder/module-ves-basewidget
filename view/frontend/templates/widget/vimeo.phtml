@@ -8,22 +8,22 @@ $aspect_ratio = $this->getConfig("aspect_ratio", "16by9");
 <div class="ves-widget block block-list block-vimeo-widget">
 	<?php if(isset($title) && @trim($title)!=''): ?>
 		<div class="block-title">
-			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-vimeo<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-			<strong><span><?php echo $title; ?></span></strong>
+			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-vimeo<?= $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+			<strong><span><?= $title; ?></span></strong>
 		</div>
 	<?php endif; ?>
-	<div id="widget-vimeo<?php echo $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+	<div id="widget-vimeo<?= $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
 		<?php if(!$image_file){ ?>
-		<div class="embed-responsive embed-responsive-<?php echo $aspect_ratio; ?>">
-		<iframe src="//player.vimeo.com/video/<?php echo $id ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" style="border:0px solid" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>
+		<div class="embed-responsive embed-responsive-<?= $aspect_ratio; ?>">
+		<iframe src="//player.vimeo.com/video/<?= $id ?>" width="<?= $width ?>" height="<?= $height ?>" style="border:0px solid" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>
 		</div>
 		<?php }else{ ?>
 
-		<div class="video-widget-bg" onclick="playVideo<?php echo $modid; ?>()" style="height: <?php echo $height.'px' ?>; width: <?php echo $width.'px' ?>; background: black url('<?php echo $thumbnailurl ?>') no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; overflow: hidden; cursor: pointer;"><div id="vidwrap<?php echo $modid; ?>" class="embed-responsive embed-responsive-<?php echo $aspect_ratio; ?>"></div></div>
+		<div class="video-widget-bg" onclick="playVideo<?= $modid; ?>()" style="height: <?= $height.'px' ?>; width: <?= $width.'px' ?>; background: black url('<?= $thumbnailurl ?>') no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; overflow: hidden; cursor: pointer;"><div id="vidwrap<?= $modid; ?>" class="embed-responsive embed-responsive-<?= $aspect_ratio; ?>"></div></div>
 <script type="text/javascript">// <![CDATA[
-	function playVideo<?php echo $modid; ?>(){
-		document.getElementById('vidwrap<?php echo $modid; ?>').innerHTML = '<iframe src="//player.vimeo.com/video/<?php echo $id ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" style="border:0px solid" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>';}
-		document.getElementById("vidwrap<?php echo $modid; ?>").addEventListener("click", playVideo<?php echo $modid; ?>);
+	function playVideo<?= $modid; ?>(){
+		document.getElementById('vidwrap<?= $modid; ?>').innerHTML = '<iframe src="//player.vimeo.com/video/<?= $id ?>" width="<?= $width ?>" height="<?= $height ?>" style="border:0px solid" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen"></iframe>';}
+		document.getElementById("vidwrap<?= $modid; ?>").addEventListener("click", playVideo<?= $modid; ?>);
 		// ]]> </script>
 
 		<?php } ?>

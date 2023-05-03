@@ -606,7 +606,7 @@ abstract class ElFinderVolumeDriver {
 			: array();
 
 		if (is_string($this->options['uploadOrder'])) { // telephat_mode on, compatibility with 1.x
-			$parts = explode(',', isset($this->options['uploadOrder']) ? $this->options['uploadOrder'] : 'deny,allow');
+			$parts = @explode(',', isset($this->options['uploadOrder']) ? $this->options['uploadOrder'] : 'deny,allow');
 			$this->uploadOrder = array(trim($parts[0]), trim($parts[1]));
 		} else { // telephat_mode off
 			$this->uploadOrder = $this->options['uploadOrder'];
@@ -641,8 +641,8 @@ abstract class ElFinderVolumeDriver {
 		$type = preg_match('/^(finfo|mime_content_type|internal|auto)$/i', $type) ? $type : 'auto';
 		$regexp = '/text\/x\-(php|c\+\+)/';
 
-		$file_info =  explode(';', @finfo_file(finfo_open(FILEINFO_MIME), __FILE__));
-		$file_info2 = explode(';', mime_content_type(__FILE__));
+		$file_info =  @explode(';', @finfo_file(finfo_open(FILEINFO_MIME), __FILE__));
+		$file_info2 = @explode(';', mime_content_type(__FILE__));
 
 		if (($type == 'finfo' || $type == 'auto')
 		&& class_exists('finfo')
@@ -2106,7 +2106,7 @@ abstract class ElFinderVolumeDriver {
 			$type = \Ves\BaseWidget\Classes\Elfinder\ElFinderVolumeDriver::mimetypeInternalDetect($path);
 		}
 
-		$type = explode(';', $type);
+		$type = $type ? @explode(';', $type) : [];
 		$type = trim($type[0]);
 
 		if ($type == 'application/x-empty') {
@@ -2441,7 +2441,7 @@ abstract class ElFinderVolumeDriver {
 			$mime = $source['mime'];
 			$w = $h = 0;
 			if (strpos($mime, 'image') === 0 && ($dim = $volume->dimensions($src))) {
-				$s = explode('x', $dim);
+				$s = $dim ? @explode('x', $dim) : [];
 				$w = $s[0];
 				$h = $s[1];
 			}

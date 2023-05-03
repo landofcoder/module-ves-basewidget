@@ -34,19 +34,19 @@ if($cmsblock === 'pretext_html'){
 $html = $_vesHelper->filter($html);
 ?>
 <?php if( count($_instagram) ) { ?>
-<div id="<?php echo $custom_id?$custom_id:('ves-instagram-carousel-'.$moduleId);?>" class="ves-widget block instagram_gallery">
+<div id="<?= $custom_id?$custom_id:('ves-instagram-carousel-'.$moduleId);?>" class="ves-widget block instagram_gallery">
     <?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
 	<div class="block-title">
-            <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-instagram-carousel<?php echo $moduleId; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-		<h2><span><?php echo $widget_heading; ?></span></h2>
+            <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-instagram-carousel<?= $moduleId; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+		<h2><span><?= $widget_heading; ?></span></h2>
 	</div>
 	<?php endif; ?>
 	<?php if($html){ ?>
       <div class="pretext-html">
-            <?php echo $html;?>
+            <?= $html;?>
       </div>
       <?php } ?>
-	<div id="widget-instagram-carousel<?php echo $moduleId; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+	<div id="widget-instagram-carousel<?= $moduleId; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
 		<?php
 		$number = 0;
 		foreach ($_instagram->data as $media) { $i++?>
@@ -65,16 +65,16 @@ $html = $_vesHelper->filter($html);
 			$comment = (!empty($media->caption->text)) ? $media->caption->text : '';
 			?>
 			<div class="item-instagram">
-				<a class="colorbox-instagram_<?php echo $number; ?>" href="#instagram-detail_<?php echo $number; ?>">
-					<img style="width: <?php echo $this->getWidthinconfig() ?>px; height: <?php echo $this->getHeightinconfig() ?>px;" alt="instagram image <?php echo $number; ?>" src="<?php echo $image ?>"/>
+				<a class="colorbox-instagram_<?= $number; ?>" href="#instagram-detail_<?= $number; ?>">
+					<img style="width: <?= $this->getWidthinconfig() ?>px; height: <?= $this->getHeightinconfig() ?>px;" alt="instagram image <?= $number; ?>" src="<?= $image ?>"/>
 				</a>
 				<div class="hidden hide">
-					<div id="instagram-detail_<?php echo $number; ?>" >
-						<img width="<?php echo $width_large ?>" height="<?php echo $height_large ?>" class="media" src="<?php echo $image_large ?>" alt="instagram image <?php echo $number; ?>"/>
+					<div id="instagram-detail_<?= $number; ?>" >
+						<img width="<?= $width_large ?>" height="<?= $height_large ?>" class="media" src="<?= $image_large ?>" alt="instagram image <?= $number; ?>"/>
 						<div class="instagram-content">
-							<div class="instagram-avatar" style="background-image: url(<?php echo $avatar ?>)"></div>
-							<p><a target="_blank" href="<?php echo $link ?>"><?php echo $username ?></a></p>
-							<div class="instagram-comment"><?php echo $comment ?></div>
+							<div class="instagram-avatar" style="background-image: url(<?= $avatar ?>)"></div>
+							<p><a target="_blank" href="<?= $link ?>"><?= $username ?></a></p>
+							<div class="instagram-comment"><?= $comment ?></div>
 						</div>
 					</div>
 				</div>
@@ -87,7 +87,7 @@ $html = $_vesHelper->filter($html);
 							    ,"Ves_All/lib/fancybox/jquery.fancybox"
 							    <?php endif; ?>
 								],function($){
-									$('.colorbox-instagram_<?php echo $number; ?>').fancybox({
+									$('.colorbox-instagram_<?= $number; ?>').fancybox({
 										helpers: {
 										    overlay: {
 										      locked: false
@@ -121,17 +121,17 @@ require([
 });
 
 function ResizeWidth(){
-			var totalwidth = jQuery("#ves-instagram-carousel-<?php echo $moduleId;?>").outerWidth(true);
+			var totalwidth = jQuery("#ves-instagram-carousel-<?= $moduleId;?>").outerWidth(true);
 			var totalwidthBody = jQuery("body").outerWidth(true);
 			var cols = 5;
 			if (totalwidthBody >= 980 && totalwidthBody <= 1199) {
-				 cols = <?php echo $default_items ?>;
+				 cols = <?= $default_items ?>;
 			}else if (totalwidthBody <= 480) {
-				 cols = <?php echo $mobile_items ?>;
+				 cols = <?= $mobile_items ?>;
 			}else if (totalwidthBody >= 480 &&  totalwidthBody <= 641) {
-				 cols = <?php echo $tablet_small_items ?>;
+				 cols = <?= $tablet_small_items ?>;
 			}else if (totalwidthBody >= 641 &&  totalwidthBody <= 768) {
-				 cols = <?php echo $tablet_items ?>;
+				 cols = <?= $tablet_items ?>;
 			}
 			//console.log(cols+'-'+totalwidth+'-'+totalwidthBody);
 			var first_total = totalwidth/cols;

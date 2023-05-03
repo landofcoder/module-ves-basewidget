@@ -4,20 +4,20 @@
 	$custom_id = $this->getConfig("custom_id", "");
 	$speed = $speed?(int)$speed:200;
 ?>
-<div <?php echo $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-flickr-widget">
+<div <?= $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-flickr-widget">
 	<?php if(isset($title) && @trim($title)!=''): ?>
 		<div class="block-title">
-			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-flickr<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-			<strong><span><?php echo $title; ?></span></strong>
+			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-flickr<?= $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+			<strong><span><?= $title; ?></span></strong>
 		</div>
 	<?php endif; ?>
 
-<div id="widget-flickr<?php echo $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+<div id="widget-flickr<?= $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
 <?php
 foreach ($photos as $k => $v) {
 	?>
-	<a class="group-file<?php echo $userId; ?> flick-photo" href="https://farm<?php echo $v['farm']; ?>.staticflickr.com/<?php echo $v['server']; ?>/<?php echo $v['id']; ?>_<?php echo $v['secret']; ?>_<?php echo $popup; ?>.jpg" rel="flick-group-<?php echo $modid; ?>">
-		<img width="<?php echo $thumbnailImageWidth; ?>" height="<?php echo $thumbnailImageHeight ?>"  src="https://farm<?php echo $v['farm']; ?>.staticflickr.com/<?php echo $v['server']; ?>/<?php echo $v['id']; ?>_<?php echo $v['secret']; ?>_<?php echo $thumbnail; ?>.jpg" />
+	<a class="group-file<?= $userId; ?> flick-photo" href="https://farm<?= $v['farm']; ?>.staticflickr.com/<?= $v['server']; ?>/<?= $v['id']; ?>_<?= $v['secret']; ?>_<?= $popup; ?>.jpg" rel="flick-group-<?= $modid; ?>">
+		<img width="<?= $thumbnailImageWidth; ?>" height="<?= $thumbnailImageHeight ?>"  src="https://farm<?= $v['farm']; ?>.staticflickr.com/<?= $v['server']; ?>/<?= $v['id']; ?>_<?= $v['secret']; ?>_<?= $thumbnail; ?>.jpg" />
 	</a>
 	<?php
 }
@@ -32,7 +32,7 @@ require(['jquery'],function($){
 				    <?php endif; ?>
 					],function($){
 						var cboxOptions = {
-							width: "<?php echo "'".$popupImageWidth."'"; ?>",
+							width: "<?= "'".$popupImageWidth."'"; ?>",
 						  	maxWidth: '960px',
 						  	maxHeight: '960px',
 						  	initialWidth: 300,
@@ -45,13 +45,13 @@ require(['jquery'],function($){
 						$('.flick-photo').colorbox({
 							overlayClose: true,
 							opacity: 0.5,
-							rel: 'flick-group-<?php echo $modid; ?>',
-							speed : <?php echo $speed; ?>,
+							rel: 'flick-group-<?= $modid; ?>',
+							speed : <?= $speed; ?>,
 							maxWidth: '960px',
 						  	maxHeight: '960px',
 						  	initialWidth: cboxOptions.initialWidth,
 						  	initialHeight: cboxOptions.initialHeight,
-							width : <?php echo "'".$popupImageWidth."'"; ?>,
+							width : <?= "'".$popupImageWidth."'"; ?>,
 							onLoad:function(){
 
 							}

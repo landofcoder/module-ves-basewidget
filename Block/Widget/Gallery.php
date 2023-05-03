@@ -154,7 +154,7 @@ class Gallery extends AbstractWidget
 					$tmp['products']	 	= array();
 					$tmp['description']		= "";
 					if($tmp['product_id']) {
-						$arr = explode(',', $tmp['product_id']);
+						$arr = @explode(',', $tmp['product_id']);
 						if($arr){
 							$tmp['products'] = $this->getListProducts($arr);//Get collection products by ids
 						}

@@ -138,7 +138,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper
                     $checked = true;
 
                     if(isset($widget['show']) && $widget['show']) {
-                        $show_in_extensions = explode(",", (string)$widget['show']);
+                        $show_in_extensions = @explode(",", (string)$widget['show']);
                     }
                     if($show_in_extensions) {
                         if(!in_array($module_name."/".$controller_name, $show_in_extensions)) {

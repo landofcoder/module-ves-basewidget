@@ -1,20 +1,20 @@
 <?php if($number): ?>
 <?php $blockId = rand().time(); ?>
 <div class="ves-widget widget-counters counters">
-   <div class="counter-wrap <?php if (isset($stylecls)&&$stylecls) echo 'text-'.$stylecls;?>" style="<?php echo (isset($font_size) && $font_size)?'font-size:'.$font_size:''; ?>">
+   <div class="counter-wrap <?php if (isset($stylecls)&&$stylecls) echo 'text-'.$stylecls;?>" style="<?= (isset($font_size) && $font_size)?'font-size:'.$font_size:''; ?>">
 
     <?php if($icon): ?>
-    <i class="fa <?php echo $icon; ?>" style="<?php echo (isset($font_size) && $font_size)?'font-size:'.$font_size:''; ?>"></i><br>
+    <i class="fa <?= $icon; ?>" style="<?= (isset($font_size) && $font_size)?'font-size:'.$font_size:''; ?>"></i><br>
     <?php endif; ?>
 
-    <span id="counter<?php echo $blockId ?>" class="counter"><?php echo (int)$number; ?></span></div>
+    <span id="counter<?= $blockId ?>" class="counter"><?= (int)$number; ?></span></div>
 
     <?php if (isset($title)&&!empty($title)): ?>
-    <h5><?php echo $title; ?></h5>
+    <h5><?= $title; ?></h5>
   <?php endif; ?>
 
   <?php if (isset($description)&&!empty($description)): ?>
-    <div class="description"><?php echo $description; ?></div>
+    <div class="description"><?= $description; ?></div>
   <?php endif; ?>
 </div>
 
@@ -27,10 +27,10 @@ require(['jquery'],function($){
         ,"Ves_All/lib/bootstrap/js/bootstrap.min"
         <?php endif; ?>
         ],function($){
-          $('#counter<?php echo $blockId ?>').each(function() {
+          $('#counter<?= $blockId ?>').each(function() {
 
             $(this).animate({countNum: $(this).text()}, {
-              duration: <?php echo $speed?(int)$speed:8000; ?>,
+              duration: <?= $speed?(int)$speed:8000; ?>,
               easing:'linear',
               step: function() {
                 $(this).text(Math.floor(this.countNum));

@@ -99,7 +99,7 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
     public function getProduct()
     {
         if($this->_product == null) {
-            $arr = explode('/', $this->getConfig('id_path'));
+            $arr = $this->getConfig('id_path') ? @explode('/', $this->getConfig('id_path')) : [];
             $product_id = end($arr);
             if ($product_id) {
                 try{

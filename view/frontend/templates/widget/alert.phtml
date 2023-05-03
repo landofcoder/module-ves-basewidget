@@ -11,9 +11,9 @@
 */
 
 if (isset($html)&& !empty($html)): ?>
-<div class="ves-widget alert alert-dismissable <?php echo $alert_type; ?> <?php echo $addition_cls; ?>">
+<div class="ves-widget alert alert-dismissable <?= $alert_type; ?> <?= $addition_cls; ?>">
 	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	<?php echo $html; ?>
+	<?= $html; ?>
 </div>
 <script type="text/javascript">
 require(['jquery'],function($){
@@ -24,7 +24,7 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			
+
 		});
 	});
 });

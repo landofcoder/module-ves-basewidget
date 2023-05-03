@@ -4,7 +4,7 @@ $current_date = $this->getConfig('show_current_date',0);
 $expired_date = $this->getConfig('end_date','');
 if($current_date){
 ?>
-<div id="day-countdown<?php echo $id; ?>" class="countdown-timer"><p></p></div>
+<div id="day-countdown<?= $id; ?>" class="countdown-timer"><p></p></div>
 <script type="text/javascript" xml="space">
 require(['jquery',function ($) {
 
@@ -19,7 +19,7 @@ require(['jquery',function ($) {
         if((sec + '').length == 1){
                 sec = '0' + sec;
         }
-        jQuery('#day-countdown<?php echo $id; ?> p').html(hours+':'+min+':'+sec)
+        jQuery('#day-countdown<?= $id; ?> p').html(hours+':'+min+':'+sec)
     }, 1000);
 
 });
@@ -33,22 +33,22 @@ require(['jquery',function ($) {
     }
     ?>
 <div class="banner-countdowns">
-    <div id="flashsale<?php echo $id; ?>countdown" class="item-countdown">
+    <div id="flashsale<?= $id; ?>countdown" class="item-countdown">
         <ul>
-            <li>%%D%% <div><?php echo __('Day');?></div></li>
-            <li> %%H%% <div><?php echo __('Hours');?></div></li>
-            <li> %%M%% <div><?php echo __('Mins');?></div></li>
-            <li> %%S%% <div><?php echo __('Secs');?></div></li>
+            <li>%%D%% <div><?= __('Day');?></div></li>
+            <li> %%H%% <div><?= __('Hours');?></div></li>
+            <li> %%M%% <div><?= __('Mins');?></div></li>
+            <li> %%S%% <div><?= __('Secs');?></div></li>
         </ul>
     </div>
     <script type="text/javascript">
         require(['jquery','Ves_BaseWidget/js/countdown'],function ($) {
-            jQuery("#flashsale<?php echo $id; ?>countdown").lofCountDown({
+            jQuery("#flashsale<?= $id; ?>countdown").lofCountDown({
                     formatStyle:2,
-                    TargetDate:"<?php echo $targetDate; ?>",
-                    countdownFormat: "#flashsale<?php echo $id; ?>countdown",
-                    DisplayFormat: jQuery("#flashsale<?php echo $id; ?>countdown").html(),
-                    FinishMessage:"<?php echo __('Expired');?>"
+                    TargetDate:"<?= $targetDate; ?>",
+                    countdownFormat: "#flashsale<?= $id; ?>countdown",
+                    DisplayFormat: jQuery("#flashsale<?= $id; ?>countdown").html(),
+                    FinishMessage:"<?= __('Expired');?>"
             });
 
         });

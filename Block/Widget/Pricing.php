@@ -86,7 +86,7 @@ class Pricing extends AbstractWidget{
 	    }
 
 		if($this->getConfig("use_product_info")) { //If use product information
-			$idPath = explode('/', $this->getConfig('id_path'));
+			$idPath = $$this->getConfig('id_path') ? @explode('/', $this->getConfig('id_path')) : [];
 	        if (isset($idPath[1])) {
 	            $id = $idPath[1];
 	            if ($id) {

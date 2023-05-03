@@ -13,15 +13,15 @@ $enable_collapse = $this->getConfig("enable_collapse", 0);
 $id = rand().time();
 if ($content):
 ?>
-	<div class="ves-widget widget-html block <?php echo $addition_cls; ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
+	<div class="ves-widget widget-html block <?= $addition_cls; ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
 		<?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
 		<div class="block-title">
-			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-html<?php echo $id; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-			<h2><span><?php echo $widget_heading; ?></span></h2>
+			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-html<?= $id; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+			<h2><span><?= $widget_heading; ?></span></h2>
 		</div>
 		<?php endif; ?>
-		<div id="widget-html<?php echo $id; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enable-collapse collapse <?php endif; ?>">
-			<?php echo $content; ?>
+		<div id="widget-html<?= $id; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enable-collapse collapse <?php endif; ?>">
+			<?= $content; ?>
 		</div>
 	</div>
 

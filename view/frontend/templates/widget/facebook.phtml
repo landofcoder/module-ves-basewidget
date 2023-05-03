@@ -6,28 +6,28 @@
 	$hide_cover = $this->getConfig("hide_cover", 0);
 	$custom_id = $this->getConfig("custom_id", "");
 ?>
-<div <?php echo $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-facebook-widget">
+<div <?= $custom_id?'id="'.$custom_id.'"':''; ?> class="ves-widget block block-list block-facebook-widget">
 	<?php if(@trim($title)!=''): ?>
 		<div class="block-title">
-			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-facebook<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-			<strong><span><?php echo $title; ?></span></strong>
+			<?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-facebook<?= $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+			<strong><span><?= $title; ?></span></strong>
 		</div>
 	<?php endif; ?>
-	<div id="widget-facebook<?php echo $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+	<div id="widget-facebook<?= $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
 
 		<?php if($use_iframe): ?>
-			<iframe name="facebook_widget" width="<?php echo (int)$width; ?>px" height="<?php echo (int)$height; ?>px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" src="https://www.facebook.com/v2.4/plugins/page.php?adapt_container_width=true&amp;app_id=<?php echo $app_id; ?>&amp;height=<?php echo (int)$height; ?>&amp;hide_cover=<?php echo $hide_cover?'true':'false'; ?>&amp;href=<?php echo $url; ?>&amp;show_facepile=<?php echo $showfriends?'true':'false'; ?>&amp;show_posts=<?php echo $posts?'true':'false'; ?>&amp;small_header=<?php echo $small_header?'true':'false'; ?>&amp;width=<?php echo (int)$width; ?>" style="border: none; overflow:hidden; visibility: visible; width: <?php echo (int)$width; ?>px; height: <?php echo (int)$height; ?>px;<?php echo $css ?>" class="" allowTransparency="true"></iframe>
+			<iframe name="facebook_widget" width="<?= (int)$width; ?>px" height="<?= (int)$height; ?>px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" src="https://www.facebook.com/v2.4/plugins/page.php?adapt_container_width=true&amp;app_id=<?= $app_id; ?>&amp;height=<?= (int)$height; ?>&amp;hide_cover=<?= $hide_cover?'true':'false'; ?>&amp;href=<?= $url; ?>&amp;show_facepile=<?= $showfriends?'true':'false'; ?>&amp;show_posts=<?= $posts?'true':'false'; ?>&amp;small_header=<?= $small_header?'true':'false'; ?>&amp;width=<?= (int)$width; ?>" style="border: none; overflow:hidden; visibility: visible; width: <?= (int)$width; ?>px; height: <?= (int)$height; ?>px;<?= $css ?>" class="" allowTransparency="true"></iframe>
 		<?php else: ?>
 			<div id="fb-root"></div>
 			<script>(function(d, s, id) {
 			  var js, fjs = d.getElementsByTagName(s)[0];
 			  if (d.getElementById(id)) return;
 			  js = d.createElement(s); js.id = id;
-			  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=<?php echo $app_id; ?>";
+			  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=<?= $app_id; ?>";
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>
 
-			<div class="fb-page" data-href="<?php echo urldecode($url); ?>" data-width="<?php echo (int)$width; ?>" data-height="<?php echo (int)$height; ?>" data-small-header="<?php echo $small_header?'true':'false'; ?>" data-adapt-container-width="true" data-hide-cover="<?php echo $hide_cover?'true':'false'; ?>" data-show-facepile="<?php echo $showfriends?'true':'false'; ?>" data-show-posts="<?php echo $posts?'true':'false'; ?>"><div class="fb-xfbml-parse-ignore"><blockquote cite="<?php echo $url; ?>"><a href="<?php echo $url; ?>">Facebook</a></blockquote></div></div>
+			<div class="fb-page" data-href="<?= urldecode($url); ?>" data-width="<?= (int)$width; ?>" data-height="<?= (int)$height; ?>" data-small-header="<?= $small_header?'true':'false'; ?>" data-adapt-container-width="true" data-hide-cover="<?= $hide_cover?'true':'false'; ?>" data-show-facepile="<?= $showfriends?'true':'false'; ?>" data-show-posts="<?= $posts?'true':'false'; ?>"><div class="fb-xfbml-parse-ignore"><blockquote cite="<?= $url; ?>"><a href="<?= $url; ?>">Facebook</a></blockquote></div></div>
 
 		<?php endif; ?>
 

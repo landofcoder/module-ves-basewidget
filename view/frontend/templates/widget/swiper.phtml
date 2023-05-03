@@ -7,18 +7,18 @@
     $slider_height = (int)$this->getConfig("slider_height",0);
 ?>
 <?php if($items = $this->getDataItems() ): ?>
-<div id="<?php echo $id; ?>" class="ves-widget widget-swiper block <?php echo $this->getConfig("addition_cls"); ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
+<div id="<?= $id; ?>" class="ves-widget widget-swiper block <?= $this->getConfig("addition_cls"); ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
     <?php if( $title != '' && !$title){ ?>
     <div class="block-title">
-        <h3><span><?php echo $title; ?></span></h3>
+        <h3><span><?= $title; ?></span></h3>
     </div>
     <?php } ?>
     <div class="widget-inner block-content">
 <!-- Swiper -->
-    <div class="swiper-container slider banners masterslider" <?php echo $slider_height?' style="height:'.$slider_height.'px;"':'';?>>
+    <div class="swiper-container slider banners masterslider" <?= $slider_height?' style="height:'.$slider_height.'px;"':'';?>>
         <div class="swiper-wrapper">
             <?php foreach($items as $item): ?>
-                <div class="swiper-slide <?php echo ($item['size'])?'swiper-slide-'.$item['size']:''; ?>" <?php echo $slider_height?' style="height:'.$slider_height.'px;"':'';?>><div class="slide-inner"><?php echo $item['content']; ?></div></div>
+                <div class="swiper-slide <?= ($item['size'])?'swiper-slide-'.$item['size']:''; ?>" <?= $slider_height?' style="height:'.$slider_height.'px;"':'';?>><div class="slide-inner"><?= $item['content']; ?></div></div>
             <?php endforeach; ?>
         </div>
         <?php if($this->getConfig("show_pagination")): ?>
@@ -43,8 +43,8 @@ require([
         'jquery',
         'Ves_BaseWidget/js/swiper/swiper.min'
         ],function($, Swiper){
-            if($("#<?php echo $id; ?>").length > 0) {
-                var swiper = new Swiper('#<?php echo $id; ?> .swiper-container', {
+            if($("#<?= $id; ?>").length > 0) {
+                var swiper = new Swiper('#<?= $id; ?> .swiper-container', {
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true,

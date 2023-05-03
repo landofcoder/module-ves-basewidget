@@ -16,7 +16,7 @@ if ($href && !preg_match("/^http\:\/\/|https\:\/\//", $href) && $href != "#" && 
 $icon           = $this->getConfig('icon');
 $size           = $this->getConfig('size');
 $color_button   =  $this->getConfig('color_button');
-$button_classes  = explode("-", $color_button);
+$button_classes  = $color_button ? @explode("-", $color_button) : [];
 $button_classes[0] = "action";
 $button_classes_str = implode(" ", $button_classes);
 $el_class       = $this->getConfig('el_class');
@@ -43,17 +43,17 @@ switch ($size) {
 }
 ?>
 <?php if ($href): ?>
-	<div class="ves-widget widget-button block <?php echo $addition_cls; ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
+	<div class="ves-widget widget-button block <?= $addition_cls; ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
 		<?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
 			<div class="block-title">
-				<?php echo $widget_heading; ?>
+				<?= $widget_heading; ?>
 			</div>
 		<?php endif; ?>
 		<div class="widget-inner block-content">
 			<?php if ($button_title) { ?>
-			<a href="<?php echo $href; ?>" class="btn <?php echo $color_button." ".$el_class." ".$size." ".$custom_size. " ".$button_classes_str;?>" title="<?php echo $button_title;?>"<?php echo $content_html?(' '.$content_html):'';?>>
-				<i class="<?php echo $icon; ?>"></i>
-				<?php echo $button_title; ?>
+			<a href="<?= $href; ?>" class="btn <?= $color_button." ".$el_class." ".$size." ".$custom_size. " ".$button_classes_str;?>" title="<?= $button_title;?>"<?= $content_html?(' '.$content_html):'';?>>
+				<i class="<?= $icon; ?>"></i>
+				<?= $button_title; ?>
 			</a>
 			<?php } ?>
 		</div>

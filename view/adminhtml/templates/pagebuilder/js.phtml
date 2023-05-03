@@ -31,23 +31,23 @@ if($enable_bootstrap_24cols) {
 }
 ?>
 <script type="text/javascript">
-	var SKIN_URL = "<?php echo $this->getBaseMediaUrl().'ves_basewidget/'; ?>";
+	var SKIN_URL = "<?= $this->getBaseMediaUrl().'ves_basewidget/'; ?>";
 
 	var config = {
-		      	  urlwidgets:'<?php echo @str_replace("&amp;","&", $urlwidgets);?>',
-		          urlwidget:'<?php echo @str_replace("&amp;","&", $urlwidget);?>',
-		          urlwidgetdata:'<?php echo @str_replace("&amp;","&", $urlwidgetdata);?>',
-		          urlelements:'<?php echo @str_replace("&amp;","&", $urlelements);?>',
-		          urlelement:'<?php echo @str_replace("&amp;","&", $urlelement);?>',
-		          urlcmsblocks: '<?php echo @str_replace("&amp;","&", $urlcmsblocks);?>',
-		          imageurl : '<?php echo $this->getBaseMediaUrl(); ?>',
-		          placeholder:'<?php echo $placeholder; ?>',
-		          gutter	   :   '<?php echo (int)$gutter; ?>',
-				  coldwith   :   '<?php echo (int)$coldwith; ?>',
-		          col: '<?php echo (int)$max_columns; ?>'
+		      	  urlwidgets:'<?= @str_replace("&amp;","&", $urlwidgets);?>',
+		          urlwidget:'<?= @str_replace("&amp;","&", $urlwidget);?>',
+		          urlwidgetdata:'<?= @str_replace("&amp;","&", $urlwidgetdata);?>',
+		          urlelements:'<?= @str_replace("&amp;","&", $urlelements);?>',
+		          urlelement:'<?= @str_replace("&amp;","&", $urlelement);?>',
+		          urlcmsblocks: '<?= @str_replace("&amp;","&", $urlcmsblocks);?>',
+		          imageurl : '<?= $this->getBaseMediaUrl(); ?>',
+		          placeholder:'<?= $placeholder; ?>',
+		          gutter	   :   '<?= (int)$gutter; ?>',
+				  coldwith   :   '<?= (int)$coldwith; ?>',
+		          col: '<?= (int)$max_columns; ?>'
 		      };
 
-<?php echo $this->getChildHtml("basewidget.builder.js"); ?>
+<?= $this->getChildHtml("basewidget.builder.js"); ?>
 
 require(['jquery'],function($){
    $(document).ready(function(){

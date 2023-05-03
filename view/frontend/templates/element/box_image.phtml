@@ -9,7 +9,7 @@ $box_title = $this->getConfig('box_title');
 $box_layout_style = $this->getConfig('box_layout_style');
 $column1_class = "col-".($bootstrapValue*6)." col-sm-".($bootstrapValue*6);
 $column2_class = "col-".($bootstrapValue*6)." col-sm-".($bootstrapValue*6);
-$box_layout_style_arr = explode("-",$box_layout_style);
+$box_layout_style_arr = $box_layout_style ? @explode("-", $box_layout_style) : [];
 if($box_layout_style_arr && count($box_layout_style_arr) >= 2){
     $column1_class = "col-".((int)$box_layout_style_arr[0]*$bootstrapValue)." col-sm-".((int)$box_layout_style_arr[0]*2);
     $column1_class = "col-".((int)$box_layout_style_arr[1]*$bootstrapValue)." col-sm-".((int)$box_layout_style_arr[1]*2);
@@ -109,10 +109,10 @@ if($heading_text): // If have heading text will display row heading text
     <div class="col-<?= $full_width_column;?>">
         <div class="widget-raw-html block">
             <div class="widget-inner block-content">
-                <h2 class="title block-title"><?php echo $heading_text ?></h2>
+                <h2 class="title block-title"><?= $heading_text ?></h2>
                 <?php if($sub_heading_text): ?>
                 <div class="widget-inner block-content">
-                <?php echo $sub_heading_text; ?>
+                <?= $sub_heading_text; ?>
                 </div>
                 <?php endif; ?>
             </div>
@@ -124,9 +124,9 @@ endif;
 ?>
 <div class="row element element-box-image <?= $addition_cls; ?>">
     <?php if($hide_section_text): // if hide section text, then just show image box?>
-        <div class="col-<?= $full_width_column;?> col-sm-<?= $full_width_column;?> <?php echo $addition_cls; ?>">
+        <div class="col-<?= $full_width_column;?> col-sm-<?= $full_width_column;?> <?= $addition_cls; ?>">
             <?php if($box_image_link): ?>
-                <a href="<?php echo $box_image_link;?>" class="ves-btnlink img-animation">
+                <a href="<?= $box_image_link;?>" class="ves-btnlink img-animation">
             <?php endif; ?>
                 <img src="<?= $thumbnailurl;?>" class="<?= $image_class; ?>" style="<?=$image_style;?>" alt="<?= $image_alt; ?>"/>
             <?php if($box_image_link): ?>
@@ -140,7 +140,7 @@ endif;
     <div class="<?= $column1_class;?>">
         <?php if($box_image_position == "left"): // Image Show at left?>
             <?php if($box_image_link): ?>
-                <a href="<?php echo $box_image_link;?>" class="ves-btnlink img-animation">
+                <a href="<?= $box_image_link;?>" class="ves-btnlink img-animation">
             <?php endif; ?>
                 <img src="<?= $thumbnailurl;?>" class="<?= $image_class; ?>" style="<?=$image_style;?>" alt="<?= $image_alt; ?>"/>
             <?php if($box_image_link): ?>
@@ -159,14 +159,14 @@ endif;
                     <?= $box_text; ?>
                     <?php if($sub_box_text): ?>
                     <div class="widget-inner-sub-text">
-                        <?php echo $sub_box_text; ?>
+                        <?= $sub_box_text; ?>
                     </div>
                     <?php endif; ?>
                     <?php if($box_button_text): ?>
                         <?php if($box_button_link): ?>
-                            <a class="<?= $button_class; ?>" href="<?= $box_button_link; ?>" role="button" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></a>
+                            <a class="<?= $button_class; ?>" href="<?= $box_button_link; ?>" role="button" title="<?= $box_button_text;?>"><?php if($button_icon): ?><i class="<?= $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></a>
                         <?php else: ?>
-                            <button type="button" class="<?= $button_class; ?>" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></button>
+                            <button type="button" class="<?= $button_class; ?>" title="<?= $box_button_text;?>"><?php if($button_icon): ?><i class="<?= $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></button>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
@@ -177,7 +177,7 @@ endif;
     <div class="<?= $column2_class;?>">
         <?php if($box_image_position == "right"):  // Image show at right?>
             <?php if($box_image_link): ?>
-                <a href="<?php echo $box_image_link;?>" class="ves-btnlink img-animation">
+                <a href="<?= $box_image_link;?>" class="ves-btnlink img-animation">
             <?php endif; ?>
                 <img src="<?= $thumbnailurl;?>" class="<?= $image_class; ?>" style="<?=$image_style;?>" alt="<?= $image_alt; ?>"/>
             <?php if($box_image_link): ?>
@@ -196,14 +196,14 @@ endif;
                     <?= $box_text; ?>
                     <?php if($sub_box_text): ?>
                     <div class="widget-inner-sub-text">
-                        <?php echo $sub_box_text; ?>
+                        <?= $sub_box_text; ?>
                     </div>
                     <?php endif; ?>
                     <?php if($box_button_text): ?>
                         <?php if($box_button_link): ?>
-                            <a class="<?= $button_class; ?>" href="<?= $box_button_link; ?>" role="button" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></a>
+                            <a class="<?= $button_class; ?>" href="<?= $box_button_link; ?>" role="button" title="<?= $box_button_text;?>"><?php if($button_icon): ?><i class="<?= $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></a>
                         <?php else: ?>
-                            <button type="button" class="<?= $button_class; ?>" title="<?php echo $box_button_text;?>"><?php if($button_icon): ?><i class="<?php echo $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></button>
+                            <button type="button" class="<?= $button_class; ?>" title="<?= $box_button_text;?>"><?php if($button_icon): ?><i class="<?= $button_icon; ?>"></i>&nbsp;<?php endif; ?><?= $box_button_text; ?></button>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>

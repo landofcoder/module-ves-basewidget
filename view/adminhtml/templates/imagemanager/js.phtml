@@ -9,9 +9,9 @@
 ?>
 <div id="finder" class="dialogelfinder"></div>
 <script type="text/javascript">
-    var base_media_url = "<?php echo $this->getBaseMediaUrl() ?>";
-    var base_secure_media_url = "<?php echo $this->getBaseSecureMediaUrl() ?>";
-    var elfinder_connector = "<?php echo $this->getConnectorUrl(); ?>";
+    var base_media_url = "<?= $this->getBaseMediaUrl() ?>";
+    var base_secure_media_url = "<?= $this->getBaseSecureMediaUrl() ?>";
+    var elfinder_connector = "<?= $this->getConnectorUrl(); ?>";
     require(['jquery'],function($){
         $(document).ready(function(){
         require([
@@ -19,9 +19,9 @@
                 'Ves_BaseWidget/js/jquery/ui/jquery-ui.min',
                 'Ves_BaseWidget/js/elfinder/js/elfinder.min',
             ], function(jQuery){
-                console.log("\n Connector: <?php echo $this->getConnectorUrl(); ?>");
+                console.log("\n Connector: <?= $this->getConnectorUrl(); ?>");
                 var f = jQuery('#finder').elfinder({
-                        url : '<?php echo $this->getConnectorUrl(); ?>'
+                        url : '<?= $this->getConnectorUrl(); ?>'
                     }).elfinder('instance');
             });
         });

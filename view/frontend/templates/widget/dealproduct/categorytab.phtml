@@ -112,59 +112,59 @@ foreach ($tabs as $k => $tab) {
 }
 $data = $this->getData();
 ?>
-<div id="<?php echo $tabId; ?>" class="block widget ves-widget dealproduct-widget productlist-widget productlist-easytab-play <?php echo $addition_class?$addition_class:'' ?>">
+<div id="<?= $tabId; ?>" class="block widget ves-widget dealproduct-widget productlist-widget productlist-easytab-play <?= $addition_class?$addition_class:'' ?>">
     <?php if($widget_title){ ?>
         <div class="block-title">
-            <strong><?php echo $widget_title ?></strong>
+            <strong><?= $widget_title ?></strong>
         </div>
         <?php if($html!=''){ ?>
-            <div class="pretext-html"><?php echo $html ?></div>
+            <div class="pretext-html"><?= $html ?></div>
             <?php } ?>
             <?php } ?>
             <?php if(count($tabs)>0){ ?>
-                <div id="easytab-<?php echo $blockId ?>" class="block-content"
-                    data-animate="<?php echo $enable_animate_tab?'true':'false'; ?>"
-                    data-animation-speed="<?php echo $animation_speed; ?>"
-                    data-collapsible="<?php echo $collapsible?"true":"false" ?>"
-                    <?php if($cycle){ ?>data-cycle="<?php echo $cycle ?>"<?php } ?>
-                    <?php if($defaultTabId){ ?>data-default-tab="<?php echo "#".$defaultTabId ?>"<?php } ?>
-                    <?php if($transition_in){ ?>data-transition-in="<?php echo $transition_in ?>"<?php } ?>
-                    <?php if($transition_in_easing){ ?>data-transition-in-easing="<?php echo $transition_in_easing ?>"<?php } ?>
-                    <?php if($transition_out){ ?>data-transition-out="<?php echo $transition_out ?>"<?php } ?>
-                    <?php if($transition_out_easing){ ?>data-transition-out-easing="<?php echo $transition_out_easing ?>"<?php } ?>
-                    data-event="<?php echo $event ?>"
+                <div id="easytab-<?= $blockId ?>" class="block-content"
+                    data-animate="<?= $enable_animate_tab?'true':'false'; ?>"
+                    data-animation-speed="<?= $animation_speed; ?>"
+                    data-collapsible="<?= $collapsible?"true":"false" ?>"
+                    <?php if($cycle){ ?>data-cycle="<?= $cycle ?>"<?php } ?>
+                    <?php if($defaultTabId){ ?>data-default-tab="<?= "#".$defaultTabId ?>"<?php } ?>
+                    <?php if($transition_in){ ?>data-transition-in="<?= $transition_in ?>"<?php } ?>
+                    <?php if($transition_in_easing){ ?>data-transition-in-easing="<?= $transition_in_easing ?>"<?php } ?>
+                    <?php if($transition_out){ ?>data-transition-out="<?= $transition_out ?>"<?php } ?>
+                    <?php if($transition_out_easing){ ?>data-transition-out-easing="<?= $transition_out_easing ?>"<?php } ?>
+                    data-event="<?= $event ?>"
                     >
                     <ul class="etabs">
                         <?php foreach ($tabs as $k => $tab) { ?>
-                            <li class="nav-item tab <?php echo $tab['item_class']?$tab['item_class']:'' ?>" id="tab-<?php echo $tab['id']; ?>"><a href="#<?php echo $tab['id'] ?>"><?php echo $tab['item_title']?$tab['item_title']:'' ?></a></li>
+                            <li class="nav-item tab <?= $tab['item_class']?$tab['item_class']:'' ?>" id="tab-<?= $tab['id']; ?>"><a href="#<?= $tab['id'] ?>"><?= $tab['item_title']?$tab['item_title']:'' ?></a></li>
                             <?php } ?>
                         </ul>
                         <div class="tab-content productlist-owlcarousel-play"
-                        id="<?php echo $ajaxBlockId ?>"
-                        data-nav="<?php echo $nav?'true':'false'; ?>"
-                        data-dot="<?php echo $dots?'true':'false'; ?>"
-                        data-autoplay="<?php echo $autoplay?'true':'false'; ?>"
-                        data-autoplay-timeout="<?php echo $autoplay_timeout; ?>"
-                        data-mobile-items="<?php echo $mobile_items; ?>"
-                        data-tablet-small-items="<?php echo $tablet_small_items; ?>"
-                        data-tablet-items="<?php echo $tablet_small_items; ?>"
-                        data-portrait-items="<?php echo $portrait_items; ?>"
-                        data-large-items="<?php echo $large_items; ?>"
-                        data-large-max-items="<?php echo $large_max_items; ?>"
-                        data-rtl="<?php echo $rtl?"true":"false" ?>"
-                        data-loop="<?php echo $loop?"true":"false" ?>"
-                        data-nav-text-owlpre="<?php echo $nav_pre ?>"
-                        data-nav-text-owlnext="<?php echo $nav_next ?>"
-                        <?php if($height_type){ ?>data-height-type="<?php echo $height_type ?>"<?php } ?>
+                        id="<?= $ajaxBlockId ?>"
+                        data-nav="<?= $nav?'true':'false'; ?>"
+                        data-dot="<?= $dots?'true':'false'; ?>"
+                        data-autoplay="<?= $autoplay?'true':'false'; ?>"
+                        data-autoplay-timeout="<?= $autoplay_timeout; ?>"
+                        data-mobile-items="<?= $mobile_items; ?>"
+                        data-tablet-small-items="<?= $tablet_small_items; ?>"
+                        data-tablet-items="<?= $tablet_small_items; ?>"
+                        data-portrait-items="<?= $portrait_items; ?>"
+                        data-large-items="<?= $large_items; ?>"
+                        data-large-max-items="<?= $large_max_items; ?>"
+                        data-rtl="<?= $rtl?"true":"false" ?>"
+                        data-loop="<?= $loop?"true":"false" ?>"
+                        data-nav-text-owlpre="<?= $nav_pre ?>"
+                        data-nav-text-owlnext="<?= $nav_next ?>"
+                        <?php if($height_type){ ?>data-height-type="<?= $height_type ?>"<?php } ?>
                         >
                         <?php foreach ($tabs as $k => $tab) { ?>
-                            <div id="<?php echo $tab['id'] ?>" class="ves-products-grid grid <?php echo $classes ?> <?php echo $tab['item_class']?$tab['item_class']:'' ?>">
+                            <div id="<?= $tab['id'] ?>" class="ves-products-grid grid <?= $classes ?> <?= $tab['item_class']?$tab['item_class']:'' ?>">
                                 <?php
                                 $classTmp = 'owl-carousel';
                                 if(!isset($tab['productCount']) && !isset($tab['productCount'])){
                                     $classTmp = 'owl-carousel';
                                 } ?>
-                                <div class="<?php echo $classTmp ?> product-items">
+                                <div class="<?= $classTmp ?> product-items">
                                     <?php
                                     if(isset($tab['productCount']) && $tab['productCount']>0){
                                         $collection = $tab['productCollection'];
@@ -197,10 +197,10 @@ $data = $this->getData();
                                         'Ves_BaseWidget/js/jquery/jquery.serialScroll'
 
                                     ], function ($) {
-                                        var ajaxUrl = "<?php echo $this->getAjaxUrl() ?>";
-                                        var width = $('#<?php echo $tabId; ?>').width();
-                                        $('#<?php echo $tabId; ?>').find('.owl-carousel').css({'width':width+'px'});
-                                        easyTabInit("<?php echo '#easytab-'.$blockId ?>").bind("easytabs:before",function(e, $clicked, $targetPanel, settings) {
+                                        var ajaxUrl = "<?= $this->getAjaxUrl() ?>";
+                                        var width = $('#<?= $tabId; ?>').width();
+                                        $('#<?= $tabId; ?>').find('.owl-carousel').css({'width':width+'px'});
+                                        easyTabInit("<?= '#easytab-'.$blockId ?>").bind("easytabs:before",function(e, $clicked, $targetPanel, settings) {
                                             jQuery($targetPanel.selector).addClass("paneltab");
                                             equalHeight($targetPanel.selector);
                                         }).bind("easytabs:after",function(e, $clicked, $targetPanel, settings) {
@@ -212,15 +212,15 @@ $data = $this->getData();
                                         unset($widgetData['tabs']);
                                         ?>
                                         <?php foreach ($tabs as $_tab) { ?>
-                                            owlCarouselInit("<?php echo '#'.$ajaxBlockId ?>", "<?php echo '#'.$_tab['id'].' .owl-carousel' ?>", "");
+                                            owlCarouselInit("<?= '#'.$ajaxBlockId ?>", "<?= '#'.$_tab['id'].' .owl-carousel' ?>", "");
                                             <?php } ?>
-                                            jQuery("#<?php echo $tab['id'] ?> .ves-serialscroll").each(function() {
+                                            jQuery("#<?= $tab['id'] ?> .ves-serialscroll").each(function() {
                                                 var currentProduct = jQuery(this).data("rel");
                                                 try {
                                                     jQuery('.mycarousel_' + currentProduct).serialScroll({
                                                         items: 'li',
-                                                        prev: '#<?php echo $tab['id'] ?> .view_scroll_left_' + currentProduct,
-                                                        next: '#<?php echo $tab['id'] ?> .view_scroll_right_' + currentProduct,
+                                                        prev: '#<?= $tab['id'] ?> .view_scroll_left_' + currentProduct,
+                                                        next: '#<?= $tab['id'] ?> .view_scroll_right_' + currentProduct,
                                                         axis: 'y',
                                                         offset: 0,
                                                         start: 0,
@@ -238,7 +238,7 @@ $data = $this->getData();
                                                     console.log("\n" + err);
                                                 }
                                             });
-                                            jQuery("#<?php echo $tab['id'] ?> img").click(function(){
+                                            jQuery("#<?= $tab['id'] ?> img").click(function(){
                                                 var parent = $(this).parents('ul');
                                                 parent.find('li').removeClass('active');
                                                 $(this).parents('li').addClass('active');

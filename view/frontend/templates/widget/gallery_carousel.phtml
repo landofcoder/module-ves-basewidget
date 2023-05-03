@@ -41,31 +41,31 @@ $show_info = $this->getConfig("show_info", 0);
 
 $all_helper = $this->helper("Ves\All\Helper\Data");
 ?>
-<div class="ves-widget widget-gallery-list block owlcarousel <?php echo $addition_cls; ?> <?php echo isset($stylecls)&&$stylecls?'block-'.$stylecls:'';?>">
+<div class="ves-widget widget-gallery-list block owlcarousel <?= $addition_cls; ?> <?= isset($stylecls)&&$stylecls?'block-'.$stylecls:'';?>">
     <?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
         <div class="block-title">
-            <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-gallery-carousel<?php echo $moduleId; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-            <h2><span><?php echo $widget_heading; ?></span></h2>
+            <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-gallery-carousel<?= $moduleId; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+            <h2><span><?= $widget_heading; ?></span></h2>
         </div>
     <?php endif; ?>
-    <div id="widget-gallery-carousel<?php echo $moduleId; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
-        <div id="owlcarousel<?php echo $moduleId;?>" class="owl-carousel">
+    <div id="widget-gallery-carousel<?= $moduleId; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse in <?php endif; ?>">
+        <div id="owlcarousel<?= $moduleId;?>" class="owl-carousel">
         <?php foreach( $images as $key => $image) :   ?>
-            <div class="item <?php if($key==0) {?>first<?php } elseif($key == (count($images) -1 )) {?>last<?php } ?>">            
-                <a class="group-file<?php echo $moduleId; ?> fancybox" href="<?php echo $image['imageURL'];?>" title="<?php echo $image['title'];?>" rel="group-gallery-<?php echo $moduleId; ?>">
-                    <img src="<?php echo $image['thumbnailURL'];?>" alt="<?php echo $image['title'];?>"/>
+            <div class="item <?php if($key==0) {?>first<?php } elseif($key == (count($images) -1 )) {?>last<?php } ?>">
+                <a class="group-file<?= $moduleId; ?> fancybox" href="<?= $image['imageURL'];?>" title="<?= $image['title'];?>" rel="group-gallery-<?= $moduleId; ?>">
+                    <img src="<?= $image['thumbnailURL'];?>" alt="<?= $image['title'];?>"/>
                 </a>
                 <?php if($show_info && ($image['link'] || $image['title'] || $image['description'])): ?>
                     <div class="desc-gallery">
                         <div class="gallery-title">
                             <?php if($image['link']): ?>
-                                <a href="<?php echo $image['link']; ?>"><?php echo $image['title'];?></a>
+                                <a href="<?= $image['link']; ?>"><?= $image['title'];?></a>
                             <?php else: ?>
-                                <?php echo $image['title'];?>
+                                <?= $image['title'];?>
                             <?php endif; ?>
                         </div>
                         <?php if($image['description']): ?>
-                        <div class="gallery-description"><?php echo $image['description'];?></div>
+                        <div class="gallery-description"><?= $image['description'];?></div>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -75,7 +75,7 @@ $all_helper = $this->helper("Ves\All\Helper\Data");
         </div>
     </div>
 </div>
-<div id="lookbook-products<?php echo $moduleId; ?>" style="display: none;">
+<div id="lookbook-products<?= $moduleId; ?>" style="display: none;">
 <?php foreach ($images as $i => $image): ?>
     <?php if(isset($image['products']) && $image['products'] && count($image['products']) > 0): ?>
         <div class="owlcarousel">
@@ -85,17 +85,17 @@ $all_helper = $this->helper("Ves\All\Helper\Data");
                  <div class="item product-mini-item">
                     <div class="product-mini-info">
                         <div class="product-mini-image">
-                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $block->escapeHtml($_product->getName()) ?>" class="product-image img">
-                                <img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($image_width,$image_height); ?>" width="<?php echo $image_width; ?>" height="<?php echo $image_height; ?>" alt="<?php echo $block->escapeHtml($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                            <a href="<?= $_product->getProductUrl() ?>" title="<?= $block->escapeHtml($_product->getName()) ?>" class="product-image img">
+                                <img class="img-responsive" src="<?= $this->helper('catalog/image')->init($_product, 'small_image')->resize($image_width,$image_height); ?>" width="<?= $image_width; ?>" height="<?= $image_height; ?>" alt="<?= $block->escapeHtml($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                             </a>
                         </div>
                         <div class="product-mini-info">
-                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $block->escapeHtml($_product->getName()) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a>
+                            <a href="<?= $_product->getProductUrl() ?>" title="<?= $block->escapeHtml($_product->getName()) ?>"><?= $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a>
 
-                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                            <?= $this->getReviewsSummaryHtml($_product, 'short') ?>
 
                             <div class="price" >
-                                <?php echo $this->getPriceHtml($_product, true, $price_prefix) ?>
+                                <?= $this->getPriceHtml($_product, true, $price_prefix) ?>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ require(['jquery'],function($){
         ,"Ves_All/lib/bootstrap/js/bootstrap.min"
         <?php endif; ?>
         ],function($){
-            
+
         });
     });
 });
@@ -133,50 +133,50 @@ require(['jquery'],function($){
                     ,"Ves_All/lib/owl.carousel/owl.carousel"
                     <?php endif; ?>
                     ],function($){
-                        var widgetowlcarousel = jQuery('#owlcarousel<?php echo $moduleId;?>');
+                        var widgetowlcarousel = jQuery('#owlcarousel<?= $moduleId;?>');
                             widgetowlcarousel.owlCarousel({
-                                autoplay: <?php echo $auto_play_mode?'true':'false';?>,
-                                autoplaySpeed: <?php echo $interval?(int)$interval:'500';?>,
+                                autoplay: <?= $auto_play_mode?'true':'false';?>,
+                                autoplaySpeed: <?= $interval?(int)$interval:'500';?>,
                                 autoplayHoverPause: true,
-                                nav: <?php echo $nav?'true':'false';?>,
-                                navText: ["<span class='<?php echo $nav_pre_icon; ?>'><?php echo $nav_pre; ?></span>","<span class='<?php echo $nav_next_icon; ?>'><?php echo $nav_next; ?></span>"],
-                                slideBy: <?php echo (int)$slideby;?>,
-                                loop: <?php echo $loop?'true':'false';?>,
+                                nav: <?= $nav?'true':'false';?>,
+                                navText: ["<span class='<?= $nav_pre_icon; ?>'><?= $nav_pre; ?></span>","<span class='<?= $nav_next_icon; ?>'><?= $nav_next; ?></span>"],
+                                slideBy: <?= (int)$slideby;?>,
+                                loop: <?= $loop?'true':'false';?>,
                                 margin: 0,
-                                dots: <?php echo $dots?'true':'false';?>,
-                                rtl: <?php echo $rtl?'true':'false';?>,
+                                dots: <?= $dots?'true':'false';?>,
+                                rtl: <?= $rtl?'true':'false';?>,
                                 mouseDrag: true,
                                 touchDrag: true,
                                 autoWidth: false,
-                                items: <?php echo $default_items?(int)$default_items:4; ?>,
+                                items: <?= $default_items?(int)$default_items:4; ?>,
                                 <?php if($mobile_items || $tablet_small_items || $tablet_items || $portrait_items || $large_items): ?>
                                 responsive: {
                                       <?php if($mobile_items): ?>
                                       0: {
-                                            items: <?php echo $mobile_items?(int)$mobile_items:1; ?>
+                                            items: <?= $mobile_items?(int)$mobile_items:1; ?>
                                       },
                                       <?php endif; ?>
                                       <?php if($tablet_small_items): ?>
                                       600: {
-                                            items: <?php echo $tablet_small_items?(int)$tablet_small_items:2; ?>
+                                            items: <?= $tablet_small_items?(int)$tablet_small_items:2; ?>
                                       },
                                       <?php endif; ?>
                                       <?php if($tablet_items): ?>
                                       767: {
-                                            items: <?php echo $tablet_items?(int)$tablet_items:2; ?>
+                                            items: <?= $tablet_items?(int)$tablet_items:2; ?>
                                       },
                                       <?php endif; ?>
                                       <?php if($portrait_items): ?>
                                       1000: {
-                                            items: <?php echo $portrait_items?(int)$portrait_items:3; ?>
+                                            items: <?= $portrait_items?(int)$portrait_items:3; ?>
                                       },
                                       <?php endif; ?>
                                       1200: {
-                                            items: <?php echo $default_items?(int)$default_items:4; ?>
+                                            items: <?= $default_items?(int)$default_items:4; ?>
                                       },
                                       <?php if($large_items): ?>
                                       1900: {
-                                            items: <?php echo $large_items?(int)$large_items:5; ?>
+                                            items: <?= $large_items?(int)$large_items:5; ?>
                                       }
                                       <?php endif; ?>
                                 }
@@ -193,16 +193,16 @@ require(['jquery'],function($){
 require(['jquery'],function($){
         $(document).ready(function(){
     <?php if($popup_plugin == "colorbox"): ?>
-        
+
         require([
         'jquery'
         <?php if($all_helper->getConfig("enable_colorbox")): ?>
         ,"Ves_All/lib/colorbox/jquery.colorbox.min"
         <?php endif; ?>
         ],function($){
-            $(".group-file<?php echo $moduleId; ?>").colorbox({rel:'group-gallery-<?php echo $moduleId?>', overlayClose: true, opacity: 0.5, slideshow:<?php echo $slideshow?'true':'false'; ?>, slideshowSpeed: <?php echo (int)$slideshowSpeed; ?>});
+            $(".group-file<?= $moduleId; ?>").colorbox({rel:'group-gallery-<?= $moduleId?>', overlayClose: true, opacity: 0.5, slideshow:<?= $slideshow?'true':'false'; ?>, slideshowSpeed: <?= (int)$slideshowSpeed; ?>});
         });
-        
+
      <?php else: ?>
         require([
         'jquery'
@@ -216,11 +216,11 @@ require(['jquery'],function($){
         ,"Ves_All/lib/owl.carousel/owl.carousel"
         <?php endif; ?>
         ],function($){
-            jQuery(".group-file<?php echo $moduleId; ?>").fancybox({
+            jQuery(".group-file<?= $moduleId; ?>").fancybox({
                 prevEffect      : 'none',
                 nextEffect      : 'none',
-                autoPlay        : <?php echo $slideshow?'true':'false'; ?>,
-                playSpeed       : <?php echo (int)$slideshowSpeed; ?>,
+                autoPlay        : <?= $slideshow?'true':'false'; ?>,
+                playSpeed       : <?= (int)$slideshowSpeed; ?>,
                 <?php if($use_custom_button): ?>
                 closeBtn        : false,
                 <?php endif; ?>
@@ -230,20 +230,20 @@ require(['jquery'],function($){
                     <?php endif; ?>
                     <?php if($enable_thumb): ?>
                     thumbs  : {
-                        width   : <?php echo (float)$popup_thumb_width; ?>,
-                        height  : <?php echo (float)$popup_thumb_height; ?>
+                        width   : <?= (float)$popup_thumb_width; ?>,
+                        height  : <?= (float)$popup_thumb_height; ?>
                     },
                     <?php endif; ?>
                     title   : { type : 'inside' }
                 },
                 afterShow: function() {
-                    var list_products = jQuery("#lookbook-products<?php echo $moduleId; ?> > div").eq(this.index).html();
-                    var customContent = "<div class='lookbook-products' style='display:none'><div class=\"lookbook-title\"><?php echo $block->escapeHtml('Lookbook'); ?></div>"+list_products+"</div>";
+                    var list_products = jQuery("#lookbook-products<?= $moduleId; ?> > div").eq(this.index).html();
+                    var customContent = "<div class='lookbook-products' style='display:none'><div class=\"lookbook-title\"><?= $block->escapeHtml('Lookbook'); ?></div>"+list_products+"</div>";
 
                     if(list_products) {
                         jQuery('.fancybox-overlay .fancybox-skin').first().append(customContent);
                         jQuery('.fancybox-overlay .lookbook-products').first().show();
-                        
+
                         var productsowlcarousel = jQuery('.lookbook-products .owl-products-carousel').first();
                             productsowlcarousel.owlCarousel({
                                 autoPlay: false,

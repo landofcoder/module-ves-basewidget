@@ -17,7 +17,7 @@ if(isset($description)) {
 }
 
 ?>
-<div id="map-canvas<?php echo $id; ?>" style="width:<?php echo $width; ?>; height:<?php echo $height; ?>;"></div>
+<div id="map-canvas<?= $id; ?>" style="width:<?= $width; ?>; height:<?= $height; ?>;"></div>
 <script type="text/javascript">
 	function loadScript(src,callback){
 	    var script = document.createElement("script");
@@ -27,8 +27,8 @@ if(isset($description)) {
 	    script.src = src;
 	}
 
-    loadScript('https://maps.googleapis.com/maps/api/js?key=<?php echo $google_api; ?>&v=3&callback=initialize',
-              function(){console.log('\n<?php echo __("ves_base_widget_googlemap: google-loader has been loaded, but not the maps-API.");?>');});
+    loadScript('https://maps.googleapis.com/maps/api/js?key=<?= $google_api; ?>&v=3&callback=initialize',
+              function(){console.log('\n<?= __("ves_base_widget_googlemap: google-loader has been loaded, but not the maps-API.");?>');});
 
 </script>
 <script type="text/javascript">
@@ -36,24 +36,24 @@ if(isset($description)) {
     function initialize() {
 		try{
 			if(typeof(google) != "undefined"){
-				var myLatlng = new google.maps.LatLng( <?php echo (float)$latitude; ?>, <?php echo (float)$longitude; ?> );
+				var myLatlng = new google.maps.LatLng( <?= (float)$latitude; ?>, <?= (float)$longitude; ?> );
 				var mapOptions = {
-					zoom: <?php echo $zoom?(int)$zoom:8; ?>,
+					zoom: <?= $zoom?(int)$zoom:8; ?>,
 					center: myLatlng,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
 
-				map = new google.maps.Map(document.getElementById('map-canvas<?php echo $id; ?>'), mapOptions);
+				map = new google.maps.Map(document.getElementById('map-canvas<?= $id; ?>'), mapOptions);
 				var marker = new google.maps.Marker({
 				            position: myLatlng,
 				            map: map,
 				            <?php if($maker_icon): ?>
-				            icon: "<?php echo $maker_icon; ?>",
+				            icon: "<?= $maker_icon; ?>",
 				            <?php endif; ?>
 				            title: " "
 				           });
 				var infowindow = new google.maps.InfoWindow();
-			  	infowindow.setContent('<?php echo $description; ?>');
+			  	infowindow.setContent('<?= $description; ?>');
 			  	google.maps.event.addListener(marker, 'click', function() {
 			      infowindow.open(map, marker);
 			  	});

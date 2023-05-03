@@ -3,14 +3,14 @@ if ($select_type): ?>
 	<div class="ves-widget widget-pinterest block">
 		<?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
 		<div class="block-title">
-			<h2><span><?php echo $widget_heading; ?></span></h2>
+			<h2><span><?= $widget_heading; ?></span></h2>
 		</div>
 		<?php endif; ?>
 		<div class="widget-inner block-content">
 
-			<a data-pin-do="buttonPin" <?php echo $button_type.$color; ?> href="http://www.pinterest.com/pin/create/button/?url=<?php echo $url;?>&amp;media=<?php echo $media; ?>&amp;description=<?php echo $description; ?>"
-				class="pin-it-button" data-pin-count="<?php echo $select_type; ?>">
-			    <img src="//assets.pinterest.com/images/pidgets/<?php echo $color_image?$color_image:'pin_it_button.png';?>" alt="<?php echo __('Pin It'); ?>" />
+			<a data-pin-do="buttonPin" <?= $button_type.$color; ?> href="http://www.pinterest.com/pin/create/button/?url=<?= $url;?>&amp;media=<?= $media; ?>&amp;description=<?= $description; ?>"
+				class="pin-it-button" data-pin-count="<?= $select_type; ?>">
+			    <img src="//assets.pinterest.com/images/pidgets/<?= $color_image?$color_image:'pin_it_button.png';?>" alt="<?= __('Pin It'); ?>" />
 			</a>
 		</div>
 	</div>

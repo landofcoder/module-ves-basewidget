@@ -1,24 +1,24 @@
 <?php
 $id = rand().time();
 if (isset($tabs)): ?>
-<div class="ves-widget widget-tab block <?php echo $addition_cls; ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
+<div class="ves-widget widget-tab block <?= $addition_cls; ?> <?php if (isset($stylecls)&&$stylecls) echo 'block-'.$stylecls;?>">
 	<?php if (isset($widget_heading)&&!empty($widget_heading)): ?>
 	<div class="block-title">
-		<h2><span><?php echo $widget_heading; ?></span></h2>
+		<h2><span><?= $widget_heading; ?></span></h2>
 	</div>
 	<?php endif; ?>
-	<div class="widget-inner block-content">	
-		<div id="widget-tabs<?php echo $id;?>" class="panel-group">
-		
-			<ul class="nav nav-tabs" id="widget-tab-label<?php echo $id;?>">
+	<div class="widget-inner block-content">
+		<div id="widget-tabs<?= $id;?>" class="panel-group">
+
+			<ul class="nav nav-tabs" id="widget-tab-label<?= $id;?>">
 			  <?php foreach ($tabs as $key => $ac): ?>
-			  <li class=""><a href="#tab<?php echo $id.$key;?>" ><?php echo $ac['header'];?></a></li>
+			  <li class=""><a href="#tab<?= $id.$key;?>" ><?= $ac['header'];?></a></li>
 			  <?php endforeach; ?>
 			</ul>
 
 			<div class="tab-content">
 			 	<?php foreach ($tabs as $key => $ac): ?>
-				  <div class="tab-pane" id="tab<?php echo $id.$key;?>" style="visibility:visible"><?php echo $ac['content'];?></div>
+				  <div class="tab-pane" id="tab<?= $id.$key;?>" style="visibility:visible"><?= $ac['content'];?></div>
 			 	<?php endforeach; ?>
 	 		</div>
 
@@ -33,11 +33,11 @@ require(['jquery'],function($){
 		,"Ves_All/lib/bootstrap/js/bootstrap.min"
 		<?php endif; ?>
 		],function($){
-			$('#widget-tab-label<?php echo $id; ?> a').click(function (e) {
+			$('#widget-tab-label<?= $id; ?> a').click(function (e) {
 				e.preventDefault();
 				$(this).tab('show');
 			})
-			$('#widget-tab-label<?php echo $id; ?> a:first').tab('show'); 
+			$('#widget-tab-label<?= $id; ?> a:first').tab('show');
 		});
 	});
 });

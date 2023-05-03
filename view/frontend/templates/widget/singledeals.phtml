@@ -5,23 +5,21 @@ $productlist_data = $this->helper('Ves\BaseWidget\Helper\Productlist');
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_imgHelper = $this->helper('Ves\BaseWidget\Helper\Image');
 $_product = $this->getProduct();
-if($_product){
+if($_product) :
 $addition_cls = $this->getData('addition_cls');
 $title = $this->getData('title');
 $background_color = $this->getData('background_color');
 $color = '';
-
 $style = '';
 
-
-if($background_color != ''){
+if($background_color != '') {
 	$style .= 'background-color:'.$background_color.';';
 }
 
 /** THUMBNAIL **/
 $imagesize = $this->getData('image_size');
 $image_file = $this->getData('file');
-$array_size = explode("x", $imagesize);
+$array_size = $imagesize ? @explode("x", $imagesize) : [];
 $image_width = isset($array_size[0])?(int)$array_size[0]:0;
 $image_width = $image_width?$image_width: 0;
 $image_height = isset($array_size[1])?(int)$array_size[1]:0;
@@ -49,7 +47,9 @@ if( $image_file != '' ){
     $style .= 'background-position-y: '.$position_y.';';
     $style .= 'float: right;width: 100%;';
 }
-if($style!='') $style = 'style="' . $style . '"';
+if($style!='') {
+    $style = 'style="' . $style . '"';
+}
 $id = rand().time();
 $productId = $id.$_product->getId();
 
@@ -83,33 +83,33 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
 }
 ?>
 
-<div class="ves-widget widget-singedeals block <?php echo $addition_cls; ?> " <?php echo $style; ?>>
-	<?php if( $title != '' ){ ?>
+<div class="ves-widget widget-singedeals block <?= $addition_cls; ?> " <?= $style; ?>>
+	<?php if( $title != '' ) : ?>
 	<div class="block-title">
-		<strong><span><?php echo $title; ?></span></strong>
+		<strong><span><?= $title; ?></span></strong>
 	</div>
-	<?php } ?>
+	<?php endif; ?>
 	<div class="widget-inner block-content single-deals">
 
 		<?php if($_product != ''){ ?>
-        <?php if(!$image_file) { ?>
+        <?php if(!$image_file) : ?>
         <?php
             $_image = $_imgHelper->getImg($_product, (int)$image_width, (int)$image_height, 'category_page_grid');
         ?>
-        <?php if($_image){ ?>
+        <?php if($_image) : ?>
         <div class="image col-lg-6 col-md-6 col-sm-4 col-xs-12">
 
-            <a href="<?php echo $block->getSingleLink($_product) ?>" title="<?php echo $_image->getLabel() ?>" class="product-image img">
+            <a href="<?= $block->getSingleLink($_product) ?>" title="<?= $_image->getLabel() ?>" class="product-image img">
 
-                <img class="img-responsive" src="<?php echo $_image->getUrl(); ?>" alt="<?php echo $_image->getLabel() ?>" />
+                <img class="img-responsive" src="<?= $_image->getUrl(); ?>" alt="<?= $_image->getLabel() ?>" />
             </a>
         </div>
-        <?php } ?>
-        <?php } ?>
+        <?php endif; ?>
+        <?php endif; ?>
         <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 pull-right deal-product">
             <div class="product-shop product-block">
                 <div class="f-fix">
-                    <h3 class="deal-product-name"><a href="<?php echo $block->getSingleLink($_product); ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>)"><?php echo $this->helper('\Magento\Catalog\Helper\Output')->productAttribute($_product, $_product->getName() , 'name') ?></a></h3>
+                    <h3 class="deal-product-name"><a href="<?= $block->getSingleLink($_product); ?>" title="<?= $this->stripTags($_product->getName(), null, true) ?>)"><?= $this->helper('\Magento\Catalog\Helper\Output')->productAttribute($_product, $_product->getName() , 'name') ?></a></h3>
 
                     <?php // Sale Icon, New Icon Block ?>
                     <?php
@@ -127,7 +127,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                             if ($specialprice) {
                                 if($today >= @strtotime( $specialPriceFromDate) && $today <= @strtotime($specialPriceToDate) || $today >= @strtotime( $specialPriceFromDate) && is_null($specialPriceToDate)) {
                                     ?>
-                                    <span class="onsale"><span><?php echo __("Sale");?></span></span>
+                                    <span class="onsale"><span><?= __("Sale");?></span></span>
                                     <?php
                                 }
                             }
@@ -135,7 +135,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                         if($show_new_label) {
                             $is_new = $this->checkProductIsNew( $_product );
                             if($is_new) { ?>
-                            <span class="new-icon"><span><?php echo __("New");?></span></span>
+                            <span class="new-icon"><span><?= __("New");?></span></span>
                             <?php
                         }
                     }
@@ -143,13 +143,13 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                 </div>
                 <?php } ?>
 
-                <?php if ($this->getData('show_review')){ ?>
-                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                <?php } ?>
+                <?php if ($this->getData('show_review')) : ?>
+                <?= $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php endif; ?>
                 <?php
-                if($this->getData('show_price')){
+                if($this->getData('show_price')) :
                     echo $block->getProductPrice($_product, '-widget-singedeals'.$id);
-                }
+                endif;
                 ?>
 
                 <?php // Countdown Timer Block ?>
@@ -163,25 +163,25 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                     ?>
                     <div class="countdown-timmer productdeals">
                         <div class="item-detail">
-                            <div class="timer-explain">(<?php echo date('m/d/Y', @strtotime($_product->getSpecialToDate())); ?>)</div>
+                            <div class="timer-explain">(<?= date('m/d/Y', @strtotime($_product->getSpecialToDate())); ?>)</div>
                         </div>
-                        <div id="item-countdown-<?php echo $productId ?>" class="item-countdown"></div>
+                        <div id="item-countdown-<?= $productId ?>" class="item-countdown"></div>
                         <script type="text/javascript">
                             require(['jquery'],function($){
                             $(document).ready(function(){
                                 require(['jquery',
-                                        <?php if($productlist_data->isModuleEnabled('Ves_Productlist')){ ?>
+                                        <?php if($productlist_data->isModuleEnabled('Ves_Productlist')) : ?>
                                         'Ves_Productlist/js/countdown'
-                                        <?php } else { ?>
+                                        <?php else: ?>
                                         'Ves_BaseWidget/js/countdown'
-                                        <?php } ?>
+                                        <?php endif; ?>
                                         ],function () {
                                         jQuery(document).ready(function(){
-                                            jQuery("#item-countdown-<?php echo $productId ?>").lofCountDown({
+                                            jQuery("#item-countdown-<?= $productId ?>").lofCountDown({
                                                 formatStyle:2,
-                                                TargetDate:"<?php echo $targetDate; ?>",
-                                                DisplayFormat:"<ul><li>%%D%% <div><?php echo __('Day');?></div></li><li> %%H%% <div><?php echo __('Hours');?></div></li><li> %%M%% <div><?php echo __('Mins');?></div></li><li> %%S%% <div><?php echo __('Secs');?></div></li></ul>",
-                                                FinishMessage:"<?php echo __('Expired');?>",
+                                                TargetDate:"<?= $targetDate; ?>",
+                                                DisplayFormat:"<ul><li>%%D%% <div><?= __('Day');?></div></li><li> %%H%% <div><?= __('Hours');?></div></li><li> %%M%% <div><?= __('Mins');?></div></li><li> %%S%% <div><?= __('Secs');?></div></li></ul>",
+                                                FinishMessage:"<?= __('Expired');?>",
                                             });
                                         });
 
@@ -193,12 +193,12 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                     <?php } ?>
                     <?php // End Countdown Timer Block ?>
                     <?php $shortDescription = $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description'); ?>
-                    <?php if ($this->getData('show_short_description') && $_product->getShortDescription() && $shortDescription!=''):?>
+                    <?php if ($this->getData('show_short_description') && $_product->getShortDescription() && $shortDescription!=''): ?>
                         <div class="short-description">
                             <?php $maxChar = $this->getData('short_max_char');
                             if(!is_numeric($maxChar)) $maxChar = 100;
                             ?>
-                            <div class="std"><?php echo $this->subString($shortDescription, $maxChar); ?></div>
+                            <div class="std"><?= $this->subString($shortDescription, $maxChar); ?></div>
                         </div>
                     <?php endif;?>
                     <div class="product-item product actions product-item-actions">
@@ -207,17 +207,17 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                             <div class="actions-primary">
                                 <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
                                     <button class="action tocart primary"
-                                    data-mage-init='{"redirectUrl":{"url":"<?php echo $block->getAddToCartUrl($_product) ?>"}}'
-                                    type="button" title="<?php echo __('Add to Cart') ?>">
-                                    <span><?php echo __('Add to Cart') ?></span>
+                                    data-mage-init='{"redirectUrl":{"url":"<?= $block->getAddToCartUrl($_product) ?>"}}'
+                                    type="button" title="<?= __('Add to Cart') ?>">
+                                    <span><?= __('Add to Cart') ?></span>
                                     </button>
                                 <?php else: ?>
                                      <?php
                                         if($ves && $data) {
                                             $data_post = 'data-fancybox-href="'.$data->getAddToCartUrl($_product).'"';
                                             ?>
-                                            <button class="action tocart primary add-to-cart vesthemesettings-fancybox" type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" <?php echo $data_post; ?> data-fancybox-type="iframe" data-fancybox-width="<?php echo $addtocart_popup_width ?>" data-fancybox-height="<?php echo $addtocart_popup_height ?>">
-                                            <?php echo $addToCartHtml ?>
+                                            <button class="action tocart primary add-to-cart vesthemesettings-fancybox" type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" <?= $data_post; ?> data-fancybox-type="iframe" data-fancybox-width="<?= $addtocart_popup_width ?>" data-fancybox-height="<?= $addtocart_popup_height ?>">
+                                            <?= $addToCartHtml ?>
                                             </button>
                                             <?php
                                         } else {
@@ -225,9 +225,9 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                                             $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_product), ['product' => $_product->getEntityId()])
                                             ?>
                                             <button class="action tocart primary"
-                                            data-post='<?php echo $postData; ?>'
-                                            type="button" title="<?php echo __('Add to Cart') ?>">
-                                            <span><?php echo __('Add to Cart') ?></span>
+                                            data-post='<?= $postData; ?>'
+                                            type="button" title="<?= __('Add to Cart') ?>">
+                                            <span><?= __('Add to Cart') ?></span>
                                             </button>
                                             <?php
                                         }
@@ -237,9 +237,9 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                     <?php else: ?>
                         <div class="actions-primary">
                         <?php if ($_product->getIsSalable()): ?>
-                            <div class="stock available"><span><?php echo __('In stock') ?></span></div>
+                            <div class="stock available"><span><?= __('In stock') ?></span></div>
                         <?php else: ?>
-                            <div class="stock unavailable"><span><?php echo __('Out of stock') ?></span></div>
+                            <div class="stock unavailable"><span><?= __('Out of stock') ?></span></div>
                         <?php endif; ?>
                         </div>
                     <?php endif; ?>
@@ -248,7 +248,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
              <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
                 <?php if ($this->getData('show_wishlist') && $this->helper('\Magento\Wishlist\Helper\Data')->isAllow()) : ?>
                     <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
-                                <?php echo $wishlistHtml ?>
+                                <?= $wishlistHtml ?>
                     </a>
                 <?php endif; ?>
                 <?php if($this->getData('show_compare') && ($_compareUrl=$this->getAddToCompareUrl($_product))): ?>
@@ -259,7 +259,7 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
                     data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
                     data-role="add-to-links"
                     title="<?php /* @escapeNotVerified */ echo __('Add to Compare'); ?>">
-                    <?php echo $compareHtml ?>
+                    <?= $compareHtml ?>
                     </a>
                 <?php endif; ?>
             </div>
@@ -271,4 +271,4 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
 <?php } ?>
 </div>
 </div>
-<?php } ?>
+<?php endif; ?>

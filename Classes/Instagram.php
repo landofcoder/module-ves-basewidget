@@ -384,7 +384,7 @@ class Instagram {
       if (!isset($obj->pagination->next_url)) {
         return;
       }
-      $apiCall = explode('?', $obj->pagination->next_url);
+      $apiCall = $obj->pagination->next_url ? @explode('?', $obj->pagination->next_url) : [];
       if (count($apiCall) < 2) {
         return;
       }
@@ -577,7 +577,7 @@ class Instagram {
   public function getApiSecret() {
     return $this->_apisecret;
   }
-  
+
   /**
    * API Callback URL Setter
    *

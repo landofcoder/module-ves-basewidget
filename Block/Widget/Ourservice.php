@@ -90,7 +90,7 @@ class Ourservice extends AbstractWidget{
 		$image_file = $this->getConfig('file');
 
 		$imagesize = $this->getConfig('imagesize');
-		$array_size = explode("x", $imagesize);
+		$array_size = $imagesize ? @explode("x", $imagesize) : [];
 		$image_width = isset($array_size[0])?(int)$array_size[0]:0;
 		$image_width = $image_width?$image_width: 0;
 		$image_height = isset($array_size[1])?(int)$array_size[1]:0;

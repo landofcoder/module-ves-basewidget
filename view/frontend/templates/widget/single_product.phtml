@@ -11,7 +11,7 @@ $title = $this->getConfig('title');
 /** THUMBNAIL **/
 $imagesize = $this->getConfig('image_size');
 
-$array_size = explode("x", $imagesize);
+$array_size = $imagesize ? @explode("x", $imagesize) : [];
 $image_width = isset($array_size[0])?(int)$array_size[0]:0;
 $image_width = $image_width?$image_width: 300;
 $image_height = isset($array_size[1])?(int)$array_size[1]:0;
@@ -142,15 +142,15 @@ if($helper->checkModuleInstalled('Ves_Themesettings')) {
 $id = rand().time();
 ?>
 <?php if($enable_wrapper):  //If enable wrapper for block ?>
-<div class="ves-widget widget-singleproduct block <?php echo $addition_cls; ?>">
+<div class="ves-widget widget-singleproduct block <?= $addition_cls; ?>">
     <?php if( $title != '' ){ ?>
     <div class="block-title">
-        <?php echo $title; ?>
+        <?= $title; ?>
     </div>
     <?php } ?>
     <div class="widget-inner block-content product-block product-item">
 <?php else: ?>
-    <div class="product-block <?php echo $addition_cls; ?> product-item">
+    <div class="product-block <?= $addition_cls; ?> product-item">
 <?php endif; ?>
     <?php
         $productId = time().rand().$_product->getId();
@@ -178,7 +178,7 @@ $id = rand().time();
                             <?php if ($percentage) { ?>
                                 <span class='discount-price'>
                                     <span class='discount-label'>-</span>
-                                    <span class='discount-value onsale'><?php echo $percentage;?>%</span>
+                                    <span class='discount-value onsale'><?= $percentage;?>%</span>
                                 </span>
                                 <?php } ?>
                             </span>
@@ -192,7 +192,7 @@ $id = rand().time();
             if($show_new_label) {
                 $is_new = $this->checkProductIsNew( $_product );
                 if($is_new) { ?>
-                    <span class="product-label-icon new-icon"><span><?php echo __("New");?></span></span>
+                    <span class="product-label-icon new-icon"><span><?= __("New");?></span></span>
                     <?php
                 }
             }
@@ -207,8 +207,8 @@ $id = rand().time();
         $_image = $_imgHelper->getImg($_product, $image_width, $image_height, 'category_page_grid');
         ?>
         <?php if($_image){ ?>
-        <a href="<?php echo $block->getSingleLink($_product) ?>" title="<?php echo $_image->getLabel() ?>" class="product-item-photo">
-            <img src="<?php echo $_image->getUrl(); ?>" alt="<?php echo $_image->getLabel() ?>" />
+        <a href="<?= $block->getSingleLink($_product) ?>" title="<?= $_image->getLabel() ?>" class="product-item-photo">
+            <img src="<?= $_image->getUrl(); ?>" alt="<?= $_image->getLabel() ?>" />
         </a>
         <?php } ?>
         <?php if($enable_swap){ ?>
@@ -216,8 +216,8 @@ $id = rand().time();
         $_altImg = $_imgHelper->getAltImgHtml($_product, $image_width, $image_height, 'category_page_grid', $alt_image_column, $alt_image_column_value);
         ?>
         <?php if($_altImg){ ?>
-        <a href="<?php echo $block->getSingleLink($_product) ?>" class="hover-image" title="<?php echo $_altImg->getLabel() ?>" class="hover-image">
-            <img src="<?php echo $_altImg->getUrl(); ?>" alt="<?php echo $_altImg->getLabel() ?>" />
+        <a href="<?= $block->getSingleLink($_product) ?>" class="hover-image" title="<?= $_altImg->getLabel() ?>" class="hover-image">
+            <img src="<?= $_altImg->getUrl(); ?>" alt="<?= $_altImg->getLabel() ?>" />
         </a>
         <?php } ?>
         <?php } ?>
@@ -230,11 +230,11 @@ $id = rand().time();
             $is_countdown = true;
         } ?>
         <?php //================ Start Show product details ============ ?>
-        <div class="product details product-item-details <?php echo $is_countdown?'productdeals':''; ?>">
+        <div class="product details product-item-details <?= $is_countdown?'productdeals':''; ?>">
             <?php $_itemNameStripped = $block->stripTags($_product->getName(), null, true); ?>
             <?php if($show_name){ ?>
-            <strong class="product name product-item-name"><a class="product-item-link" title="<?php echo $block->escapeHtml($_product->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getSingleLink($_product) ?>">
-                <?php echo $block->escapeHtml($_product->getName()) ?></a>
+            <strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtml($_product->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getSingleLink($_product) ?>">
+                <?= $block->escapeHtml($_product->getName()) ?></a>
             </strong>
             <?php } ?>
             <?php // Countdown Timer Block ?>
@@ -248,18 +248,18 @@ $id = rand().time();
                 ?>
                 <div class="countdown-timmer">
                     <div class="item-detail">
-                        <div class="timer-explain">(<?php echo date('m/d/Y', @strtotime($_product->getSpecialToDate())); ?>)</div>
+                        <div class="timer-explain">(<?= date('m/d/Y', @strtotime($_product->getSpecialToDate())); ?>)</div>
                     </div>
-                    <div id="item-countdown-<?php echo $productId ?>" class="item-countdown"></div>
+                    <div id="item-countdown-<?= $productId ?>" class="item-countdown"></div>
                     <script type="text/javascript">
                         require(['jquery'],function($){
                             $(document).ready(function(){
                                 require(['jquery','Ves_BaseWidget/js/countdown'],function () {
-                                    jQuery("#item-countdown-<?php echo $productId ?>").lofCountDown({
+                                    jQuery("#item-countdown-<?= $productId ?>").lofCountDown({
                                         formatStyle:2,
-                                        TargetDate:"<?php echo $targetDate; ?>",
-                                        DisplayFormat:"<ul><li>%%D%% <div><?php echo __('Day');?></div></li><li> %%H%% <div><?php echo __('Hours');?></div></li><li> %%M%% <div><?php echo __('Mins');?></div></li><li> %%S%% <div><?php echo __('Secs');?></div></li></ul>",
-                                        FinishMessage:"<?php echo __('Expired');?>"
+                                        TargetDate:"<?= $targetDate; ?>",
+                                        DisplayFormat:"<ul><li>%%D%% <div><?= __('Day');?></div></li><li> %%H%% <div><?= __('Hours');?></div></li><li> %%M%% <div><?= __('Mins');?></div></li><li> %%S%% <div><?= __('Secs');?></div></li></ul>",
+                                        FinishMessage:"<?= __('Expired');?>"
                                     });
                                 });
                             });
@@ -276,10 +276,10 @@ $id = rand().time();
 
             <?php /* Review */ ?>
             <?php if ($show_review): ?>
-               <?php echo $block->getReviewsSummaryHtml($_product, $templateType, true) ?>
+               <?= $block->getReviewsSummaryHtml($_product, $templateType, true) ?>
             <?php endif; ?>
 
-            <?php echo $block->getProductDetailsHtml($_product); ?>
+            <?= $block->getProductDetailsHtml($_product); ?>
 
             <?php
             //Generate color swatches
@@ -293,8 +293,8 @@ $id = rand().time();
                 $_image = $_imgHelper->getImg($_product, (int)$quickview_popup_width, (int)$quickview_popup_height, 'category_page_grid');
                 if($_image->getUrl()){
                     ?>
-                    <a href="javascript:void(0)" id="vesthemesettings-fancybox-<?php echo $productId ?>" title="<?php echo $_product->getName(); ?>" data-fancybox-href="<?php echo $data->getAddToCartUrl($_product) ?>" data-fancybox-type="iframe" onclick="return false;" data-fancybox-height="<?php echo $quickview_popup_height ?>" data-fancybox-width="<?php echo $quickview_popup_width ?>" class="quick-view vesthemesettings-fancybox" >
-                        <?php echo $quickviewtHtml; ?>
+                    <a href="javascript:void(0)" id="vesthemesettings-fancybox-<?= $productId ?>" title="<?= $_product->getName(); ?>" data-fancybox-href="<?= $data->getAddToCartUrl($_product) ?>" data-fancybox-type="iframe" onclick="return false;" data-fancybox-height="<?= $quickview_popup_height ?>" data-fancybox-width="<?= $quickview_popup_width ?>" class="quick-view vesthemesettings-fancybox" >
+                        <?= $quickviewtHtml; ?>
                     </a>
                     <?php } ?>
             <?php } ?>
@@ -318,8 +318,8 @@ $id = rand().time();
                                             $data_post = "data-post='$postData'";
                                         }
                                     ?>
-                                    <button class="action tocart primary add-to-cart vesthemesettings-fancybox" type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" <?php echo $data_post; ?> data-fancybox-type="iframe" data-fancybox-width="<?php echo $addtocart_popup_width ?>" data-fancybox-height="<?php echo $addtocart_popup_height ?>">
-                                        <?php echo $addToCartHtml    ?>
+                                    <button class="action tocart primary add-to-cart vesthemesettings-fancybox" type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>" <?= $data_post; ?> data-fancybox-type="iframe" data-fancybox-width="<?= $addtocart_popup_width ?>" data-fancybox-height="<?= $addtocart_popup_height ?>">
+                                        <?= $addToCartHtml    ?>
                                     </button>
                                 <?php else: ?>
                                     <?php
@@ -331,11 +331,11 @@ $id = rand().time();
                                         <input type="hidden" name="ves" value="1">
                                         <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
                                         <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
-                                        <?php echo $block->getBlockHtml('formkey')?>
+                                        <?= $block->getBlockHtml('formkey')?>
                                         <button type="submit"
-                                        title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+                                        title="<?= $block->escapeHtml(__('Add to Cart')); ?>"
                                         class="action add-to-cart primary">
-                                        <?php echo $addToCartHtml ?>
+                                        <?= $addToCartHtml ?>
                                     </button>
                                 </form>
                             <?php endif; ?>
@@ -353,7 +353,7 @@ $id = rand().time();
                     <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
                         <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $show_wishlist): ?>
                             <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
-                                <?php echo $wishlistHtml ?>
+                                <?= $wishlistHtml ?>
                             </a>
                         <?php endif; //End show wishlist ?>
                         <?php if ($block->getAddToCompareUrl() && $show_compare): ?>
@@ -364,7 +364,7 @@ $id = rand().time();
                             data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
                             data-role="add-to-links"
                             title="<?php /* @escapeNotVerified */ echo __('Add to Compare'); ?>">
-                            <?php echo $compareHtml ?>
+                            <?= $compareHtml ?>
                         </a>
                         <?php endif; //End show compare ?>
                 </div>
@@ -379,10 +379,10 @@ $id = rand().time();
             <div class="product-item-inner">
                 <div class="product-item-description">
                     <?php $short_description = $this->subString($shortDescription, $desc_maxchar, '...'); ?>
-                    <?php echo $short_description; ?>
+                    <?= $short_description; ?>
                     <?php if($show_learnmore && $short_description!=''){ ?>
-                    <a href="<?php echo $block->getSingleLink($_product) ?>" title="<?php echo $_itemNameStripped ?>" class="action more">
-                        <?php echo __('Learn More') ?></a>
+                    <a href="<?= $block->getSingleLink($_product) ?>" title="<?= $_itemNameStripped ?>" class="action more">
+                        <?= __('Learn More') ?></a>
                         <?php } ?>
                 </div>
             </div>

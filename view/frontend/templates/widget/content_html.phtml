@@ -26,20 +26,20 @@ if($text_aligment && $aligment != "auto") {
 $enable_collapse = $this->getConfig("enable_collapse", 0);
 $id = rand().time();
 ?>
-<div class="ves-widget widget-contenthtml block <?php echo $addition_cls; ?>" <?php echo $custom_css?'style="'.implode(";", $custom_css).'"':'';?>>
+<div class="ves-widget widget-contenthtml block <?= $addition_cls; ?>" <?= $custom_css?'style="'.implode(";", $custom_css).'"':'';?>>
     <?php if($widget_heading): ?>
     <div class="block-title">
-        <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-contenthtml<?php echo $id; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-        <h2><span><?php echo $widget_heading; ?></span></h2>
+        <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-contenthtml<?= $id; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+        <h2><span><?= $widget_heading; ?></span></h2>
     </div>
     <?php endif; ?>
     <?php if ($content): ?>
-        <div id="widget-contenthtml<?php echo $id; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enable-collapse collapse <?php endif; ?>"><?php echo $content; ?></div>
+        <div id="widget-contenthtml<?= $id; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enable-collapse collapse <?php endif; ?>"><?= $content; ?></div>
     <?php endif; ?>
     <?php if ($this->getConfig('enable_url')): ?>
         <?php $url = $this->getConfig('url') ?>
         <?php if ($url): ?>
-            <a href="<?php echo $this->getConfig('url'); ?>" class="<?php echo $this->getConfig('url_class'); ?>"><?php echo $this->getConfig('url_label'); ?></a>
+            <a href="<?= $this->getConfig('url'); ?>" class="<?= $this->getConfig('url_class'); ?>"><?= $this->getConfig('url_label'); ?></a>
         <?php endif; ?>
     <?php endif; ?>
 </div>

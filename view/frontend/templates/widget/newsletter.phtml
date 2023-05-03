@@ -31,12 +31,12 @@ $modid = rand().time();
 $enable_collapse = $this->getData("enable_collapse");
 $enable_collapse = $enable_collapse?(int)$enable_collapse:0;
 ?>
-<div class="ves-widget widget-newsletter newsletter block custom-subscribe <?php echo $addition_cls; ?>">
-    <div class="block-title <?php echo $this->getData("title_class"); ?>">
-        <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-newsletter<?php echo $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
-        <strong><span><?php echo (isset($widget_heading) && $widget_heading)?__($widget_heading): __('Newsletter') ?></span></strong>
+<div class="ves-widget widget-newsletter newsletter block custom-subscribe <?= $addition_cls; ?>">
+    <div class="block-title <?= $this->getData("title_class"); ?>">
+        <?php if($enable_collapse): ?><span class="opener hidden-lg hidden-md" data-toggle="collapse" data-target="#widget-newsletter<?= $modid; ?>"><i class="fa fa-angle-down"></i></span><?php endif; ?>
+        <strong><span><?= (isset($widget_heading) && $widget_heading)?__($widget_heading): __('Newsletter') ?></span></strong>
     </div>
-    <div id="widget-newsletter<?php echo $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse <?php endif; ?>">
+    <div id="widget-newsletter<?= $modid; ?>" class="widget-inner block-content <?php if($enable_collapse): ?> widget-enanle-collapse collapse <?php endif; ?>">
         <form class="form subscribe"
             novalidate
             action="<?php /* @escapeNotVerified */ echo $block->getFormActionUrl() ?>"
@@ -44,16 +44,16 @@ $enable_collapse = $enable_collapse?(int)$enable_collapse:0;
             data-mage-init='{"validation": {"errorClass": "mage-error"}}'
             id="newsletter-validate-detail">
             <div class="field newsletter">
-                <label class="label" for="newsletter"><span><?php echo (isset($signup_text) && $signup_text)?__($signup_text): __('Sign Up for Our Newsletter:') ?></span></label>
+                <label class="label" for="newsletter"><span><?= (isset($signup_text) && $signup_text)?__($signup_text): __('Sign Up for Our Newsletter:') ?></span></label>
                 <div class="control">
                     <input name="email" type="email" id="newsletter"
                                 placeholder="<?php /* @escapeNotVerified */ echo __('Enter your email address') ?>"
-                                data-validate="{required:true, 'validate-email':true}" class="<?php echo $this->getData("input_class"); ?>"/>
+                                data-validate="{required:true, 'validate-email':true}" class="<?= $this->getData("input_class"); ?>"/>
                 </div>
             </div>
             <div class="actions">
-                <button class="action subscribe <?php echo $this->getData("button_class"); ?>" title="<?php echo (isset($button_text) && $button_text)?__($button_text): __('Subscribe') ?>" type="submit">
-                    <span><?php echo (isset($button_text) && $button_text)?__($button_text): __('Sign up now !') ?></span>
+                <button class="action subscribe <?= $this->getData("button_class"); ?>" title="<?= (isset($button_text) && $button_text)?__($button_text): __('Subscribe') ?>" type="submit">
+                    <span><?= (isset($button_text) && $button_text)?__($button_text): __('Sign up now !') ?></span>
                 </button>
             </div>
         </form>
@@ -69,7 +69,7 @@ require(['jquery'],function($){
         ,"Ves_All/lib/bootstrap/js/bootstrap.min"
         <?php endif; ?>
         ],function($){
-            
+
         });
     });
 });
