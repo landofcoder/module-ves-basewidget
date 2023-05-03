@@ -118,9 +118,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->_coreRegistry;
     }
 
+    /**
+     * filter string
+     *
+     * @param string $str
+     * @return string
+     */
     public function filter($str)
     {
-        $html = $this->_filterProvider->getPageFilter()->filter($str);
+        $html = $str ? $this->_filterProvider->getPageFilter()->filter($str) : $str;
         return $html;
     }
 
