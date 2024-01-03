@@ -108,6 +108,8 @@ abstract class ElFinderVolumeDriver {
 	 **/
 	protected $cryptLib = '';
 
+    protected $nameValidator;
+
 	/**
 	 * Archivers config
 	 *
@@ -315,6 +317,14 @@ abstract class ElFinderVolumeDriver {
 	 * @var array
 	 **/
 	protected $diabled = array();
+
+    /**
+	 * List of disabled client's commands
+	 *
+	 * @var array
+	 **/
+    protected $disabled = array();
+
 
 	/**
 	 * default extensions/mimetypes for mimeDetect == 'internal'
@@ -2700,7 +2710,7 @@ abstract class ElFinderVolumeDriver {
 
 				try {
 					$img = new \imagick($path);
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 
 					return false;
 				}
@@ -2774,7 +2784,7 @@ abstract class ElFinderVolumeDriver {
 
 				try {
 					$img = new \imagick($path);
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 
 					return false;
 				}
@@ -2853,7 +2863,7 @@ abstract class ElFinderVolumeDriver {
 			case 'imagick':
 				try {
 					$img = new \imagick($path);
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 					return false;
 				}
 
@@ -2939,7 +2949,7 @@ abstract class ElFinderVolumeDriver {
 			case 'imagick':
 				try {
 					$img = new \imagick($path);
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 					return false;
 				}
 
