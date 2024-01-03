@@ -88,7 +88,8 @@ class Textarea extends Template implements RendererInterface
         parent::__construct($context);
     }
 
-    public function isBase64Encoded($data) {
+    public function isBase64Encoded($data)
+    {
         if(base64_encode($data) === $data) return false;
         if(base64_encode(base64_decode($data)) === $data){
             return true;
@@ -97,7 +98,7 @@ class Textarea extends Template implements RendererInterface
             $check = str_split(base64_decode($data));
             $x = 0;
             foreach ($check as $char) if (ord($char) > 126) $x++;
-            if ($x/count($check)*100 < 30) return true;
+            if (count($check) > 0 && $x/count($check)*100 < 30) return true;
         }
         $decoded = base64_decode($data);
         // Check if there are valid base64 characters
