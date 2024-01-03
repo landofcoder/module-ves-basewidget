@@ -72,7 +72,7 @@ class Widget extends \Magento\Widget\Model\Widget
                     }
                 }
             }
-            
+
         }
         return parent::getWidgetDeclaration($type, $params, $asIs);
     }
@@ -86,7 +86,7 @@ class Widget extends \Magento\Widget\Model\Widget
             $check = str_split(base64_decode($data));
             $x = 0;
             foreach ($check as $char) if (ord($char) > 126) $x++;
-            if ($x/count($check)*100 < 30) return true;
+            if (count($check) > 0 && $x/count($check)*100 < 30) return true;
         }
         $decoded = base64_decode($data);
         // Check if there are valid base64 characters
@@ -95,7 +95,7 @@ class Widget extends \Magento\Widget\Model\Widget
         if (0 < preg_match('/((?![[:graph:]])(?!\s)(?!\p{L}))./', $decoded, $matched)) return false;
         if (!preg_match('%^[a-zA-Z0-9/+]*={0,2}$%', $data)) return false;
 
-        
+
         return false;
     }
 

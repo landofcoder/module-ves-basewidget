@@ -19,9 +19,11 @@
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
 namespace Ves\BaseWidget\Helper;
+
 use Magento\Framework\Filesystem\File\ReadFactory;
 use Magento\Framework\Filesystem\DriverPool;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Ves\PageBuilder\Helper\SerializeService;
 
 class Widget extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -178,7 +180,7 @@ class Widget extends \Magento\Framework\App\Helper\AbstractHelper
 			}
 		}
 		if($type == "json") {
-			return \Zend_Json::encode($widgets);
+			return SerializeService::encode($widgets);
 		}
 
 		return $widgets;
