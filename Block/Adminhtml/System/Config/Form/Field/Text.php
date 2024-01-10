@@ -79,7 +79,7 @@ class Text extends Template implements RendererInterface
         /*Escaper $escaper,*/
         /*\Magento\Framework\View\LayoutInterface $layout,*/
         \Magento\Backend\Helper\Data $backendData
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         /*$this->_escaper = $escaper;
@@ -88,7 +88,12 @@ class Text extends Template implements RendererInterface
         parent::__construct($context);
     }
 
-    public function isBase64Encoded($data) {
+    /**
+     * @param mixed|string $data
+     * @return bool
+     */
+    public function isBase64Encoded($data)
+    {
         if(base64_encode($data) === $data) return false;
         if(base64_encode(base64_decode($data)) === $data){
             return true;

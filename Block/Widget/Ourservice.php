@@ -46,7 +46,7 @@ class Ourservice extends AbstractWidget{
 		Url $actionUrlBuilder,
         /*UrlInterface $urlBuilder,*/
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -67,7 +67,11 @@ class Ourservice extends AbstractWidget{
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
 
-	protected function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$content_html = $this->getConfig('content_html');

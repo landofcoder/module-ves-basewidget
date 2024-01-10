@@ -52,7 +52,10 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
 		return $default;
 	}
 
-	public function _toHtml()
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
     {
         $template = 'Ves_BaseWidget::widget/dealproduct/items.phtml';
         if($tmp_template = $this->getConfig("template")) {
@@ -108,6 +111,9 @@ class ProductList extends \Magento\Catalog\Block\Product\AbstractProduct impleme
         return $this->_cartHelper->getAddUrl($product, $additional);
     }
 
+    /**
+     * @return string
+     */
     public function getVesProductPriceHtml($product)
     {
         return $this->getProductPrice($product);

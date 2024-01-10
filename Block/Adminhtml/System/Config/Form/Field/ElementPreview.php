@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -28,13 +28,19 @@ class ElementPreview extends Template implements RendererInterface
 {
     protected $_storeManager;
 
+    protected $_factoryElement;
+
+    protected $_factoryCollection;
+
+    protected $_backendData;
+
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Data\Form\Element\Factory $factoryElement,
         \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection,
         \Magento\Backend\Helper\Data $backendData,
         \Magento\Store\Model\StoreManagerInterface $storeManager
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         $this->_backendData = $backendData;
@@ -46,9 +52,10 @@ class ElementPreview extends Template implements RendererInterface
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
+
 	/**
-	 * @param  AbstractElement $element 
-	 * @return string                   
+	 * @param  AbstractElement $element
+	 * @return string
 	 */
 	public function render(AbstractElement $element)
 	{

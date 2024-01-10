@@ -19,8 +19,11 @@
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
 namespace Ves\BaseWidget\Block\Widget;
+
 use Ves\BaseWidget\Block\AbstractWidget;
-class Facebook extends AbstractWidget{
+
+class Facebook extends AbstractWidget
+{
 
 	protected $_blockModel;
 	protected $_dataFilterHelper;
@@ -29,14 +32,18 @@ class Facebook extends AbstractWidget{
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
 		$this->setTemplate("widget/facebook.phtml");
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$url = $this->getConfig('facebook_url');

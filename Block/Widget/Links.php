@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -23,7 +23,8 @@ use Ves\BaseWidget\Block\AbstractWidget;
 use Magento\Framework\Url;
 use Magento\Framework\UrlInterface;
 
-class Links extends AbstractWidget{
+class Links extends AbstractWidget
+{
 
 	protected $_blockModel;
 	protected $_dataFilterHelper;
@@ -40,7 +41,7 @@ class Links extends AbstractWidget{
 		Url $actionUrlBuilder,
         /*UrlInterface $urlBuilder,*/
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -52,10 +53,14 @@ class Links extends AbstractWidget{
 		} else {
 			$this->setTemplate("widget/links.phtml");
 		}
-		
+
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$widget_heading = $this->getConfig("title");
@@ -83,5 +88,5 @@ class Links extends AbstractWidget{
 
 		return parent::_toHtml();
 	}
-	
+
 }

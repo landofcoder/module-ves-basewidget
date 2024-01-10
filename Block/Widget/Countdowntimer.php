@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -42,7 +42,7 @@ class Countdowntimer extends AbstractWidget{
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Ves\BaseWidget\Helper\Image $imageHelper,
         array $data = []
-        ) {
+    ) {
 
         parent::__construct($context, $blockModel, $dataHelper);
         $this->_objectManager = $objectManager;
@@ -59,19 +59,24 @@ class Countdowntimer extends AbstractWidget{
         $this->setTemplate($my_template);
     }
 
-    public function getLocaleDate() {
+    public function getLocaleDate()
+    {
         return $this->_localeDate;
     }
-    public function getImageHelper() {
+
+    public function getImageHelper()
+    {
         return $this->_imageHelper;
     }
+
     public function filter($str)
     {
         $html = $this->getDataFilterHelper()->filter($str);
         return $html;
     }
-    
-    public function getBaseMediaUrl(){
+
+    public function getBaseMediaUrl()
+    {
         $storeMediaUrl = $this->_objectManager->get('Magento\Store\Model\StoreManagerInterface')
         ->getStore()
         ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);

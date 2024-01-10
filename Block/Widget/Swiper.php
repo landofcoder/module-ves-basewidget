@@ -34,7 +34,7 @@ class Swiper extends AbstractWidget{
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -51,7 +51,11 @@ class Swiper extends AbstractWidget{
 
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$carousels = array();

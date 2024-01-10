@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Productlist
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -62,9 +62,14 @@ class CategoryList extends \Magento\Framework\View\Element\Html\Select
     protected $searchCriteriaBuilder;
 
     /**
-     * @var \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory
+     * @var \Magento\Catalog\Model\CategoryFactory
      */
     protected $_categoryFactory;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory
+     */
+    protected $_collectionFactory;
 
     /**
      * @var \Magento\Framework\Escaper
@@ -72,11 +77,11 @@ class CategoryList extends \Magento\Framework\View\Element\Html\Select
     protected $_escaper = null;
 
     /**
-     * @param \Magento\Framework\View\Element\Context $context               
-     * @param GroupManagementInterface                $groupManagement       
-     * @param GroupRepositoryInterface                $groupRepository       
-     * @param SearchCriteriaBuilder                   $searchCriteriaBuilder 
-     * @param array                                   $data                  
+     * @param \Magento\Framework\View\Element\Context $context
+     * @param GroupManagementInterface                $groupManagement
+     * @param GroupRepositoryInterface                $groupRepository
+     * @param SearchCriteriaBuilder                   $searchCriteriaBuilder
+     * @param array                                   $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Context $context,
@@ -152,7 +157,7 @@ class CategoryList extends \Magento\Framework\View\Element\Html\Select
         ->addAttributeToFilter('is_active','1')
         ->addAttributeToFilter('level', '0')
         ->addAttributeToFilter('parent_id',array('eq' => "0"));
-        
+
         if(0 < $root_parent_collection->getSize()) {
             $root_parent_id = $root_parent_collection->getFirstItem()->getId();
         }
@@ -165,7 +170,7 @@ class CategoryList extends \Magento\Framework\View\Element\Html\Select
         $allCats = $this->_categoryFactory->create()->getCollection()
         ->addAttributeToSelect('*')
         ->addAttributeToFilter('is_active','1')
-        ->addAttributeToSort('position', 'asc'); 
+        ->addAttributeToSort('position', 'asc');
         if ($parentId) {
             $allCats->addAttributeToFilter('parent_id',array('eq' => $parentId));
         }
@@ -185,12 +190,12 @@ class CategoryList extends \Magento\Framework\View\Element\Html\Select
                 $tmp["label"] = $prefix."(ID:".$category->getId().") ".addslashes($category->getName());
                 $arr[] = $tmp;
                 $subcats = $category->getChildren();
-                if($subcats != ''){ 
+                if($subcats != ''){
                     $arr = array_merge($arr, $this->getTreeCategories($category->getId(),(int)$level + 1, $caret.' _ '));
                 }
 
             }
-            
+
         }
         return isset($arr)?$arr:array();
     }

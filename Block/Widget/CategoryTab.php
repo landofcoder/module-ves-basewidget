@@ -86,6 +86,11 @@ class CategoryTab extends \Magento\Catalog\Block\Product\AbstractProduct impleme
     /** \Magento\Catalog\Model\Category */
     protected $_categoryModel;
 
+    /**
+     * @var \Magento\Catalog\Model\Product\Visibility
+     */
+    protected $_catalogProductVisibility;
+
    /**
     * @param \Magento\Catalog\Block\Product\Context                    $context
     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
@@ -100,28 +105,28 @@ class CategoryTab extends \Magento\Catalog\Block\Product\AbstractProduct impleme
     * @param array                                                     $data
     */
    public function __construct(
-    \Magento\Catalog\Block\Product\Context $context,
-    \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-    \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $reportCollection,
-    \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
-    \Magento\Framework\App\Http\Context $httpContext,
-    \Ves\BaseWidget\Model\Product $productModel,
-    \Magento\Cms\Model\Block $blockModel,
-    \Magento\Catalog\Model\Category $categoryModel,
-    array $data = []
+        \Magento\Catalog\Block\Product\Context $context,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $reportCollection,
+        \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
+        \Magento\Framework\App\Http\Context $httpContext,
+        \Ves\BaseWidget\Model\Product $productModel,
+        \Magento\Cms\Model\Block $blockModel,
+        \Magento\Catalog\Model\Category $categoryModel,
+        array $data = []
     ) {
-    $this->_productCollectionFactory = $productCollectionFactory;
-    $this->_reportCollection = $reportCollection;
-    $this->_catalogProductVisibility = $catalogProductVisibility;
-    $this->httpContext = $httpContext;
-    $this->_productModel = $productModel;
-    $this->_blockModel = $blockModel;
-    $this->_categoryModel = $categoryModel;
-    parent::__construct(
-        $context,
-        $data
-        );
-}
+        $this->_productCollectionFactory = $productCollectionFactory;
+        $this->_reportCollection = $reportCollection;
+        $this->_catalogProductVisibility = $catalogProductVisibility;
+        $this->httpContext = $httpContext;
+        $this->_productModel = $productModel;
+        $this->_blockModel = $blockModel;
+        $this->_categoryModel = $categoryModel;
+        parent::__construct(
+            $context,
+            $data
+            );
+    }
 
     /**
      * {@inheritdoc}
@@ -183,11 +188,13 @@ class CategoryTab extends \Magento\Catalog\Block\Product\AbstractProduct impleme
         return $default;
     }
 
-    public function getCmsBlockModel(){
+    public function getCmsBlockModel()
+    {
         return $this->_blockModel;
     }
 
-    public function getTabs(){
+    public function getTabs()
+    {
         $tabs = $this->getConfig('tabs');
         if($tabs){
             if(base64_decode($tabs, true) == true){
@@ -220,22 +227,26 @@ class CategoryTab extends \Magento\Catalog\Block\Product\AbstractProduct impleme
         return [\Magento\Catalog\Model\Product::CACHE_TAG];
     }
 
-    public function getCategory($category_id){
+    public function getCategory($category_id)
+    {
         $category = $this->_categoryModel->load($category_id);
         return $category;
     }
 
-    public function getAjaxUrl(){
+    public function getAjaxUrl()
+    {
         return $this->getUrl('productlist/index/categoryProducts');
     }
 
-    public function getProductsBySource($source_key, $config = []){
+    public function getProductsBySource($source_key, $config = [])
+    {
         $config['pagesize'] = $this->getConfig('number_item',12);
         $collection = $this->_productModel->getProductBySource($source_key, $config);
         return $collection;
     }
 
-    public function getProductHtml($data, $template = ''){
+    public function getProductHtml($data, $template = '')
+    {
         $template = $template?$template:'Ves_BaseWidget::widget/product_tabs/items.phtml';
         unset($data['type']);
         unset($data['cache_lifetime']);

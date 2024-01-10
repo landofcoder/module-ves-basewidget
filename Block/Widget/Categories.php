@@ -19,6 +19,8 @@
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
 namespace Ves\BaseWidget\Block\Widget;
+
+use Magento\Framework\Exception\NoSuchEntityException;
 use Ves\BaseWidget\Block\AbstractWidget;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
@@ -53,7 +55,7 @@ class Categories extends AbstractWidget
 		CategoryRepositoryInterface $categoryRepository,
         \Magento\Catalog\Model\CategoryFactory $categoryFactory,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 
 		$this->_blockModel = $blockModel;
@@ -79,7 +81,8 @@ class Categories extends AbstractWidget
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
 
-    public function getCategoryCollection($catIds) {
+    public function getCategoryCollection($catIds)
+    {
         $storeId = $this->_storeManager->getStore()->getId();
         $collection = $this->_categoryFactory->create()->getCollection();
         $collection->addAttributeToSelect('name')
@@ -90,7 +93,8 @@ class Categories extends AbstractWidget
     	return $collection;
     }
 
-    public function getCategoryInfo( $categoryId = 0 ){
+    public function getCategoryInfo( $categoryId = 0 )
+    {
     	if(!$categoryId)
     		return false;
 
@@ -124,7 +128,11 @@ class Categories extends AbstractWidget
 		return "";
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$widget_heading = $this->getConfig("title");

@@ -44,7 +44,7 @@ class Gallery extends AbstractWidget
 		\Ves\BaseWidget\Helper\Image $imageHelper,
 		\Magento\Framework\ObjectManagerInterface $objectManager,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -64,19 +64,24 @@ class Gallery extends AbstractWidget
 		$this->setTemplate($my_template);
 	}
 
-	public function getMediaUrl(){
+	public function getMediaUrl()
+    {
         $storeMediaUrl = $this->_objectManager->get('Magento\Store\Model\StoreManagerInterface')
         ->getStore()
         ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         return $storeMediaUrl;
     }
 
-    public function getBaseMediaDirPath() {
+    public function getBaseMediaDirPath()
+    {
         return $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
     }
 
-
-	public function _toHtml() {
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$widget_heading = $this->getConfig("title");

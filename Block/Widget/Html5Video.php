@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -32,7 +32,7 @@ class Html5Video extends AbstractWidget{
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		\Ves\BaseWidget\Helper\Image $imageHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -42,13 +42,22 @@ class Html5Video extends AbstractWidget{
 		} else {
 			$this->setTemplate("widget/html5_video.phtml");
 		}
-		
+
 	}
+
+    /**
+     * @return string
+     */
 	public function getBaseMediaUrl()
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
-	public function _toHtml(){
+
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		/** THUMBNAIL **/
@@ -86,5 +95,5 @@ class Html5Video extends AbstractWidget{
 
 		return parent::_toHtml();
 	}
-	
+
 }

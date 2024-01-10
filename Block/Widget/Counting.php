@@ -29,7 +29,7 @@ class Counting extends AbstractWidget{
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -43,7 +43,11 @@ class Counting extends AbstractWidget{
 		$this->setTemplate($my_template);
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$description = $this->getConfig('html');

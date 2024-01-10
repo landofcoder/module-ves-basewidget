@@ -19,6 +19,8 @@
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
 namespace Ves\BaseWidget\Block\Widget;
+
+use Magento\Framework\Exception\NoSuchEntityException;
 use Ves\BaseWidget\Block\AbstractWidget;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 
@@ -42,7 +44,7 @@ class Categoriesinfo extends AbstractWidget{
 		\Ves\BaseWidget\Helper\Image $imageHelper,
 		CategoryRepositoryInterface $categoryRepository,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -85,7 +87,6 @@ class Categoriesinfo extends AbstractWidget{
         $_file_name = $category->getImage();
 
         // edit in 2.4.2
-//        $_file_path = $this->getBaseMediaUrl() ."catalog/category/".$_file_name;
         if (strpos($_file_name,'/media/') !== false) {
             $_file_name = @str_replace('/media/', '', $_file_name);
         }
@@ -99,7 +100,8 @@ class Categoriesinfo extends AbstractWidget{
         return "";
 	}
 
-	public function getCategoryInfo( $categoryId = 0 ){
+	public function getCategoryInfo( $categoryId = 0 )
+    {
     	if(!$categoryId)
     		return false;
 
@@ -111,7 +113,9 @@ class Categoriesinfo extends AbstractWidget{
 
         return $category;
     }
-    public function getChildCategories( $categoryId = 0, $limit = 3) {
+
+    public function getChildCategories( $categoryId = 0, $limit = 3)
+    {
     	$category_collection = $this->categoryRepository->getCollection();
     	$category_collection->addAttributeToSelect('name')
 							->addFieldToFilter('parent_id', $categoryId)
@@ -122,7 +126,11 @@ class Categoriesinfo extends AbstractWidget{
 
     }
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$cms = "";

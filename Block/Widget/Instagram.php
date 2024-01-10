@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -22,19 +22,19 @@ namespace Ves\BaseWidget\Block\Widget;
 use Ves\BaseWidget\Block\AbstractWidget;
 
 class Instagram extends AbstractWidget{
-	
+
 	protected $_blockModel;
 	protected $_dataFilterHelper;
 	/**
 	 * @var class Instagram
-	 * 
+	 *
 	 * @access protected
 	 */
 	protected $_instagram = '';
 
 	/**
 	 * @var return list
-	 * 
+	 *
 	 * @access protected
 	 */
 	protected $_instagrams = array();
@@ -45,7 +45,7 @@ class Instagram extends AbstractWidget{
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		\Ves\BaseWidget\Helper\InstagramConnect $instagram,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -59,13 +59,17 @@ class Instagram extends AbstractWidget{
 		$this->setTemplate($my_template);
 	}
 
-	protected function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 		$enable_owl_carousel = $this->getConfig("enable_owl_carousel");
 		if($enable_owl_carousel) {
 			$this->setTemplate("widget/instagram_carousel.phtml");
 		}
-		
+
 		$this->assign('addition_cls', $this->getConfig('addition_cls'));
 		$this->assign('stylecls', $this->getConfig('stylecls'));
 		$this->assign('widget_heading', $this->getConfig('title'));
@@ -168,5 +172,5 @@ class Instagram extends AbstractWidget{
 		fclose($in);
 		fclose($out);
 	}
-	
+
 }

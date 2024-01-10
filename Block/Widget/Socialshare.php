@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -21,7 +21,8 @@
 namespace Ves\BaseWidget\Block\Widget;
 use Ves\BaseWidget\Block\AbstractWidget;
 
-class Socialshare extends AbstractWidget{
+class Socialshare extends AbstractWidget
+{
 
 	protected $_blockModel;
 	protected $_dataFilterHelper;
@@ -61,17 +62,21 @@ class Socialshare extends AbstractWidget{
 	    );
 	}
 
-
-	protected function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
-		$this->assign('widget_heading', $this->getConfig('title'));	
+		$this->assign('widget_heading', $this->getConfig('title'));
 		$this->assign('addition_cls', $this->getConfig('addition_cls'));
 		$this->assign('stylecls', $this->getConfig('stylecls'));
 		return parent::_toHtml();
 	}
 
-	public function getProduct() {
+	public function getProduct()
+    {
 		return $this->_coreRegistry->registry('product');
 	}
 

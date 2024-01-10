@@ -19,7 +19,6 @@
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
 namespace Ves\BaseWidget\Controller\Adminhtml\Basewidget;
-use Magento\Framework\App\Filesystem\DirectoryList;
 
 class Imagemanager extends \Ves\BaseWidget\Controller\Adminhtml\Basewidget
 {

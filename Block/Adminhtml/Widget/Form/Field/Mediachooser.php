@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -59,13 +59,13 @@ class Mediachooser extends Template implements RendererInterface
     protected $_dataHelper;
 
     /**
-     * @param \Magento\Backend\Block\Template\Context                $context           
-     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement    
-     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection 
-     * @param Escaper                                                $escaper           
-     * @param \Ves\BaseWidget\Helper\Data                            $dataHelper     
-     * @param \Magento\Framework\View\LayoutInterface                $layout            
-     * @param \Magento\Backend\Helper\Data                           $backendData       
+     * @param \Magento\Backend\Block\Template\Context                $context
+     * @param \Magento\Framework\Data\Form\Element\Factory           $factoryElement
+     * @param \Magento\Framework\Data\Form\Element\CollectionFactory $factoryCollection
+     * @param Escaper                                                $escaper
+     * @param \Ves\BaseWidget\Helper\Data                            $dataHelper
+     * @param \Magento\Framework\View\LayoutInterface                $layout
+     * @param \Magento\Backend\Helper\Data                           $backendData
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -76,7 +76,7 @@ class Mediachooser extends Template implements RendererInterface
         /*\Magento\Store\Model\StoreManagerInterface $storeManager,*/
         /*\Magento\Framework\View\LayoutInterface $layout,*/
         \Magento\Backend\Helper\Data $backendData
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         /*$this->_escaper = $escaper;
@@ -102,7 +102,7 @@ class Mediachooser extends Template implements RendererInterface
     public function render(AbstractElement $element){
         $html = '';
         $url = $element->getValue();
-        $id = $element->getHtmlId();    
+        $id = $element->getHtmlId();
         if ($url) {
             $linkStyle = "display:inline;";
             if(!preg_match("/^http\:\/\/|https\:\/\//", $url)) {
@@ -194,7 +194,7 @@ class Mediachooser extends Template implements RendererInterface
 
         $html .= <<<HTML
             <script>
-            
+
             require([
                 'jquery',
                 'Ves_BaseWidget/js/jquery/ui/jquery-ui.min',

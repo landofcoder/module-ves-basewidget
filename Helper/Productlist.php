@@ -43,7 +43,7 @@ class Productlist extends \Magento\Framework\App\Helper\AbstractHelper
 		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		//\Magento\Framework\Module\Manager $moduleManager,
 		\Magento\Framework\Registry $registry
-	){
+	) {
 		parent::__construct($context);
 		$this->_filterProvider = $filterProvider;
 		$this->_storeManager = $storeManager;

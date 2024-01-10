@@ -62,7 +62,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
 		\Magento\Framework\App\Helper\Context $context,
 		\Magento\Framework\Image\Factory $imageFactory,
         \Magento\Catalog\Helper\Image $imageHelper
-		){
+	) {
 		$this->_storeManager = $storeManager;
 		$this->_filesystem = $filesystem;
         $this->_imageFactory = $imageFactory;

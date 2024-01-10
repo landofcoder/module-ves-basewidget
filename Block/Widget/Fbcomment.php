@@ -40,7 +40,7 @@ class Fbcomment extends AbstractWidget{
 		Url $actionUrlBuilder,
         /*UrlInterface $urlBuilder,*/
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -50,7 +50,8 @@ class Fbcomment extends AbstractWidget{
 		$this->setTemplate("widget/facebook_comment.phtml");
 	}
 
-	public function _toHtml(){
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$use_current_url = $this->getConfig('current_url', 0);

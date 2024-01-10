@@ -30,7 +30,7 @@ class Popup extends AbstractWidget{
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -44,7 +44,11 @@ class Popup extends AbstractWidget{
 
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 
 		$form_widget_type = $this->getConfig('form_type');
 

@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -21,27 +21,60 @@
 namespace Ves\BaseWidget\Block\Widget;
 use Ves\BaseWidget\Block\AbstractWidget;
 
-class Reviewrotator extends AbstractWidget{
-
+class Reviewrotator extends AbstractWidget
+{
 
 	protected $_reviewsCollection;
 	protected $_blockModel;
 	protected $_dataFilterHelper;
+
+    /**
+     * @var \Magento\Catalog\Model\ProductFactory
+     */
+    protected $productFactory;
+
+    /**
+     * @var \Magento\Review\Model\ReviewFactory
+     */
+    protected $reviewFactory;
+
+    /**
+     * @var \Magento\Review\Model\Rating\Option\VoteFactory
+     */
+    protected $voteFactory;
+
+    /**
+     * @var \Magento\Review\Model\RatingFactory
+     */
+    protected $ratingFactory;
+
 	public function __construct(
 		\Magento\Framework\View\Element\Template\Context $context,
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Review\Model\ReviewFactory $reviewFactory,
+        \Magento\Review\Model\Rating\Option\VoteFactory $voteFactory,
+        \Magento\Review\Model\RatingFactory $ratingFactory,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
+        $this->reviewFactory = $reviewFactory;
+        $this->productFactory = $productFactory;
 		$this->_blockModel = $blockModel;
+        $this->ratingFactory = $ratingFactory;
+        $this->voteFactory = $voteFactory;
 		$this->_dataFilterHelper = $dataHelper;
 		$this->setTemplate("widget/reviewsrotator.phtml");
 	}
 
-	public function getReviews($number,$type){
+    /**
+     * @inheritdoc
+     */
+	public function getReviews($number,$type)
+    {
 		$store = $this->_storeManager->getStore();
-		$reviews = $this->_objectManager->create("\Magento\Review\Model\Review")->getResourceCollection();
+		$reviews = $this->reviewFactory->create()->getResourceCollection();
 		$reviews->addStoreFilter($store->getId());
 		$reviews->setPageSize($number);
 		if($type=='random'){
@@ -53,13 +86,13 @@ class Reviewrotator extends AbstractWidget{
 		foreach ($reviews as $review) {
 			$reviewId = $review->getId();
 			$productId = $review->getEntityPkValue();
-			$obj = $this->_objectManager->create("\Magento\Catalog\Model\Product");
+			$obj = $this->productFactory->create();
 			$_product = $obj->load($productId);
 			$reviewCollection[$reviewId]['review'] = array(
 				'title' => $review->getTitle(),
 				'description' => $review->getDetail(),
 				'url' => $this->getUrl('review/product/view',array('id'=>$reviewId)),
-				'created_at' => Mage::helper('core')->formatDate($review->getCreatedAt(), 'full', false),
+				'created_at' => $review->getCreatedAt(),
 				);
 			$reviewCollection[$reviewId]['product'] = array(
 				'name' => $_product->getName(),
@@ -67,29 +100,35 @@ class Reviewrotator extends AbstractWidget{
 				);
 			$reviewCollection[$reviewId]['author'] = array(
 				'name' => $review->getNickname(),
-				);	
-			$votesCollection = $this->_objectManager->create("\Magento\Review\Model\Rating\Option\Vote")
+				);
+			$votesCollection = $this->voteFactory->create()
 						->getResourceCollection()
 						->setReviewFilter($reviewId)
 						->setStoreFilter($store->getId())
 						->load();
 			foreach ($votesCollection as $vote) {
 				$id = $vote->getRatingId();
-				$ratings = $this->_objectManager->create("\Magento\Review\Model\Rating")->getCollection()->addFilter('rating_id',$id);
+				$ratings = $this->ratingFactory->create()
+                                ->getCollection()
+                                ->addFilter('rating_id',$id);
+
 				foreach ($ratings as $rating) {
 					$reviewCollection[$reviewId]['rating'][] = array(
 						'name' => $rating->getRatingCode(),
 						'percent' => $vote->getPercent(),
 						'value' => $vote->getValue(),
-						);	
+						);
 				}
 			}
 		}
 		return $reviewCollection;
 	}
 
-
-	protected function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$number = $this->getConfig('show_number');

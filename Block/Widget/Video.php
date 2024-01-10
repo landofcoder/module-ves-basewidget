@@ -1,26 +1,28 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_BaseWidget
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
  * @license    http://www.venustheme.com/LICENSE-1.0.html
  */
 namespace Ves\BaseWidget\Block\Widget;
+
 use Ves\BaseWidget\Block\AbstractWidget;
-class Video extends AbstractWidget{
+class Video extends AbstractWidget
+{
 
 	protected $_blockModel;
 	protected $_dataFilterHelper;
@@ -32,7 +34,7 @@ class Video extends AbstractWidget{
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		\Ves\BaseWidget\Helper\Image $imageHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -42,14 +44,18 @@ class Video extends AbstractWidget{
 		} else {
 			$this->setTemplate("widget/youtube.phtml");
 		}
-		
+
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		/** THUMBNAIL **/
-		$imagesize = $this->getData('image_size');
+		//$imagesize = $this->getData('image_size');
 		$image_file = $this->getData('file');
 		$width = (int)$this->getData('width');
 		$height = (int)$this->getData('height');
@@ -65,5 +71,5 @@ class Video extends AbstractWidget{
 
 		return parent::_toHtml();
 	}
-	
+
 }
