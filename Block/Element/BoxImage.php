@@ -44,12 +44,16 @@ class BoxImage extends AbstractWidget
 		$this->setTemplate('element/box_image.phtml');
 	}
 
+    /**
+     * @return string
+     */
 	public function getBaseMediaUrl()
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
 
-    public function getImageSize( $imagesize = "") {
+    public function getImageSize( $imagesize = "")
+    {
     	$imagesize = @trim($imagesize);
     	$return = "";
     	switch ($imagesize) {
@@ -76,7 +80,11 @@ class BoxImage extends AbstractWidget
     	return $return;
     }
 
-	public function _toHtml() {
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$image_file = $this->getConfig('file');

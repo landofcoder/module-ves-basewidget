@@ -41,7 +41,7 @@ class Pricing extends AbstractWidget{
 		\Magento\Catalog\Model\Product $productModel,
 		Url $actionUrlBuilder,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -58,7 +58,11 @@ class Pricing extends AbstractWidget{
         $this->setTemplate($my_template);
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$content = $this->getConfig('content');

@@ -20,13 +20,8 @@
  */
 namespace Ves\BaseWidget\Controller\Adminhtml;
 
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\Registry;
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\View\Result\LayoutFactory;
+
 /**
  * Class Index
  */

@@ -49,7 +49,6 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
         UrlFinderInterface $urlFinder,
         array $data = []
     ) {
-
         parent::__construct($context, $data);
         $this->_blockModel = $blockModel;
         $this->_dataFilterHelper = $dataHelper;
@@ -149,7 +148,7 @@ class AbstractProductWidget extends \Magento\Catalog\Block\Product\AbstractProdu
     /**
      * Check product is new
      *
-     * @param  Mage_Catalog_Model_Product $_product
+     * @param  mixed $_product
      * @return bool
      */
     public function checkProductIsNew($_product = null)

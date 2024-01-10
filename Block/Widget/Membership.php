@@ -35,7 +35,7 @@ class Membership extends AbstractWidget{
 		\Magento\Directory\Helper\Data $directoryHelper,
 		\Magento\Framework\Locale\CurrencyInterface $localeCurrency,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -50,7 +50,11 @@ class Membership extends AbstractWidget{
         $this->setTemplate($my_template);
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$content = $this->getConfig('content');

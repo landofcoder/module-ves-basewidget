@@ -49,6 +49,11 @@ class WysiwygEditor extends Template implements RendererInterface
     protected $_layout;
 
     /**
+     * @var \Magento\Cms\Model\Wysiwyg\Config
+     */
+    protected $_wysiwygConfig;
+
+    /**
      * Adminhtml data
      *
      * @var \Magento\Backend\Helper\Data

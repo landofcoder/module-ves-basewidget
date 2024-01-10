@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Productlist
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -64,13 +64,18 @@ class Product extends \Magento\Framework\DataObject
      */
     protected $_resource;
 
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    protected $date;
+
 	/**
-     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory 
-     * @param \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $reportCollection         
-     * @param \Magento\Catalog\Model\Product\Visibility                 $catalogProductVisibility 
-     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface      $localeDate               
-     * @param \Magento\Store\Model\StoreManagerInterface                $storeManager             
-     * @param array                                                     $data                     
+     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
+     * @param \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $reportCollection
+     * @param \Magento\Catalog\Model\Product\Visibility                 $catalogProductVisibility
+     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface      $localeDate
+     * @param \Magento\Store\Model\StoreManagerInterface                $storeManager
+     * @param array                                                     $data
      */
 	public function __construct(
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
@@ -81,7 +86,7 @@ class Product extends \Magento\Framework\DataObject
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
         \Magento\Framework\App\ResourceConnection $resource,
         array $data = []
-        ) {
+    ) {
         $this->_localeDate = $localeDate;
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_reportCollection = $reportCollection;
@@ -92,7 +97,7 @@ class Product extends \Magento\Framework\DataObject
         parent::__construct($data);
     }
 
-	
+
     /**
      * New arrival product collection
      *
@@ -107,7 +112,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -160,7 +165,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -188,7 +193,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -224,7 +229,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -253,7 +258,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -290,7 +295,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -325,7 +330,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -378,7 +383,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_reportCollection->create()->addAttributeToSelect('*')->addViewsCount();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(
@@ -406,7 +411,7 @@ class Product extends \Magento\Framework\DataObject
         $collection = $this->_productCollectionFactory->create();
         if(isset($config['categories'])){
             $collection->joinField(
-                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id', 
+                'category_id', $this->_resource->getTableName('catalog_category_product'), 'category_id',
                 'product_id = entity_id', null, 'left'
             )
             ->addAttributeToFilter('category_id', array(

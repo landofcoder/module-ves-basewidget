@@ -25,12 +25,13 @@ class Accordion extends AbstractWidget
 {
 	protected $_blockModel;
 	protected $_dataFilterHelper;
+
 	public function __construct(
 		\Magento\Framework\View\Element\Template\Context $context,
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -47,7 +48,11 @@ class Accordion extends AbstractWidget
 		$this->setTemplate($my_template);
 	}
 
-	public function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	public function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$accordions = array();

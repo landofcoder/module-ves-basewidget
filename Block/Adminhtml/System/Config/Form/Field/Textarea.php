@@ -79,7 +79,7 @@ class Textarea extends Template implements RendererInterface
         /*Escaper $escaper,*/
         /*\Magento\Framework\View\LayoutInterface $layout,*/
         \Magento\Backend\Helper\Data $backendData
-        ){
+    ) {
         $this->_factoryElement = $factoryElement;
         $this->_factoryCollection = $factoryCollection;
         /*$this->_escaper = $escaper;

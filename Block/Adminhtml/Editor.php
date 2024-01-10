@@ -91,6 +91,9 @@ class Editor extends \Magento\Framework\View\Element\Template implements \Magent
         parent::__construct($context, $data);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function _toHtml()
     {
         $placeholder = "";

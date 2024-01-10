@@ -26,12 +26,13 @@ class Tab extends AbstractWidget
 
 	protected $_blockModel;
 	protected $_dataFilterHelper;
+
 	public function __construct(
 		\Magento\Framework\View\Element\Template\Context $context,
 		\Magento\Cms\Model\Block $blockModel,
 		\Ves\BaseWidget\Helper\Data $dataHelper,
 		array $data = []
-		) {
+	) {
 		parent::__construct($context, $blockModel, $dataHelper, $data);
 		$this->_blockModel = $blockModel;
 		$this->_dataFilterHelper = $dataHelper;
@@ -48,7 +49,11 @@ class Tab extends AbstractWidget
 		$this->setTemplate($my_template);
 	}
 
-	protected function _toHtml(){
+    /**
+     * @inheritdoc
+     */
+	protected function _toHtml()
+    {
 		if(!$this->getDataFilterHelper()->getConfig('general/show')) return;
 
 		$tabs = array();

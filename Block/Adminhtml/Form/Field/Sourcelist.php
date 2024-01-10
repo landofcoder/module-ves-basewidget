@@ -1,18 +1,18 @@
 <?php
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Productlist
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -73,7 +73,7 @@ class Sourcelist extends \Magento\Framework\View\Element\Html\Select
     	GroupRepositoryInterface $groupRepository,
     	SearchCriteriaBuilder $searchCriteriaBuilder,
     	array $data = []
-    	) {
+    ) {
     	parent::__construct($context, $data);
 
     	$this->groupManagement = $groupManagement;
@@ -84,7 +84,7 @@ class Sourcelist extends \Magento\Framework\View\Element\Html\Select
     /**
      * Retrieve allowed customer groups
      *
-     * @param int $groupId return name by customer group id
+     * @param int|null $groupId return name by customer group id
      * @return array|string
      */
     protected function _getSourceList($groupId = null)

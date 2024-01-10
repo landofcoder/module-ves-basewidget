@@ -20,7 +20,8 @@
  */
 namespace Ves\BaseWidget\Block\Html;
 
-class Assets extends \Magento\Framework\View\Element\Template {
+class Assets extends \Magento\Framework\View\Element\Template
+{
     public $_coreRegistry;
     /**
      * @var \Magento\Framework\View\Page\Config
@@ -71,6 +72,10 @@ class Assets extends \Magento\Framework\View\Element\Template {
         return $this->_blockHelper;
     }
 
+    /**
+     * is homepage
+     * @return bool
+     */
     public function isHomePage()
     {
         $currentUrl = $this->getUrl('', ['_current' => true]);
