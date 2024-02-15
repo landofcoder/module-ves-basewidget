@@ -87,6 +87,7 @@ class Accordion extends AbstractWidget
 		$this->assign('accordions', $accordions );
 		$this->assign('stylecls', $this->getConfig('stylecls'));
 		$this->assign('widget_heading', $this->getConfig('title'));
+        $this->assign('heading_type', $this->getConfig('heading_type', ''));
 
 		return parent::_toHtml();
 	}

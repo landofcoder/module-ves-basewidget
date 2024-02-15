@@ -2,18 +2,18 @@
 <!--
 /**
  * Venustheme
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * This source file is subject to the Venustheme.com license that is
  * available through the world-wide-web at this URL:
  * http://www.venustheme.com/license-agreement.html
- * 
+ *
  * DISCLAIMER
- * 
+ *
  * Do not edit or add to this file if you wish to upgrade this extension to newer
  * version in the future.
- * 
+ *
  * @category   Venustheme
  * @package    Ves_Brand
  * @copyright  Copyright (c) 2014 Venustheme (http://www.venustheme.com/)
@@ -50,6 +50,25 @@
                     </option>
                     <option name="bootstrap" value="widget/accordion.phtml" selected="true">
                         <label translate="true">Bootstrap Accordion JS</label>
+                    </option>
+                </options>
+            </parameter>
+
+            <parameter name="heading_type" xsi:type="select"  visible="true">
+                <label translate="true">Heading Type</label>
+                <description translate="true">Select a kind of heading html tag</description>
+                <options>
+                    <option name="h4tag" value="h4" selected="true">
+                        <label translate="true">H4 Tag</label>
+                    </option>
+                    <option name="h3tag" value="h3">
+                        <label translate="true">H3 Tag</label>
+                    </option>
+                    <option name="h2tag" value="h2">
+                        <label translate="true">H2 Tag</label>
+                    </option>
+                    <option name="stongtag" value="strong">
+                        <label translate="true">Strong Tag</label>
                     </option>
                 </options>
             </parameter>
